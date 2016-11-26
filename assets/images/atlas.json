@@ -1,0 +1,62 @@
+{
+
+"images": [
+    "../../Assets/images/atlas.png"
+],
+
+"frames": [
+    [1, 1, 277, 274, 0, 0, 0],
+    [280, 1, 269, 242, 0, 0, 0],
+    [280, 245, 214, 212, 0, 0, 0],
+    [551, 1, 250, 188, 0, 0, 0],
+    [1, 277, 170, 136, 0, 0, 0],
+    [551, 191, 300, 30, 0, 0, 0],
+    [551, 223, 250, 22, 0, 0, 0],
+    [496, 247, 208, 198, 0, 0, 0],
+    [803, 1, 171, 85, 0, 0, 0],
+    [803, 88, 148, 88, 0, -2, -3],
+    [706, 247, 124, 118, 0, 0, 0],
+    [706, 367, 120, 65, 0, 0, -2],
+    [173, 277, 94, 58, 0, 0, 0],
+    [1, 415, 99, 38, 0, -12, -26],
+    [173, 337, 80, 49, 0, 0, 0],
+    [853, 178, 120, 108, 0, 0, 0],
+    [832, 288, 150, 49, 0, 0, 0],
+    [832, 339, 150, 48, 0, 0, 0],
+    [828, 389, 87, 38, 0, -15, -26],
+    [173, 388, 80, 45, 0, 0, 0],
+    [803, 178, 39, 11, 0, 0, 0],
+    [953, 88, 18, 17, 0, 0, 0]
+],
+
+"animations": {
+    "shield_l": { "frames": [0] },
+    "explosion_l": { "frames": [1] },
+    "shield_m": { "frames": [2] },
+    "enemy3": { "frames": [3] },
+    "restartButton": { "frames": [4] },
+    "beam-l": { "frames": [5] },
+    "beam_m": { "frames": [6] },
+    "explosion_m": { "frames": [7] },
+    "enemy2": { "frames": [8] },
+    "enemy3_bullet": { "frames": [9] },
+    "explosion_s": { "frames": [10] },
+    "missile_round_blue_enemy_m": { "frames": [11] },
+    "player_bullet_update": { "frames": [12] },
+    "ruleButton": { "frames": [13] },
+    "diamond": { "frames": [14] },
+    "enemy1": { "frames": [15] },
+    "player": { "frames": [16] },
+    "friend": { "frames": [17] },
+    "startButton": { "frames": [18] },
+    "friend_bullet": { "frames": [19] },
+    "player_bullet": { "frames": [20] },
+    "enemy2_bullet": { "frames": [21] },
+	"explosion":{
+	"frames":[10,7,1],
+	"speed":1
+	}
+
+}
+
+}

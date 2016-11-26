@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<!-- Student Name : Chamsol Yoon | Student number : 300808691 -->
+<head>
+    <meta charset="UTF-8">
+    <meta name = "viewport" content = "width = device-width, initial-scale=1" />
+    <title> Final Project </title>
+    <!-- CSS Section -->
+    <link rel="stylesheet" type="text/css" href="contents/reset.css">
+    <link rel="stylesheet" type="text/css" href="contents/game.css">
+
+</head>
+
+<body onload="preload()">
+    <div id="mainContainer">
+        <h2> COMP397 - Project</h2>
+        <h3> Student Name : Chamsol Yoon | Student Number : 300808691 </h3>
+        <h3> Ilgu Lee</h3>
+        <h3> Kevin Ma</h3>
+        <hr class="hLine01">
+        <h1> Space Shot </h1>
+
+        <div id="gameContainer">
+            <canvas id="canvas" width="890" height="628"></canvas>
+
+            <script src="scripts/config/config.js"></script>
+            <!-- JavaScript Libraries -->
+            <script src="scripts/lib/easeljs-0.8.2.min.js"></script>
+            <script src="scripts/lib/preloadjs-0.6.2.min.js"></script>
+            <script src="scripts/lib/soundjs-0.6.2.min.js"></script>
+            <script src="scripts/lib/tweenjs-0.6.2.min.js"></script>
+            <!-- Game Scripts -->
+            <script src="scripts/objects/asset.js"></script>
+            <script src="scripts/objects/background.js"></script>
+            <script src="scripts/objects/button.js"></script>
+            <script src="scripts/objects/label.js"></script>
+            <script src="scripts/objects/scene.js"></script>
+            <script src="scripts/objects/vector2.js"></script>
+            <script src="scripts/objects/gameobject.js"></script>            
+            <script src="scripts/objects/player.js"></script>
+            <script src="scripts/objects/diamond.js"></script>
+            <script src="scripts/objects/enemy1.js"></script>
+            <script src="scripts/core/collision.js"></script>
+            <!-- Scene Scripts -->
+            <script src="scripts/scenes/menu.js"></script>
+            <script src="scripts/scenes/rule.js"></script>
+            <script src="scripts/scenes/level1.js"></script>
+            
+            <script src="scripts/scenes/over.js"></script>
+
+            <!-- Core Scripts -->
+            <script src="scripts/core/game.js"></script>
+        </div>
+        <p>
+            Team Truck 
+        </p>
+        <hr class="hLine01">
+
+        <h6> &copy; Copyright Chamsol Yoon | Student #: 300808691 - COMP397 - Web Game Prgramming - Fall 2015 </h6>
+
+        <hr class="hLine01">
+    </div>
+    <script>
+</body>
+</html>
