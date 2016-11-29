@@ -3,7 +3,7 @@
  * @file game.ts
  * @author Chamsol Yoon cyoon2@my.centennialcollege.ca
  * @author Kevin Ma kma45@my.centennialcollege.ca
- * @version 0.1.1 - added amso image to menu scene
+ * @version 0.1.6 - added disappear animation and moo sound when clicking start game on menu scene
  * @description This file starts the game
  **/
 // Global Variable
@@ -36,6 +36,7 @@ var assetData = [
     { id: "atlas", src: "../../assets/images/atlas.png" },
     { id: "amsomenu", src: "../../assets/images/amsomenu.png" },
     //{ id: "test", src: "../../assets/images/ "},
+    { id: "moo", src: "../../assets/audio/moo.mp3" },
     { id: "enemy1_sound", src: "../../assets/audio/enemy1_sound.wav" },
     { id: "diamond_sound", src: "../../assets/audio/diamond_sound.wav" },
     { id: "level1_bgsound", src: "../../assets/audio/level1_bgsound.wav" },
