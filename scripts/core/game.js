@@ -1,7 +1,9 @@
 /// <reference path="_reference.ts" />
 /**
+ * @file game.ts
  * @author Chamsol Yoon cyoon2@my.centennialcollege.ca
- * @version 0.1 - initial version of core
+ * @author Kevin Ma kma45@my.centennialcollege.ca
+ * @version 0.1.1 - added amso image to menu scene
  * @description This file starts the game
  **/
 // Global Variable
@@ -32,6 +34,7 @@ var assetData = [
     { id: "bg2", src: "../../assets/images/background2.png" },
     { id: "bg3", src: "../../assets/images/background3.png" },
     { id: "atlas", src: "../../assets/images/atlas.png" },
+    { id: "amsomenu", src: "../../assets/images/amsomenu.png" },
     //{ id: "test", src: "../../assets/images/ "},
     { id: "enemy1_sound", src: "../../assets/audio/enemy1_sound.wav" },
     { id: "diamond_sound", src: "../../assets/audio/diamond_sound.wav" },
