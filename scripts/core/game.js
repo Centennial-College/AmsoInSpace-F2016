@@ -3,7 +3,8 @@
  * @file game.ts
  * @author Chamsol Yoon cyoon2@my.centennialcollege.ca
  * @author Kevin Ma kma45@my.centennialcollege.ca
- * @version 0.1.1 - added amso image to menu scene
+ * @date November 29 2016
+ * @version 0.1.7 - added new playgame button, howtoplay button, and animations when loading menu scene
  * @description This file starts the game
  **/
 // Global Variable
@@ -26,8 +27,8 @@ var level1;
 var overScene;
 // Preload Assets
 var assetData = [
-    { id: "startButton", src: "../../assets/images/btnStart.png" },
-    { id: "ruleButton", src: "../../assets/images/btnRule.png" },
+    { id: "playgameBtn", src: "../../assets/images/playgameBtn.png" },
+    { id: "instructionsBtn", src: "../../assets/images/instructionsBtn.png" },
     { id: "restartButton", src: "../../assets/images/btnRestart.png" },
     { id: "rules", src: "../../assets/images/instruction.png" },
     { id: "bg1", src: "../../assets/images/background1.png" },
@@ -36,6 +37,7 @@ var assetData = [
     { id: "atlas", src: "../../assets/images/atlas.png" },
     { id: "amsomenu", src: "../../assets/images/amsomenu.png" },
     //{ id: "test", src: "../../assets/images/ "},
+    { id: "moo", src: "../../assets/audio/moo.mp3" },
     { id: "enemy1_sound", src: "../../assets/audio/enemy1_sound.wav" },
     { id: "diamond_sound", src: "../../assets/audio/diamond_sound.wav" },
     { id: "level1_bgsound", src: "../../assets/audio/level1_bgsound.wav" },

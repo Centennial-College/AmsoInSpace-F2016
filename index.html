@@ -1,28 +1,48 @@
+<!--
+    @file index.html
+    @author Chamsol Yoon
+    @author Kevin Ma
+    @date Nov 29 2016
+    @description This file is the manifest for the web app
+    @version 0.1.4 made responsive canvas display size using bootstrap
+-->
 <!DOCTYPE html>
 <html>
-<!-- Student Name : Chamsol Yoon | Student number : 300808691 -->
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width = device-width, initial-scale=1" />
-    <title> Final Project </title>
+    <title>Amso In Space!</title>
     <!-- CSS Section -->
     <link rel="stylesheet" type="text/css" href="contents/reset.css">
+    <link rel="stylesheet" href="scripts/lib/bootstrap/dist/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="scripts/lib/bootstrap/dist/css/bootstrap-theme.min.css" type="text/css">
     <link rel="stylesheet" type="text/css" href="contents/game.css">
 
 </head>
 
 <body onload="preload()">
     <div id="gameContainer">
-        <canvas id="canvas" width="890" height="628"></canvas>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-offset-1 col-md-10">
+                    <canvas id="canvas" width="890" height="628"></canvas>
+                </div>
+            </div>
+        </div>
 
-        <script src="scripts/config/config.js"></script>
         <!-- JavaScript Libraries -->
+        <script src="scripts/lib/jquery/dist/jquery.min.js"></script>
+        <script src="scripts/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+
+        <!--CreateJS Suite Scripts-->
         <script src="scripts/lib/easeljs-0.8.2.min.js"></script>
         <script src="scripts/lib/preloadjs-0.6.2.min.js"></script>
         <script src="scripts/lib/soundjs-0.6.2.min.js"></script>
         <script src="scripts/lib/tweenjs-0.6.2.min.js"></script>
+
         <!-- Game Scripts -->
+        <script src="scripts/config/config.js"></script>
         <script src="scripts/objects/asset.js"></script>
         <script src="scripts/objects/background.js"></script>
         <script src="scripts/objects/button.js"></script>
@@ -34,6 +54,7 @@
         <script src="scripts/objects/diamond.js"></script>
         <script src="scripts/objects/enemy1.js"></script>
         <script src="scripts/core/collision.js"></script>
+
         <!-- Scene Scripts -->
         <script src="scripts/scenes/menu.js"></script>
         <script src="scripts/scenes/rule.js"></script>
