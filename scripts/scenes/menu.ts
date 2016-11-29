@@ -2,7 +2,7 @@
  * @file menu.ts
  * @author Chamsol Yoon cyoon2@my.centennialcollege.ca
  * @author Kevin Ma kma45@my.centennialcollege.ca
- * @version 0.1.2 - rearranged text on menu scene
+ * @version 0.1.5 - applied box blur filter to menu scene Background
  * @description This is the main title scene 
  **/
 module scenes {
@@ -27,10 +27,14 @@ module scenes {
 
             this._bg = new objects.Background("bg1", 1);
 
+            // 5x5 Box Blur filter on bg image
+            let blurFilter = new createjs.BlurFilter(5, 5);
+            this._bg.filters = [blurFilter];
+            let bitmapBounds = this._bg.getBounds();
 
-
+            this._bg.cache(bitmapBounds.x, bitmapBounds.y, bitmapBounds.width, bitmapBounds.height);
             this.addChild(this._bg);
-            
+
 
             this._amsoMenuPic = new createjs.Bitmap(assets.getResult("amsomenu"))
             this._amsoMenuPic.scaleX = this._amsoMenuPic.scaleY = .85
