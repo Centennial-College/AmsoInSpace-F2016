@@ -4,7 +4,8 @@
  * @file game.ts
  * @author Chamsol Yoon cyoon2@my.centennialcollege.ca
  * @author Kevin Ma kma45@my.centennialcollege.ca
- * @version 0.1.6 - added disappear animation and moo sound when clicking start game on menu scene
+ * @date November 29 2016
+ * @version 0.1.7 - added new playgame button, howtoplay button, and animations when loading menu scene
  * @description This file starts the game 
  **/
 
@@ -33,6 +34,8 @@ var overScene: scenes.Over;
 
 // Preload Assets
 var assetData: objects.Asset[] = [
+    { id: "playgameBtn", src: "../../assets/images/playgameBtn.png" },
+    { id: "instructionsBtn", src: "../../assets/images/instructionsBtn.png" },
     { id: "startButton", src: "../../assets/images/btnStart.png" },
     { id: "ruleButton", src: "../../assets/images/btnRule.png" },
     { id: "restartButton", src: "../../assets/images/btnRestart.png" },

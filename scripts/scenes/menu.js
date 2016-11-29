@@ -7,7 +7,8 @@ var __extends = (this && this.__extends) || function (d, b) {
  * @file menu.ts
  * @author Chamsol Yoon cyoon2@my.centennialcollege.ca
  * @author Kevin Ma kma45@my.centennialcollege.ca
- * @version 0.1.6 - added disappear animation and moo sound when clicking start game on menu scene
+ * @date November 29 2016
+ * @version 0.1.7 - added new playgame button, howtoplay button, and animations when loading menu scene
  * @description This is the main title scene
  **/
 var scenes;
@@ -20,8 +21,9 @@ var scenes;
         }
         // PUBLIC METHODS +++++++++++++++++++++++++++++++++++++++++++++
         Menu.prototype.start = function () {
+            var _this = this;
             console.log("Menu Scene started");
-            // Background
+            // Setting up BACKGROUND
             this._bg = new objects.Background("bg1", 1);
             // 5x5 Box Blur filter on bg image
             var blurFilter = new createjs.BlurFilter(5, 5);
@@ -36,43 +38,73 @@ var scenes;
             this._amsoMenuPic.regY = this._amsoMenuPic.getBounds().height / 2;
             this._amsoMenuPic.x = config.Screen.CENTER_X;
             this._amsoMenuPic.y = config.Screen.CENTER_Y;
-            this._amsoMenuPic.rotation = 720;
-            // this._titleLabel.shadow = new createjs.Shadow('#000', 5, 5, 15)
-            // createjs.Tween.get(this._titleLabel).wait(500).to({
-            //     x: config.Screen.CENTER_X,
-            //     y: config.Screen.CENTER_Y,
-            // }, 1500,
-            //     createjs.Ease.backOut);
+            this._amsoMenuPic.rotation = 1080;
+            this._amsoMenuPic.alpha = 0;
+            this._amsoMenuPic.shadow = new createjs.Shadow("#f00", 0, 0, 50);
             this.addChild(this._amsoMenuPic);
-            this._titleLabel = new objects.Label("Amso", "150px customfont", "#fff", config.Screen.CENTER_X - 200, config.Screen.CENTER_Y - 100);
+            // fade in effect - so he looks like he is alien from space
+            createjs.Tween.get(this._amsoMenuPic).to({
+                alpha: 1
+            }, 1000);
+            // Setting up TITLE label
+            this._titleLabel = new objects.Label("Amso", "150px customfont", "#00FF48", config.Screen.CENTER_X - 200, -5000);
             this._titleLabel.shadow = new createjs.Shadow("#000", 5, 5, 5);
             this.addChild(this._titleLabel);
-            this.addChild(this._subtitleLabel = new objects.Label("In Space!", "60px customfont", "#fff", config.Screen.CENTER_X - 200, config.Screen.CENTER_Y));
+            // hammer down effect
+            createjs.Tween.get(this._titleLabel).to({
+                y: config.Screen.CENTER_Y - 100
+            }, 1500, createjs.Ease.cubicIn);
+            // Setting up SUBTITLE label
+            this.addChild(this._subtitleLabel = new objects.Label("In Space!", "60px customfont", "#00FF48", config.Screen.CENTER_X - 200, config.Screen.CENTER_Y + 500));
+            this._subtitleLabel.alpha = 0;
+            // this.addChild(this._subtitleLabel = new objects.Label("In Space!", "60px customfont", "#00B233", config.Screen.CENTER_X - 200, config.Screen.CENTER_Y))
             this._subtitleLabel.shadow = new createjs.Shadow("#000", 2, 2, 2);
-            this._btnStart = new objects.Button("startButton", config.Screen.CENTER_X - 200, config.Screen.CENTER_Y + 110);
-            this._btnStart.on("click", this._btnStartClick, this);
-            this._btnRule = new objects.Button("ruleButton", config.Screen.CENTER_X - 200, config.Screen.CENTER_Y + 190);
-            this._btnRule.on("click", this._btnRuleClick, this);
-            this.addChild(this._btnStart, this._btnRule);
+            // push up effect
+            createjs.Tween.get(this._subtitleLabel).wait(1500).to({
+                y: config.Screen.CENTER_Y,
+                alpha: .7
+            }, 1000, createjs.Ease.cubicIn);
+            // Setting up Buttons 
+            this._playgameBtn = new objects.Button("playgameBtn", config.Screen.CENTER_X - 200, config.Screen.CENTER_Y + 110);
+            this._playgameBtn.shadow = new createjs.Shadow('#000', 2, 2, 5);
+            this._instructionsBtn = new objects.Button("instructionsBtn", config.Screen.CENTER_X - 200, config.Screen.CENTER_Y + 190);
+            this._instructionsBtn.shadow = new createjs.Shadow('#000', 2, 2, 5);
+            this._btnContainer = new createjs.Container();
+            this._btnContainer.alpha = 0;
+            this._btnContainer.addChild(this._playgameBtn, this._instructionsBtn);
+            // fade in effect
+            createjs.Tween.get(this._btnContainer).wait(3000).to({
+                alpha: 1
+            }, 1500).call(function (e) {
+                // only add event listeners after animations finish
+                _this._playgameBtn.on("click", _this._playgameBtnClick, _this);
+                _this._instructionsBtn.on("click", _this._instructionsBtnClick, _this);
+            });
+            this.addChild(this._btnContainer);
             stage.addChild(this);
         };
         Menu.prototype.update = function () {
             this._bg.update();
         };
         // PRIVATE METHODS +++++++++++++++++++++++++++++++++++++++++++
-        Menu.prototype._btnStartClick = function () {
+        Menu.prototype._playgameBtnClick = function () {
             createjs.Sound.play("moo");
-            // amso disappear animation
+            // screen fades into black Background
+            createjs.Tween.get(this).wait(500).to({
+                alpha: 0
+            }, 1500);
+            // amso disappear animation - looks like being sucked into another dimension/space
             createjs.Tween.get(this._amsoMenuPic).wait(500).to({
                 rotation: 0,
                 scaleX: 0,
-                scaleY: 0
+                scaleY: 0,
+                alpha: 0
             }, 1500).call(function (e) {
                 scene = config.Scene.LEVEL1;
                 changeScene();
             });
         };
-        Menu.prototype._btnRuleClick = function () {
+        Menu.prototype._instructionsBtnClick = function () {
             scene = config.Scene.RULE;
             changeScene();
         };
