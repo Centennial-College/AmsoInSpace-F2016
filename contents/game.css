@@ -1,4 +1,9 @@
-﻿body {
+﻿@font-face {
+    font-family: customfont;
+    src: url(../Assets/fonts/Bungee-Regular.ttf);
+}
+
+body {
 	font-family: Verdana;
 	color: #663300;
 	/*background-color: #CCFFCC;*/
