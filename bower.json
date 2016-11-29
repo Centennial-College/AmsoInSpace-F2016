@@ -1,12 +1,14 @@
 {
-  "name": "COMP397A01",
+  "name": "COMP397-F2016-Project",
   "authors": [
-    "HKarling <dantert@gmail.com>"
+    "Chamsol Yoon",
+    "Kevin Ma",
+    "Ilgu Lee"
   ],
-  "description": "",
+  "description": "Amso in Space",
   "main": "",
   "license": "MIT",
-  "homepage": "",
+  "homepage": "https://github.com/HKarling/COMP397PROJECT",
   "ignore": [
     "**/.*",
     "node_modules",
