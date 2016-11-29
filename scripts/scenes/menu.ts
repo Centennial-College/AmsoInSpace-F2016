@@ -3,7 +3,7 @@
  * @author Chamsol Yoon cyoon2@my.centennialcollege.ca
  * @author Kevin Ma kma45@my.centennialcollege.ca
  * @date November 29 2016
- * @version 0.1.7 - added new playgame button, howtoplay button, and animations when loading menu scene
+ * @version 0.1.8 - refactored and cleaned up code in scenes/menu.ts
  * @description This is the main title scene 
  **/
 module scenes {
@@ -27,36 +27,53 @@ module scenes {
         // PUBLIC METHODS +++++++++++++++++++++++++++++++++++++++++++++
         public start(): void {
             console.log("Menu Scene started");
+            this._setupBackground()
+            this._setupAmsoMenuImage()
+            this._setupTitleAndSubtitleLabels()
+            stage.addChild(this);
+        }
 
-            // Setting up BACKGROUND
-            this._bg = new objects.Background("bg1", 1);
+        public update(): void {
+            this._bg.update()
+        }
 
-            // 5x5 Box Blur filter on bg image
-            let blurFilter = new createjs.BlurFilter(5, 5);
-            this._bg.filters = [blurFilter];
-            let bitmapBounds = this._bg.getBounds();
+        // PRIVATE METHODS +++++++++++++++++++++++++++++++++++++++++++
+        /**
+         * Sets up the play game, and instructions buttons and their associated animations, and event listeners
+         * 
+         * @private
+         * 
+         * @memberOf Menu
+         */
+        private _setupButtons(): void {
+            // Setting up Buttons 
+            this._playgameBtn = new objects.Button("playgameBtn", config.Screen.CENTER_X - 200, config.Screen.CENTER_Y + 110);
+            this._playgameBtn.shadow = new createjs.Shadow('#000', 2, 2, 5)
+            this._instructionsBtn = new objects.Button("instructionsBtn", config.Screen.CENTER_X - 200, config.Screen.CENTER_Y + 190);
+            this._instructionsBtn.shadow = new createjs.Shadow('#000', 2, 2, 5)
+            this._btnContainer = new createjs.Container()
+            this._btnContainer.alpha = 0
+            this._btnContainer.addChild(this._playgameBtn, this._instructionsBtn);
 
-            this._bg.cache(bitmapBounds.x, bitmapBounds.y, bitmapBounds.width, bitmapBounds.height);
-            this.addChild(this._bg);
-
-            // Setting up AMSO menu picture
-            this._amsoMenuPic = new createjs.Bitmap(assets.getResult("amsomenu"))
-            this._amsoMenuPic.scaleX = this._amsoMenuPic.scaleY = .85
-            this._amsoMenuPic.regX = this._amsoMenuPic.getBounds().width / 2
-            this._amsoMenuPic.regY = this._amsoMenuPic.getBounds().height / 2
-            this._amsoMenuPic.x = config.Screen.CENTER_X
-            this._amsoMenuPic.y = config.Screen.CENTER_Y
-            this._amsoMenuPic.rotation = 1080
-            this._amsoMenuPic.alpha = 0
-            this._amsoMenuPic.shadow = new createjs.Shadow("#f00", 0, 0, 50)
-
-            this.addChild(this._amsoMenuPic)
-
-            // fade in effect - so he looks like he is alien from space
-            createjs.Tween.get(this._amsoMenuPic).to({
+            // fade in effect
+            createjs.Tween.get(this._btnContainer).wait(3000).to({
                 alpha: 1
-            }, 1000)
+            }, 1500).call(e => {
+                // only add event listeners after animations finish
+                this._playgameBtn.on("click", this._playgameBtnClick, this);
+                this._instructionsBtn.on("click", this._instructionsBtnClick, this);
+            })
 
+            this.addChild(this._btnContainer)
+        }
+        /**
+         * Sets up the title and subtitle label, along with their associated animations
+         * 
+         * @private
+         * 
+         * @memberOf Menu
+         */
+        private _setupTitleAndSubtitleLabels(): void {
             // Setting up TITLE label
             this._titleLabel = new objects.Label("Amso", "150px customfont", "#00FF48", config.Screen.CENTER_X - 200, -5000);
             this._titleLabel.shadow = new createjs.Shadow("#000", 5, 5, 5)
@@ -78,35 +95,61 @@ module scenes {
                 y: config.Screen.CENTER_Y,
                 alpha: .7
             }, 1000, createjs.Ease.cubicIn)
+        }
+        /**
+         * Sets up the Amso menu image and its animation
+         * 
+         * @private
+         * 
+         * @memberOf Menu
+         */
+        private _setupAmsoMenuImage(): void {
+            // Setting up AMSO menu picture
+            this._amsoMenuPic = new createjs.Bitmap(assets.getResult("amsomenu"))
+            this._amsoMenuPic.scaleX = this._amsoMenuPic.scaleY = .85
+            this._amsoMenuPic.regX = this._amsoMenuPic.getBounds().width / 2
+            this._amsoMenuPic.regY = this._amsoMenuPic.getBounds().height / 2
+            this._amsoMenuPic.x = config.Screen.CENTER_X
+            this._amsoMenuPic.y = config.Screen.CENTER_Y
+            this._amsoMenuPic.rotation = 1080
+            this._amsoMenuPic.alpha = 0
+            this._amsoMenuPic.shadow = new createjs.Shadow("#f00", 0, 0, 50)
 
-            // Setting up Buttons 
-            this._playgameBtn = new objects.Button("playgameBtn", config.Screen.CENTER_X - 200, config.Screen.CENTER_Y + 110);
-            this._playgameBtn.shadow = new createjs.Shadow('#000', 2, 2, 5)
-            this._instructionsBtn = new objects.Button("instructionsBtn", config.Screen.CENTER_X - 200, config.Screen.CENTER_Y + 190);
-            this._instructionsBtn.shadow = new createjs.Shadow('#000', 2, 2, 5)
-            this._btnContainer = new createjs.Container()
-            this._btnContainer.alpha = 0
-            this._btnContainer.addChild(this._playgameBtn, this._instructionsBtn);
+            this.addChild(this._amsoMenuPic)
 
-            // fade in effect
-            createjs.Tween.get(this._btnContainer).wait(3000).to({
+            // fade in effect - so he looks like he is alien from space
+            createjs.Tween.get(this._amsoMenuPic).to({
                 alpha: 1
-            }, 1500).call(e => {
-                // only add event listeners after animations finish
-                this._playgameBtn.on("click", this._playgameBtnClick, this);
-                this._instructionsBtn.on("click", this._instructionsBtnClick, this);
-            })
-
-            this.addChild(this._btnContainer)
-
-            stage.addChild(this);
+            }, 1000)
         }
 
-        public update(): void {
-            this._bg.update()
+        /**
+         * Sets up the background image, and its box blur filter
+         * 
+         * @private
+         * 
+         * @memberOf Menu
+         */
+        private _setupBackground(): void {
+            // Setting up BACKGROUND
+            this._bg = new objects.Background("bg1", 1);
+
+            // 5x5 Box Blur filter on bg image
+            let blurFilter = new createjs.BlurFilter(5, 5);
+            this._bg.filters = [blurFilter];
+            let bitmapBounds = this._bg.getBounds();
+
+            this._bg.cache(bitmapBounds.x, bitmapBounds.y, bitmapBounds.width, bitmapBounds.height);
+            this.addChild(this._bg);
         }
 
-        // PRIVATE METHODS +++++++++++++++++++++++++++++++++++++++++++
+        /**
+         * Plays animations and changes scene to LEVEL1
+         * 
+         * @private
+         * 
+         * @memberOf Menu
+         */
         private _playgameBtnClick(): void {
             createjs.Sound.play("moo")
 
@@ -128,6 +171,13 @@ module scenes {
 
         }
 
+        /**
+         * Changes scene to instructions scene
+         * 
+         * @private
+         * 
+         * @memberOf Menu
+         */
         private _instructionsBtnClick(): void {
             scene = config.Scene.RULE;
             changeScene();

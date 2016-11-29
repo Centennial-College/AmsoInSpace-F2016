@@ -29,8 +29,6 @@ var overScene;
 var assetData = [
     { id: "playgameBtn", src: "../../assets/images/playgameBtn.png" },
     { id: "instructionsBtn", src: "../../assets/images/instructionsBtn.png" },
-    { id: "startButton", src: "../../assets/images/btnStart.png" },
-    { id: "ruleButton", src: "../../assets/images/btnRule.png" },
     { id: "restartButton", src: "../../assets/images/btnRestart.png" },
     { id: "rules", src: "../../assets/images/instruction.png" },
     { id: "bg1", src: "../../assets/images/background1.png" },
