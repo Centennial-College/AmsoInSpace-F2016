@@ -30,6 +30,7 @@ module scenes {
             this._setupBackground()
             this._setupAmsoMenuImage()
             this._setupTitleAndSubtitleLabels()
+            this._setupButtons()
             stage.addChild(this);
         }
 

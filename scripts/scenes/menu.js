@@ -25,6 +25,7 @@ var scenes;
             this._setupBackground();
             this._setupAmsoMenuImage();
             this._setupTitleAndSubtitleLabels();
+            this._setupButtons();
             stage.addChild(this);
         };
         Menu.prototype.update = function () {
