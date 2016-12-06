@@ -24,7 +24,8 @@ module scenes {
         protected _beamEnergyPercent: number
         protected _beamEnergyBar: createjs.Shape
         protected _lblUpgradesAvailable: objects.Label
-        protected _lblLevelComplete: objects.Label
+        protected _lblLevelComplete: objects.
+        protected _canAdvanceToNextLevel: boolean
 
         // CONSTRUCTOR ++++++++++++++++++++++++++++++++++++++++++++++++
         constructor(private _bgmString: string, private _bgImgString: string) {
@@ -33,6 +34,7 @@ module scenes {
             // had to do the initializations in constructor due to constraints of super class
             // didnt want to break the structure for all the remaining classes
             this._collision = new managers.Collision();
+            this._canAdvanceToNextLevel = false
 
             // bgm
             this._bgSound = createjs.Sound.play(this._bgmString);

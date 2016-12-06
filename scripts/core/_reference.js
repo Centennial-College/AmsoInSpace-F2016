@@ -1,6 +1,7 @@
 /// <reference path="../../typings/index.d.ts" />
 /// <reference path="./collision.ts"/>
 /// <reference path="../config/config.ts" />
+/// <reference path="../managers/keyboardcontrol.ts"/>
 /// <reference path="../objects/asset.ts" />
 /// <reference path="../objects/background.ts" />
 /// <reference path="../objects/button.ts" />

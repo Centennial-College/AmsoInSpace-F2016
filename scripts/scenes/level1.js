@@ -24,13 +24,14 @@ var scenes;
         Level1.prototype.start = function () {
             console.log("Level1 Scene started");
             level = 1;
+            score = 0;
             this._diamond = new Array();
-            for (var count = 0; count < 2; count++) {
+            for (var count = 0; count < 1; count++) {
                 this._diamond.push(new objects.Diamond());
                 this.addChild(this._diamond[count]);
             }
             this._enemy = new Array();
-            for (var count = 0; count < 2; count++) {
+            for (var count = 0; count < 1; count++) {
                 this._enemy.push(new objects.Asteroid());
                 this.addChild(this._enemy[count]);
             }
@@ -48,6 +49,11 @@ var scenes;
                 enemy.update();
                 _this._collision.check(_this._player, enemy);
             });
+            // level 1 requires score of 1000 points to advance to the next level
+            if (score >= 1000 && !this._canAdvanceToNextLevel) {
+                this._canAdvanceToNextLevel = true;
+                this._levelCompleteNotification();
+            }
             if (lives < 1) {
                 this._bgSound.stop();
                 scene = config.Scene.OVER;
