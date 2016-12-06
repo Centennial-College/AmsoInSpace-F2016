@@ -1,13 +1,15 @@
 /**
- * @description Defines diamond object used in the game
- * @export
- * @class Diamond
- * @extends {objects.GameObject}
+ * @file diamond.ts
+ * @author Chamsol Yoon cyoon2@my.centennialcollege.ca
+ * @author Kevin Ma kma45@my.centennialcollege.ca
+ * @date December 5 2016
+ * @version 0.2.2 fixed diamonds positioning with new ui
+ * @description Behavior and Properties of Diamond GameObject
  **/
 
 module objects {
     export class Diamond extends objects.GameObject {
- 
+
         // PRIVATE INSTANCE VARIABLES ++++++++++++++++++++++++++++
         private _dy: number;
         private _dx: number;
@@ -45,7 +47,7 @@ module objects {
         }
 
         private _checkBounds(): void {
-            if (this.x <= (0 + (this.width * 0.5))) {
+            if (this.y >= (config.Screen.HEIGHT - config.Game.SCORE_BOARD_HEIGHT - (this.height * 0.5)) || (this.x <= (0 + (this.width * 0.5))) {
                 this._reset();
             }
         }

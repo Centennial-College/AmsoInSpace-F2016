@@ -1,8 +1,10 @@
 /**
- * @description Defines diamond object used in the game
- * @export
- * @class Diamond
- * @extends {objects.GameObject}
+ * @file diamond.ts
+ * @author Chamsol Yoon cyoon2@my.centennialcollege.ca
+ * @author Kevin Ma kma45@my.centennialcollege.ca
+ * @date December 5 2016
+ * @version 0.2.2 fixed diamonds positioning with new ui
+ * @description Behavior and Properties of Diamond GameObject
  **/
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -39,7 +41,7 @@ var objects;
             this.y = Math.floor((Math.random() * (628 - (this.height * 0.5))) + (this.height * 0.5));
         };
         Diamond.prototype._checkBounds = function () {
-            if (this.x <= (0 + (this.width * 0.5))) {
+            if (this.y >= (config.Screen.HEIGHT - config.Game.SCORE_BOARD_HEIGHT - (this.height * 0.5)) || (this.x <= (0 + (this.width * 0.5)))) {
                 this._reset();
             }
         };

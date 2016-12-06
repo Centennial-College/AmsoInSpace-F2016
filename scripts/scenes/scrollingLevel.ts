@@ -14,12 +14,11 @@ module scenes {
         private _lblScore: objects.Label;
         private _lblLives: objects.Label;
         private _lblLevel: objects.Label;
-        private _bgSound: createjs.AbstractSoundInstance;
         private _scoreBoard: createjs.Shape
 
         // PROTECTED VARIABLES
-        // Beam Energy Bar
-        private _player: objects.Player;
+        protected _bgSound: createjs.AbstractSoundInstance;
+        protected _player: objects.Player;
         protected _collision: managers.Collision;
         protected _lblBeam: objects.Label;
         protected _beamEnergyPercent: number
