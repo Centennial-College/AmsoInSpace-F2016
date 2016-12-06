@@ -1,14 +1,17 @@
+/**
+ * @file over.ts
+ * @author Chamsol Yoon cyoon2@my.centennialcollege.ca
+ * @author Kevin Ma kma45@my.centennialcollege.ca
+ * @date December 6 2016
+ * @version 0.2.6 hide cursor during scrollingLevel scenes
+ * @description This is the gameover scene that is displayed
+ *              when the player loses the game.
+ **/
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-/**
- * @description This is gameover scene
- * @export
- * @class Over
- * @extends {objects.Scene}
- **/
 var scenes;
 (function (scenes) {
     var Over = (function (_super) {
@@ -16,6 +19,7 @@ var scenes;
         // CONSTRUCTOR ++++++++++++++++++++++++++++++++++++++++++++++++
         function Over() {
             _super.call(this);
+            stage.cursor = 'default';
         }
         // PUBLIC METHODS +++++++++++++++++++++++++++++++++++++++++++++
         Over.prototype.start = function () {

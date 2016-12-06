@@ -2,8 +2,8 @@
  * @file menu.ts
  * @author Chamsol Yoon cyoon2@my.centennialcollege.ca
  * @author Kevin Ma kma45@my.centennialcollege.ca
- * @date November 29 2016
- * @version 0.1.8 - refactored and cleaned up code in scenes/menu.ts
+ * @date December 6 2016
+ * @version 0.2.6 hide cursor during scrollingLevel scenes
  * @description This is the main title scene
  **/
 var __extends = (this && this.__extends) || function (d, b) {
@@ -26,6 +26,7 @@ var scenes;
             this._setupAmsoMenuImage();
             this._setupTitleAndSubtitleLabels();
             this._setupButtons();
+            stage.cursor = 'default';
             stage.addChild(this);
         };
         Menu.prototype.update = function () {

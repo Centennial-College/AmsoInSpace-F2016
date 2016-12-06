@@ -40,7 +40,7 @@ var objects;
             this.position = new objects.Vector2(this.x, this.y);
             this._checkBounds();
             if (this._isInvulnerable) {
-                if ((createjs.Ticker.getTime() - this._invulnderableStartTime) <= 3000) {
+                if ((createjs.Ticker.getTime() - this._invulnderableStartTime) <= 1000) {
                     if (createjs.Ticker.getTime() % 500 >= 250) {
                         this.alpha = 0;
                     }

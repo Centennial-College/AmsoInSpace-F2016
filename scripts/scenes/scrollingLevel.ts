@@ -1,8 +1,8 @@
 /**
  * @file scrollingLevel.ts
  * @author Kevin Ma kma45@my.centennialcollege.ca
- * @date December 5 2016
- * @version 0.2.5 implemented pause functionality
+ * @date December 6 2016
+ * @version 0.2.6 hide cursor during scrollingLevel scenes
  * @description Abstract class for all levels with scrolling background in this game. 
  **/
 
@@ -31,6 +31,8 @@ module scenes {
         // CONSTRUCTOR ++++++++++++++++++++++++++++++++++++++++++++++++
         constructor(private _bgmString: string, private _bgImgString: string) {
             super();
+
+            stage.cursor = 'none'
 
             // had to do the initializations in constructor due to constraints of super class
             // didnt want to break the structure for all the remaining classes
