@@ -13,5 +13,6 @@
 /// <reference path="../objects/player.ts" />
 /// <reference path="../scenes/menu.ts" />
 /// <reference path="../scenes/rule.ts" />
-/// <reference path="../scenes/level1.ts" /> 
+/// <reference path="../scenes/level1.ts" />
+/// <reference path="../scenes/pause.ts" /> 
 //# sourceMappingURL=_reference.js.map

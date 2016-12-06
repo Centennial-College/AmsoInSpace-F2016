@@ -1,8 +1,3 @@
-var __extends = (this && this.__extends) || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
 /**
  * @file menu.ts
  * @author Chamsol Yoon cyoon2@my.centennialcollege.ca
@@ -11,6 +6,11 @@ var __extends = (this && this.__extends) || function (d, b) {
  * @version 0.1.8 - refactored and cleaned up code in scenes/menu.ts
  * @description This is the main title scene
  **/
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
 var scenes;
 (function (scenes) {
     var Menu = (function (_super) {

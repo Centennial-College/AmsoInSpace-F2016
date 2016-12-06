@@ -4,8 +4,8 @@
  * @file game.ts
  * @author Chamsol Yoon cyoon2@my.centennialcollege.ca
  * @author Kevin Ma kma45@my.centennialcollege.ca
- * @date November 29 2016
- * @version 0.1.7 - added new playgame button, howtoplay button, and animations when loading menu scene
+ * @date December 5 2016
+ * @version 0.1.10 - added pause scene
  * @description This file starts the game 
  **/
 
@@ -15,7 +15,6 @@ var canvas: HTMLElement;
 var stage: createjs.Stage;
 var textureAtlas: createjs.SpriteSheet;
 
-var currentScene: objects.Scene;
 var scene: number;
 var caveLevel: number;
 var endingModifier: number;
@@ -26,11 +25,7 @@ var highScore: number = 0;
 var lives: number = 5;
 
 // Game Scenes;
-var menuScene: scenes.Menu;
-var ruleScene: scenes.Rule;
-var level1: scenes.Level1;
-var overScene: scenes.Over;
-
+let currentScene: objects.Scene;
 
 // Preload Assets
 var assetData: objects.Asset[] = [
@@ -151,20 +146,18 @@ function changeScene(): void {
     switch (scene) {
         case config.Scene.MENU:
             stage.removeAllChildren();
-            menuScene = new scenes.Menu();
-            currentScene = menuScene;
+            currentScene = new scenes.Menu();
             console.log("Menu Scene changed");
             break;
         case config.Scene.RULE:
             stage.removeAllChildren();
-            ruleScene = new scenes.Rule();
-            currentScene = ruleScene;
+            currentScene = new scenes.Rule();
             console.log("Rule Scene changed");
             break;
         case config.Scene.LEVEL1:
             stage.removeAllChildren();
-            level1 = new scenes.Level1();
-            currentScene = level1;
+            currentScene = new scenes.Level1();
+            console.log("Level1 Scene changed");
             break;
         case config.Scene.LEVEL2:
             stage.removeAllChildren();
@@ -174,9 +167,13 @@ function changeScene(): void {
             break;
         case config.Scene.OVER:
             stage.removeAllChildren();
-            overScene = new scenes.Over();
-            currentScene = overScene;
+            currentScene = new scenes.Over();
             console.log("Over Scene changed");
+            break;
+        case config.Scene.PAUSE:
+            stage.removeAllChildren();
+            currentScene = new scenes.Pause
+            console.log("Pause Scene changed");
             break;
     }
 }

@@ -6,6 +6,7 @@
  * @version 0.1.8 - refactored and cleaned up code in scenes/menu.ts
  * @description This is the main title scene 
  **/
+
 module scenes {
     export class Menu extends objects.Scene {
 

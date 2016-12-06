@@ -1,11 +1,11 @@
-/*
-    Filename: config.ts
-    Author: Chamsol Yoon
-    Last Modified: Chamsol Yoon
-    Date last Modified: 10/4/2016
-    Description: define global static values
-    Revision History: ???
-*/
+/**
+ * @file config.ts
+ * @author Chamsol Yoon cyoon2@my.centennialcollege.ca
+ * @author Kevin Ma kma45@my.centennialcollege.ca
+ * @date December 5 2016
+ * @version 0.1.10 - added pause scene
+ * @description Defines the global static configuration values for the game
+ **/
 var config;
 (function (config) {
     var Scene = (function () {
@@ -17,6 +17,7 @@ var config;
         Scene.LEVEL2 = 3;
         Scene.LEVEL3 = 4;
         Scene.OVER = 5;
+        Scene.PAUSE = 6;
         return Scene;
     }());
     config.Scene = Scene;
