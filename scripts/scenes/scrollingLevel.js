@@ -2,7 +2,7 @@
  * @file scrollingLevel.ts
  * @author Kevin Ma kma45@my.centennialcollege.ca
  * @date December 5 2016
- * @version 0.2.0 added abstract scrollingLevel class
+ * @version 0.2.1 recreated Level1 to extend from abstract scrollingLevel
  * @description Abstract class for all levels with scrolling background in this game.
  **/
 var __extends = (this && this.__extends) || function (d, b) {

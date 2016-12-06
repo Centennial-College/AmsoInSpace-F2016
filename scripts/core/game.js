@@ -136,7 +136,7 @@ function changeScene() {
             break;
         case config.Scene.LEVEL1:
             stage.removeAllChildren();
-            currentScene = new scenes.ScrollingLevel("level1_bgsound", "bg1");
+            currentScene = new scenes.Level1;
             console.log("Level1 Scene changed");
             break;
         case config.Scene.LEVEL2:

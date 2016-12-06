@@ -2,7 +2,7 @@
  * @file scrollingLevel.ts
  * @author Kevin Ma kma45@my.centennialcollege.ca
  * @date December 5 2016
- * @version 0.2.0 added abstract scrollingLevel class
+ * @version 0.2.1 recreated Level1 to extend from abstract scrollingLevel
  * @description Abstract class for all levels with scrolling background in this game. 
  **/
 
@@ -11,17 +11,16 @@ module scenes {
 
         // PRIVATE VARIABLES ++++++++++++++++++++++++++++++++++++++++++
         private _bg: objects.Background;
-        private _player: objects.Player;
         private _lblScore: objects.Label;
         private _lblLives: objects.Label;
         private _lblLevel: objects.Label;
-        private _collision: managers.Collision;
         private _bgSound: createjs.AbstractSoundInstance;
         private _scoreBoard: createjs.Shape
 
-
         // PROTECTED VARIABLES
         // Beam Energy Bar
+        private _player: objects.Player;
+        protected _collision: managers.Collision;
         protected _lblBeam: objects.Label;
         protected _beamEnergyPercent: number
         protected _beamEnergyBar: createjs.Shape

@@ -1,68 +1,50 @@
 /**
- * @description Level 1
- * @export
- * @class Level1
- * @extends {objects.Scene}
+ * @file scrollingLevel.ts
+ * @author Chamsol Yoon cyoon2@my.centennialcollege.ca
+ * @author Kevin Ma kma45@my.centennialcollege.ca
+ * @date December 5 2016
+ * @version 0.2.1 recreated Level1 to extend from abstract scrollingLevel
+ * @description This will be the training level in the game
  **/
 
 module scenes {
-    export class Level1 extends objects.Scene {
-        
+    export class Level1 extends scenes.ScrollingLevel {
+
         // PRIVATE VARIABLES ++++++++++++++++++++++++++++++++++++++++++
-        private _bg:objects.Background;
-        private _player:objects.Player;
-        private _diamond:objects.Diamond[];
-        private _enemy:objects.Enemy1[];
-        private _lblScore:objects.Label;
-        private _lblLives:objects.Label;
-        private _lblLevel:objects.Label;
-        private _collision:managers.Collision;
-        private level1_bgsound: createjs.AbstractSoundInstance;
+        private _diamond: objects.Diamond[];
+        private _enemy: objects.Enemy1[];
 
         // CONSTRUCTOR ++++++++++++++++++++++++++++++++++++++++++++++++
         constructor() {
-            super();
+            super("level1_bgsound", "bg1");
+
+            this.start()
         }
 
         // PUBLIC METHODS +++++++++++++++++++++++++++++++++++++++++++++
-        public start():void{
+        public start(): void {
             console.log("Level1 Scene started");
-            
-            this._collision = new managers.Collision();
 
-            this._bg = new objects.Background("bg1");
-            this.addChild(this._bg);
+            level = 1
 
-            this._player = new objects.Player();
-            this.addChild(this._player);
-            
             this._diamond = new Array<objects.Diamond>();
-            for(var count:number = 0; count < 2; count++){
+            for (var count: number = 0; count < 2; count++) {
                 this._diamond.push(new objects.Diamond());
                 this.addChild(this._diamond[count]);
             }
 
             this._enemy = new Array<objects.Enemy1>();
-            for(var count:number = 0; count < 2; count++){
+            for (var count: number = 0; count < 2; count++) {
                 this._enemy.push(new objects.Enemy1());
                 this.addChild(this._enemy[count]);
             }
 
-            //bgm
-            this.level1_bgsound = createjs.Sound.play("level1_bgsound");
-            this.level1_bgsound.loop = -1;
-
-            this._lblLevel = new objects.Label("Level 1", "40px Consolas", "#FFFF00", config.Screen.CENTER_X-250, 5);
-            this._lblLives = new objects.Label("Lives: " + lives, "40px Consolas", "#FB791A", config.Screen.CENTER_X, 5);
-            this._lblScore = new objects.Label("Score: " + score, "40px Consolas", "#1AFBF4", config.Screen.CENTER_X+250, 5);
-            this.addChild(this._lblLevel, this._lblLives, this._lblScore);
-
-            stage.addChild(this);
+            // super.addChild(this);
+            stage.addChild(this)
         }
 
-        public update():void {
-            this._bg.update();
-            this._player.update();
+        public update(): void {
+            super.update()
 
             this._diamond.forEach(diamond => {
                 diamond.update();
@@ -74,19 +56,14 @@ module scenes {
                 this._collision.check(this._player, enemy);
             });
 
-            this._updateScoreBoard();
-            
             if (lives < 1) {
-                this.level1_bgsound.stop();
+                this._bgSound.stop();
                 scene = config.Scene.OVER;
                 changeScene();
             }
         }
 
         // PRIVATE METHODS ++++++++++++++++++++++++++++++++++++++++++++
-        private _updateScoreBoard() {
-            this._lblLives.text = "Lives: " + lives;
-            this._lblScore.text = "Score: " + score;
-        }
+
     }
 }
