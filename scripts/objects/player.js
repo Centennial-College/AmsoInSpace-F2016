@@ -39,8 +39,10 @@ var objects;
             this.y = stage.mouseY;
             this.position = new objects.Vector2(this.x, this.y);
             this._checkBounds();
+            // if the player is invulnerable, he cannot collide for 2 seconds
             if (this._isInvulnerable) {
-                if ((createjs.Ticker.getTime() - this._invulnderableStartTime) <= 1000) {
+                // the player blinks while he is invulnerable
+                if ((createjs.Ticker.getTime() - this._invulnderableStartTime) <= 2000) {
                     if (createjs.Ticker.getTime() % 500 >= 250) {
                         this.alpha = 0;
                     }
@@ -54,7 +56,7 @@ var objects;
                     this.isColliding = false;
                 }
             }
-            // can only become invulner
+            // if player collides, he will become invulnerable
             if (this.isColliding && !this._isInvulnerable) {
                 // become invulnerable for brief duration
                 this._isInvulnerable = true;

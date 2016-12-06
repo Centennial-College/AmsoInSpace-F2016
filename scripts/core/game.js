@@ -121,15 +121,19 @@ function init() {
     changeScene();
 }
 function gameLoop(event) {
+    if (createjs.Ticker.paused) {
+        pause.update();
+        createjs.Sound.stop();
+    }
     if (!createjs.Ticker.paused) {
         console.log("gameloop updated");
         currentScene.update();
         stage.update();
     }
-    else {
-        pause.update();
-        createjs.Sound.stop();
-    }
+    // else {
+    //     pause.update()
+    //     createjs.Sound.stop()
+    // }
 }
 function changeScene() {
     switch (scene) {
