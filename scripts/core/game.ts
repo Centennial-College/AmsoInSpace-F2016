@@ -16,6 +16,7 @@ var stage: createjs.Stage;
 var textureAtlas: createjs.SpriteSheet;
 
 var scene: number;
+let pause: scenes.Pause
 var caveLevel: number;
 var endingModifier: number;
 
@@ -32,7 +33,9 @@ let currentScene: objects.Scene;
 var assetData: objects.Asset[] = [
     { id: "playgameBtn", src: "../../assets/images/playgameBtn.png" },
     { id: "instructionsBtn", src: "../../assets/images/instructionsBtn.png" },
-    { id: "restartButton", src: "../../assets/images/btnRestart.png" },
+    { id: "restartButton", src: "../../assets/images/playagainbtn.png" },
+    { id: "menubtn", src: "../../assets/images/menubtn.png" },
+    { id: "upgradesbtn", src: "../../assets/images/upgradesbtn.png" },
     { id: "rules", src: "../../assets/images/instruction.png" },
     { id: "bg1", src: "../../assets/images/background1.png" },
     { id: "bg2", src: "../../assets/images/background2.png" },
@@ -137,9 +140,14 @@ function init() {
 }
 
 function gameLoop(event: createjs.Event): void {
-    console.log("gameloop updated");
-    currentScene.update();
-    stage.update();
+    if (!createjs.Ticker.paused) {
+        console.log("gameloop updated");
+        currentScene.update();
+        stage.update();
+    } else {
+        pause.update()
+        createjs.Sound.stop()
+    }
 }
 
 function changeScene(): void {

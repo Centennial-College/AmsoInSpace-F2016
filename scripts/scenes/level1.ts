@@ -11,8 +11,8 @@ module scenes {
     export class Level1 extends scenes.ScrollingLevel {
 
         // PRIVATE VARIABLES ++++++++++++++++++++++++++++++++++++++++++
-        private _diamond: objects.Diamond[];
-        private _enemy: objects.Asteroid[];
+        private _diamonds: objects.Diamond[];
+        private _asteroids: objects.Asteroid[];
 
         // CONSTRUCTOR ++++++++++++++++++++++++++++++++++++++++++++++++
         constructor() {
@@ -28,16 +28,16 @@ module scenes {
             level = 1
             score = 0
 
-            this._diamond = new Array<objects.Diamond>();
+            this._diamonds = new Array<objects.Diamond>();
             for (var count: number = 0; count < 1; count++) {
-                this._diamond.push(new objects.Diamond());
-                this.addChild(this._diamond[count]);
+                this._diamonds.push(new objects.Diamond());
+                this.addChild(this._diamonds[count]);
             }
 
-            this._enemy = new Array<objects.Asteroid>();
-            for (var count: number = 0; count < 1; count++) {
-                this._enemy.push(new objects.Asteroid());
-                this.addChild(this._enemy[count]);
+            this._asteroids = new Array<objects.Asteroid>();
+            for (var count: number = 0; count < 3; count++) {
+                this._asteroids.push(new objects.Asteroid());
+                this.addChild(this._asteroids[count]);
             }
 
             // super.addChild(this);
@@ -47,14 +47,16 @@ module scenes {
         public update(): void {
             super.update()
 
-            this._diamond.forEach(diamond => {
+            this._diamonds.forEach(diamond => {
                 diamond.update();
                 this._collision.check(this._player, diamond);
             });
 
-            this._enemy.forEach(enemy => {
-                enemy.update();
-                this._collision.check(this._player, enemy);
+            this._asteroids.forEach(asteroid => {
+                asteroid.update();
+                if (this._collision.check(this._player, asteroid)) {
+                    asteroid._reset()
+                }
             });
 
             // level 1 requires score of 1000 points to advance to the next level

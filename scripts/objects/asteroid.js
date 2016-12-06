@@ -30,15 +30,15 @@ var objects;
             this.x -= this._dx;
             this._checkBounds();
         };
-        // PRIVATE METHODS ++++++++++++++++++++++++++++++++++++++++++++
         Asteroid.prototype._reset = function () {
             this.isColliding = false;
             this._dx = Math.floor((Math.random() * 5) + 8); // vertical drispeedft
-            this._dy = Math.floor((Math.random() * 4) + 2); // horizontal drift
+            this._dy = Math.floor((Math.random() * 3) + 1); // horizontal drift
             this.x = config.Screen.WIDTH;
-            // get a random x location
-            this.y = Math.floor((Math.random() * (config.Screen.HEIGHT - (this.height * 0.5))) + (this.height * 0.5));
+            // get a random y location
+            this.y = Math.floor((Math.random() * ((config.Screen.HEIGHT - (this.height * 0.5)) - (this.height * 0.5))) + (this.height * 0.5));
         };
+        // PRIVATE METHODS ++++++++++++++++++++++++++++++++++++++++++++
         Asteroid.prototype._checkBounds = function () {
             if ((this.y >= (config.Screen.HEIGHT - config.Game.SCORE_BOARD_HEIGHT - (this.height * 0.5)))
                 || (this.x <= (0 + (this.width * 0.5)))) {

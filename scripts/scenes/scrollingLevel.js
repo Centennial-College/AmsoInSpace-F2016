@@ -2,7 +2,7 @@
  * @file scrollingLevel.ts
  * @author Kevin Ma kma45@my.centennialcollege.ca
  * @date December 5 2016
- * @version 0.2.1 recreated Level1 to extend from abstract scrollingLevel
+ * @version 0.2.5 implemented pause functionality
  * @description Abstract class for all levels with scrolling background in this game.
  **/
 var __extends = (this && this.__extends) || function (d, b) {
@@ -22,6 +22,7 @@ var scenes;
             // had to do the initializations in constructor due to constraints of super class
             // didnt want to break the structure for all the remaining classes
             this._collision = new managers.Collision();
+            this._keyboardcontrol = new managers.KeyboardControls;
             this._canAdvanceToNextLevel = false;
             // bgm
             this._bgSound = createjs.Sound.play(this._bgmString);
@@ -58,6 +59,9 @@ var scenes;
             this._bg.update();
             this._player.update();
             this._updateScoreBoard();
+            if (!createjs.Ticker.paused) {
+                this._bgSound.play();
+            }
             // test code
             // this._beamEnergyPercent = 94
             // this._lblBeam.alpha = this._beamEnergyBar.alpha = 1

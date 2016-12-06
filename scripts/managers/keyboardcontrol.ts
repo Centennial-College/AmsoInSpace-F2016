@@ -16,18 +16,18 @@ module managers {
         public friend: boolean;
         public moveRight: boolean;
         public fire: boolean;
-        public enabled: boolean;
-        public paused: boolean;
+        // public enabled: boolean;
+        // public paused: boolean;
 
         // CONSTRUCTOR ++++++++++++++++++++++++++++++++++++++++++++++++
         constructor() {
-            this.enabled = false;
+            // this.enabled = false;
             document.addEventListener('keydown', this.onKeyDown.bind(this), false);
             document.addEventListener('keyup', this.onKeyUp.bind(this), false);
         }
 
         // PUBLIC METHODS +++++++++++++++++++++++++++++++++++++++++++++
-        
+
         public onKeyDown(event: KeyboardEvent): void {
             switch (event.keyCode) {
                 case 38: /*up arrow*/
@@ -50,7 +50,17 @@ module managers {
                     this.fire = true;
                     break;
                 case 80: /* pause - p key */
-                    this.paused = (this.paused) ? false : true;
+                    if (createjs.Ticker.paused) {
+                        createjs.Ticker.paused = false;
+                        // currentScene.removeChild(pause)
+                    } else {
+                        currentScene.addChild(pause = new scenes.Pause())
+                        // currentScene.update()
+                        createjs.Ticker.paused = true;
+                    }
+                    // createjs.Ticker.paused = createjs.Ticker.paused ? false : true;
+                    // currentScene.addChild(new objects.Label("-PAUSED-", "60px customfont", "#fff", config.Screen.CENTER_X, config.Screen.CENTER_Y))
+                    // this.paused = (this.paused) ? false : true;
                     break;
             }
         }

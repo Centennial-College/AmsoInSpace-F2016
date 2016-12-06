@@ -2,8 +2,8 @@
  * @file player.ts
  * @author Chamsol Yoon cyoon2@my.centennialcollege.ca
  * @author Kevin Ma kma45@my.centennialcollege.ca
- * @date December 5 2016
- * @version 0.2.0 added abstract scrollingLevel class
+ * @date December 6 2016
+ * @version 0.2.5 added player invulnerability when collide, asteroids reset upon collision
  * @description Behavior and Properties of Player GameObject
  **/
 var __extends = (this && this.__extends) || function (d, b) {
@@ -32,12 +32,34 @@ var objects;
             this.x = 50;
             this.y = 300;
             this.position = new objects.Vector2(this.x, this.y);
+            this._isInvulnerable = false;
         };
         Player.prototype.update = function () {
             this.x = stage.mouseX;
             this.y = stage.mouseY;
             this.position = new objects.Vector2(this.x, this.y);
             this._checkBounds();
+            if (this._isInvulnerable) {
+                if ((createjs.Ticker.getTime() - this._invulnderableStartTime) <= 3000) {
+                    if (createjs.Ticker.getTime() % 500 >= 250) {
+                        this.alpha = 0;
+                    }
+                    else {
+                        this.alpha = 1;
+                    }
+                }
+                else {
+                    this.alpha = 1;
+                    this._isInvulnerable = false;
+                    this.isColliding = false;
+                }
+            }
+            // can only become invulner
+            if (this.isColliding && !this._isInvulnerable) {
+                // become invulnerable for brief duration
+                this._isInvulnerable = true;
+                this._invulnderableStartTime = createjs.Ticker.getTime();
+            }
         };
         Player.prototype.damage = function () {
             if (this._isArmorOn) {

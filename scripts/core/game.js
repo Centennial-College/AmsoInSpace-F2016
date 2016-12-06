@@ -13,6 +13,7 @@ var canvas;
 var stage;
 var textureAtlas;
 var scene;
+var pause;
 var caveLevel;
 var endingModifier;
 // Game Variable
@@ -26,7 +27,9 @@ var currentScene;
 var assetData = [
     { id: "playgameBtn", src: "../../assets/images/playgameBtn.png" },
     { id: "instructionsBtn", src: "../../assets/images/instructionsBtn.png" },
-    { id: "restartButton", src: "../../assets/images/btnRestart.png" },
+    { id: "restartButton", src: "../../assets/images/playagainbtn.png" },
+    { id: "menubtn", src: "../../assets/images/menubtn.png" },
+    { id: "upgradesbtn", src: "../../assets/images/upgradesbtn.png" },
     { id: "rules", src: "../../assets/images/instruction.png" },
     { id: "bg1", src: "../../assets/images/background1.png" },
     { id: "bg2", src: "../../assets/images/background2.png" },
@@ -118,9 +121,15 @@ function init() {
     changeScene();
 }
 function gameLoop(event) {
-    console.log("gameloop updated");
-    currentScene.update();
-    stage.update();
+    if (!createjs.Ticker.paused) {
+        console.log("gameloop updated");
+        currentScene.update();
+        stage.update();
+    }
+    else {
+        pause.update();
+        createjs.Sound.stop();
+    }
 }
 function changeScene() {
     switch (scene) {
