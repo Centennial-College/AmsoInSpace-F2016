@@ -5,7 +5,7 @@
  * @author Chamsol Yoon cyoon2@my.centennialcollege.ca
  * @author Kevin Ma kma45@my.centennialcollege.ca
  * @date December 6 2016
- * @version 0.3.4 fixed collisions for current game objects
+ * @version 0.3.6 added control images
  * @description This file starts the game 
  **/
 
@@ -38,6 +38,8 @@ var assetData: objects.Asset[] = [
     { id: "restartButton", src: "../../assets/images/playagainbtn.png" },
     { id: "menubtn", src: "../../assets/images/menubtn.png" },
     { id: "upgradesbtn", src: "../../assets/images/upgradesbtn.png" },
+    { id: "kbcontrols", src: "../../assets/images/kbcontrols.png" },
+    { id: "mousecontrols", src: "../../assets/images/mousecontrols.png" },
     { id: "rules", src: "../../assets/images/instruction.png" },
     { id: "bg1", src: "../../assets/images/background1.png" },
     { id: "bg2", src: "../../assets/images/background2.png" },

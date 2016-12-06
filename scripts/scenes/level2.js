@@ -32,7 +32,7 @@ var scenes;
             this._collision = new managers.Collision();
             // adding diamond gameobjects
             this._diamonds = new Array();
-            for (var count = 0; count < 2; count++) {
+            for (var count = 0; count < 1; count++) {
                 this._diamonds.push(new objects.Diamond());
                 this.addChild(this._diamonds[count]);
             }
