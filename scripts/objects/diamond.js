@@ -24,7 +24,10 @@ var objects;
         };
         Diamond.prototype.update = function () {
             this.position = new objects.Vector2(this.x, this.y);
-            this.y += this._dy;
+            if (this._startY < config.Screen.CENTER_Y)
+                this.y += this._dy;
+            else
+                this.y -= this._dy;
             this.x -= this._dx;
             this._checkBounds();
         };
@@ -37,9 +40,10 @@ var objects;
             this.x = 890;
             // get a random x location
             this.y = Math.floor((Math.random() * (628 - (this.height * 0.5))) + (this.height * 0.5));
+            this._startY = this.y;
         };
         Diamond.prototype._checkBounds = function () {
-            if (this.x <= (0 + (this.width * 0.5))) {
+            if (this.y >= (config.Screen.HEIGHT + (this.height * 0.5)) || this.y <= (0 - (this.height * 0.5))) {
                 this._reset();
             }
         };

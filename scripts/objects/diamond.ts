@@ -11,6 +11,7 @@ module objects {
         // PRIVATE INSTANCE VARIABLES ++++++++++++++++++++++++++++
         private _dy: number;
         private _dx: number;
+        private _startY: number;
 
         // CONSTRUCTORS +++++++++++++++++++++++++++++++++++++++++++
         constructor() {
@@ -26,7 +27,10 @@ module objects {
 
         public update(): void {
             this.position = new Vector2(this.x, this.y);
-            this.y += this._dy;
+            if(this._startY < config.Screen.CENTER_Y)
+                this.y += this._dy;
+            else
+                this.y -= this._dy;
             this.x -= this._dx;
             this._checkBounds();
         }
@@ -41,11 +45,11 @@ module objects {
 
             // get a random x location
             this.y = Math.floor((Math.random() * (628 - (this.height * 0.5))) + (this.height * 0.5));
-
+            this._startY = this.y;
         }
 
         private _checkBounds(): void {
-            if (this.x <= (0 + (this.width * 0.5))) {
+            if(this.y >= (config.Screen.HEIGHT + (this.height * 0.5)) || this.y <= (0 - (this.height * 0.5))) {
                 this._reset();
             }
         }

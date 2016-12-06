@@ -45,5 +45,9 @@ module objects {
         public update():void {
 
         }
+
+        public destroy():void {
+
+        }
     }
 }

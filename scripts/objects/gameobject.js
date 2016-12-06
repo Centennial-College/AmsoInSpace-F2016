@@ -56,6 +56,8 @@ var objects;
         };
         GameObject.prototype.update = function () {
         };
+        GameObject.prototype.destroy = function () {
+        };
         return GameObject;
     }(createjs.Sprite));
     objects.GameObject = GameObject;

@@ -24,6 +24,7 @@ var lives = 5;
 var menuScene;
 var ruleScene;
 var level1;
+var level2;
 var overScene;
 // Preload Assets
 var assetData = [
@@ -68,7 +69,6 @@ function init() {
             [280, 1, 269, 242, 0, 0, 0],
             [280, 245, 214, 212, 0, 0, 0],
             [551, 1, 250, 188, 0, 0, 0],
-            //[1, 277, 170, 136, 0, 0, 0],
             [551, 191, 300, 30, 0, 0, 0],
             [551, 223, 250, 22, 0, 0, 0],
             [496, 247, 208, 198, 0, 0, 0],
@@ -92,7 +92,6 @@ function init() {
             "explosion_l": { "frames": [1] },
             "shield_m": { "frames": [2] },
             "enemy3": { "frames": [3] },
-            //"restartButton": { "frames": [4] },
             "beam-l": { "frames": [4] },
             "beam_m": { "frames": [5] },
             "explosion_m": { "frames": [6] },
@@ -146,6 +145,8 @@ function changeScene() {
             break;
         case config.Scene.LEVEL2:
             stage.removeAllChildren();
+            level2 = new scenes.Level2();
+            currentScene = level2;
             break;
         case config.Scene.LEVEL3:
             stage.removeAllChildren();

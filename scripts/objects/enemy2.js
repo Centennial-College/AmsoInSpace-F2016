@@ -4,39 +4,52 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 /**
- * @description Defines enemy object used in the first stage
+ * @description Defines enemy object used in the second stage
  * @export
- * @class Enemy1
+ * @class Enemy2
  * @extends {objects.GameObject}
  **/
 var objects;
 (function (objects) {
-    var Enemy1 = (function (_super) {
-        __extends(Enemy1, _super);
+    var Enemy2 = (function (_super) {
+        __extends(Enemy2, _super);
         // CONSTRUCTORS +++++++++++++++++++++++++++++++++++++++++++++++
-        function Enemy1() {
-            _super.call(this, "enemy1");
+        function Enemy2() {
+            _super.call(this, "enemy2");
+            this._life = 2;
+            //private _explosion:objects.GameObject;
+            // PUBLIC VARIABLES +++++++++++++++++++++++++++++++++++++++++++
+            this.DefaultFireRate = 10;
+            this.Reload = 0;
             this.start();
         }
         // PUBLIC METHODS +++++++++++++++++++++++++++++++++++++++++++++
-        Enemy1.prototype.start = function () {
+        Enemy2.prototype.start = function () {
             this._reset();
         };
-        Enemy1.prototype.update = function () {
+        Enemy2.prototype.update = function () {
             this.position = new objects.Vector2(this.x, this.y);
             if (this._startY < config.Screen.CENTER_Y)
                 this.y += this._dy;
             else
                 this.y -= this._dy;
-            this.x -= this._dx;
+            if (this.x > 600)
+                this.x -= this._dx;
             this._checkBounds();
+            if (this.Reload < this.DefaultFireRate) {
+                this.Reload++;
+            }
         };
-        Enemy1.prototype.destroy = function () {
-            this._reset();
+        Enemy2.prototype.destroy = function () {
+            this._life--;
+            if (this._life === 0) {
+                this._reset();
+            }
         };
         // PRIVATE METHODS ++++++++++++++++++++++++++++++++++++++++++++
-        Enemy1.prototype._reset = function () {
+        Enemy2.prototype._reset = function () {
             this.isColliding = false;
+            this._life = 2;
             this._dx = Math.floor((Math.random() * 5) + 8); // vertical drispeedft
             this._dy = Math.floor((Math.random() * 4) + 2); // horizontal drift
             this.x = 890;
@@ -44,13 +57,13 @@ var objects;
             this.y = Math.floor((Math.random() * (628 - (this.height * 0.5))) + (this.height * 0.5));
             this._startY = this.y;
         };
-        Enemy1.prototype._checkBounds = function () {
+        Enemy2.prototype._checkBounds = function () {
             if (this.y >= (config.Screen.HEIGHT + (this.height * 0.5)) || this.y <= (0 - (this.height * 0.5))) {
                 this._reset();
             }
         };
-        return Enemy1;
+        return Enemy2;
     }(objects.GameObject));
-    objects.Enemy1 = Enemy1;
+    objects.Enemy2 = Enemy2;
 })(objects || (objects = {}));
-//# sourceMappingURL=enemy1.js.map
+//# sourceMappingURL=enemy2.js.map

@@ -20,9 +20,11 @@ var objects;
             this._isArmorOn = false;
             this._livesOfArmor = 2;
             // PUBLIC VARIABLES +++++++++++++++++++++++++++++++++++++++++++
-            this.numOfArmors = 3;
-            this.numOfFriend = 3;
-            this._sheildDamage = false;
+            //public NumOfArmors: number = 3;
+            //public NumOfFriend: number = 3;
+            this.DefaultFireRate = 10;
+            this.Reload = 10;
+            this.ShieldDamage = false;
             this.start();
         }
         // PUBLIC METHODS +++++++++++++++++++++++++++++++++++++++++++++
@@ -36,6 +38,9 @@ var objects;
             this.y = stage.mouseY;
             this.position = new objects.Vector2(this.x, this.y);
             this._checkBounds();
+            if (this.Reload < this.DefaultFireRate) {
+                this.Reload++;
+            }
         };
         Player.prototype.damage = function () {
             if (this._isArmorOn) {
@@ -44,7 +49,7 @@ var objects;
                 }
                 if (this._livesOfArmor === 0) {
                     this._isArmorOn = false;
-                    this._sheildDamage = true;
+                    this.ShieldDamage = true;
                     return true;
                 }
                 else {

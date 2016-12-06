@@ -13,9 +13,12 @@ module objects {
         private _livesOfArmor: number = 2;
         
         // PUBLIC VARIABLES +++++++++++++++++++++++++++++++++++++++++++
-        public numOfArmors: number = 3;
-        public numOfFriend: number = 3;
-        public _sheildDamage: boolean = false;
+        //public NumOfArmors: number = 3;
+        //public NumOfFriend: number = 3;
+        public DefaultFireRate: number = 10;
+        public Reload:number = 10;
+        public ShieldDamage: boolean = false;
+        
 
         // CONSTRUCTORS +++++++++++++++++++++++++++++++++++++++++++++++
         constructor() {
@@ -37,7 +40,12 @@ module objects {
             this.x = stage.mouseX;
             this.y = stage.mouseY;
             this.position = new Vector2(this.x, this.y);
-            this._checkBounds(); 
+
+            this._checkBounds();
+
+            if(this.Reload < this.DefaultFireRate) {
+                this.Reload++;
+            }
         }
 
         public damage(): boolean {
@@ -47,7 +55,7 @@ module objects {
                 }
                 if (this._livesOfArmor === 0) {
                     this._isArmorOn = false;
-                    this._sheildDamage = true;
+                    this.ShieldDamage = true;
                     return true;
                 }
                 else {
@@ -71,6 +79,5 @@ module objects {
                 this.y = (628 - (this.height * 0.5)); // bottom
             }
         }
-
     }
 }

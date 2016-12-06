@@ -1,20 +1,26 @@
 /**
- * @description Defines enemy object used in the first stage
+ * @description Defines enemy object used in the second stage
  * @export
- * @class Enemy1
+ * @class Enemy2
  * @extends {objects.GameObject}
  **/
 module objects {
-    export class Enemy1 extends objects.GameObject {
+    export class Enemy2 extends objects.GameObject {
 
         // PRIVATE VARIABLES ++++++++++++++++++++++++++++++++++++++++++
         private _dy:number;
         private _dx:number;
         private _startY:number;
+        private _life:number = 2;
+        //private _explosion:objects.GameObject;
+
+        // PUBLIC VARIABLES +++++++++++++++++++++++++++++++++++++++++++
+        public DefaultFireRate: number = 10;
+        public Reload:number = 0;
 
         // CONSTRUCTORS +++++++++++++++++++++++++++++++++++++++++++++++
         constructor() {
-            super("enemy1");
+            super("enemy2");
 
             this.start();
         }
@@ -30,17 +36,27 @@ module objects {
                 this.y += this._dy;
             else
                 this.y -= this._dy;
-            this.x -= this._dx;
-            this._checkBounds();
-        }
+            if(this.x > 600)
+                this.x -= this._dx;
 
+            this._checkBounds();
+
+            if(this.Reload < this.DefaultFireRate) {
+                this.Reload++;
+            }
+        }
+        
         public destroy():void {
-            this._reset();
+            this._life--;
+            if(this._life === 0){
+                this._reset();
+            }
         }
 
         // PRIVATE METHODS ++++++++++++++++++++++++++++++++++++++++++++
         private _reset():void {
             this.isColliding = false;
+            this._life = 2;
             this._dx = Math.floor((Math.random() * 5) + 8); // vertical drispeedft
             this._dy = Math.floor((Math.random() * 4) + 2); // horizontal drift
           

@@ -17,7 +17,7 @@ module scenes {
         private _lblLives:objects.Label;
         private _lblLevel:objects.Label;
         private _collision:managers.Collision;
-        private level1_bgsound: createjs.AbstractSoundInstance;
+        private _level1_bgsound: createjs.AbstractSoundInstance;
 
         // CONSTRUCTOR ++++++++++++++++++++++++++++++++++++++++++++++++
         constructor() {
@@ -49,12 +49,12 @@ module scenes {
             }
 
             //bgm
-            this.level1_bgsound = createjs.Sound.play("level1_bgsound");
-            this.level1_bgsound.loop = -1;
+            this._level1_bgsound = createjs.Sound.play("level1_bgsound");
+            this._level1_bgsound.loop = -1;
 
-            this._lblLevel = new objects.Label("Level 1", "40px Consolas", "#FFFF00", config.Screen.CENTER_X-250, 5);
-            this._lblLives = new objects.Label("Lives: " + lives, "40px Consolas", "#FB791A", config.Screen.CENTER_X, 5);
-            this._lblScore = new objects.Label("Score: " + score, "40px Consolas", "#1AFBF4", config.Screen.CENTER_X+250, 5);
+            this._lblLevel = new objects.Label("Level 1", "40px customfont", "#FFFF00", config.Screen.CENTER_X-250, 5);
+            this._lblLives = new objects.Label("Lives: " + lives, "40px customfont", "#FB791A", config.Screen.CENTER_X, 5);
+            this._lblScore = new objects.Label("Score: " + score, "40px customfont", "#1AFBF4", config.Screen.CENTER_X+250, 5);
             this.addChild(this._lblLevel, this._lblLives, this._lblScore);
 
             stage.addChild(this);
@@ -77,7 +77,7 @@ module scenes {
             this._updateScoreBoard();
             
             if (lives < 1) {
-                this.level1_bgsound.stop();
+                this._level1_bgsound.stop();
                 scene = config.Scene.OVER;
                 changeScene();
             }
@@ -87,6 +87,13 @@ module scenes {
         private _updateScoreBoard() {
             this._lblLives.text = "Lives: " + lives;
             this._lblScore.text = "Score: " + score;
+
+            // Test Automatically moving to Stage 2
+            if (score >= 1000) {
+                this._level1_bgsound.stop();
+                scene = config.Scene.LEVEL2;
+                changeScene();
+            }     
         }
     }
 }

@@ -7,6 +7,7 @@ var __extends = (this && this.__extends) || function (d, b) {
  * @file menu.ts
  * @author Chamsol Yoon cyoon2@my.centennialcollege.ca
  * @author Kevin Ma kma45@my.centennialcollege.ca
+ * @author Ilgu Lee ilee40@my.centennialcollege.ca
  * @date November 29 2016
  * @version 0.1.8 - refactored and cleaned up code in scenes/menu.ts
  * @description This is the main title scene
