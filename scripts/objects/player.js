@@ -38,7 +38,7 @@ var objects;
             this.on("click", this._fire, this);
             this._bullets = new Array();
             for (var bullet = 0; bullet < 20; bullet++) {
-                this._bullets.push(new objects.Player_bullet("player_bullet"));
+                this._bullets.push(new objects.Player_bullet());
             }
         };
         Player.prototype.update = function () {
@@ -72,7 +72,6 @@ var objects;
                 this._isInvulnerable = true;
                 this._invulnderableStartTime = createjs.Ticker.getTime();
             }
-            console.log('bullet spawn time: ' + this._bulletSpawnTimer);
             // only charge beam energy when < 100%
             if (beamEnergyPercent < 100)
                 this._bulletSpawnTimer--;

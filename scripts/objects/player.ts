@@ -50,8 +50,7 @@ module objects {
 
             this._bullets = new Array<objects.Player_bullet>();
             for (var bullet = 0; bullet < 20; bullet++) {
-                this._bullets.push(new objects.Player_bullet("player_bullet"));
-                // currentScene.addChild(this._bullets[bullet]);
+                this._bullets.push(new objects.Player_bullet());
             }
         }
 
@@ -88,9 +87,6 @@ module objects {
                 this._isInvulnerable = true
                 this._invulnderableStartTime = createjs.Ticker.getTime()
             }
-
-            console.log('bullet spawn time: ' + this._bulletSpawnTimer);
-
 
             // only charge beam energy when < 100%
             if (beamEnergyPercent < 100)

@@ -12,6 +12,7 @@
 /// <reference path="../objects/diamond.ts" />
 /// <reference path="../objects/asteroid.ts" />
 /// <reference path="../objects/enemy2.ts" />
+/// <reference path="../objects/bullet.ts" />
 /// <reference path="../objects/enemy2_bullet.ts" />
 /// <reference path="../objects/player_bullet.ts" />
 /// <reference path="../objects/player.ts" />

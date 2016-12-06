@@ -1,68 +1,44 @@
 /**
- * @description Defines enemy2's weapon
- * @export
- * @class Enemy2_bullet
- * @extends {objects.GameObject}
+ * @file enemy2_bullet.ts
+ * @author Chamsol Yoon cyoon2@my.centennialcollege.ca
+ * @author Kevin Ma kma45@my.centennialcollege.ca
+ * @date December 6 2016
+ * @version 0.3.1 refactored bullets into abstract class and children of
+ *          abstract class
+ * @description Behavior and Properties of Enemy2 ship's bullets
  **/
+
 module objects {
-    export class Enemy2_bullet extends objects.GameObject {
+    export class Enemy2_bullet extends objects.Bullet {
 
         // PRIVATE VARIABLES ++++++++++++++++++++++++++++++++++++++++++
-        private _defaultPostion: objects.Vector2;
-        private _speed: number;
-        private _inFlight: boolean;
-        
+        // private _defaultPostion: objects.Vector2;
+        // private _speed: number;
+        // private _inFlight: boolean;
+
         // PUBLIC PROPERTIES ++++++++++++++++++++++++++++++++++++++++++
-        get Speed(): number { return this._speed; }
-        set Speed(newSpeed: number) { this._speed = newSpeed; }
-        get InFlight(): boolean { return this._inFlight; }
-        set InFlight(newState: boolean) { this._inFlight = newState; }
-        
+        // get Speed(): number { return this._speed; }
+        // set Speed(newSpeed: number) { this._speed = newSpeed; }
+        // get InFlight(): boolean { return this._inFlight; }
+        // set InFlight(newState: boolean) { this._inFlight = newState; }
+
         // CONSTRUCTORS +++++++++++++++++++++++++++++++++++++++++++++++
         constructor() {
-            super("enemy2_bullet");
-            this.start();
+            super("enemy2_bullet", -8);
         }
 
         // PUBLIC METHODS +++++++++++++++++++++++++++++++++++++++++++++
-        public start():void {
-            this._defaultPostion = new Vector2(-1000, -1000);
-            this.Speed = 8;
-            this._reset();
-        }
 
-        public update():void {
-            if (this.InFlight) {
-                this.x -= this.Speed;
+
+        // typescript doesnt let abstract methods be private
+        public _checkBounds(): void {
+            if (this.position.x <= this.width * 0.5) {
+                super._reset();
             }
-
-            this.position = new Vector2(this.x, this.y);
-            this._checkBounds();
         }
 
-        public destroy():void {
-            this._reset();
-        }
-
-        public fire(newPosition: Vector2): void {
-            this.x = newPosition.x;
-            this.y = newPosition.y;
-            this.position = newPosition;
-            this.InFlight = true;
-        }
         // PRIVATE METHODS ++++++++++++++++++++++++++++++++++++++++++++
-        public _reset(): void {
-            this.position = this._defaultPostion;
-            this.x = this.position.x;
-            this.y = this.position.y;
-            this.InFlight = false;
-            this.isColliding = false;
-        }
+        
 
-        private _checkBounds(): void {
-            if (this.position.x <= this.width*0.5) {
-                this._reset();
-            }
-        }
     }
 }
