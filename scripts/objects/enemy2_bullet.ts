@@ -12,15 +12,8 @@ module objects {
     export class Enemy2_bullet extends objects.Bullet {
 
         // PRIVATE VARIABLES ++++++++++++++++++++++++++++++++++++++++++
-        // private _defaultPostion: objects.Vector2;
-        // private _speed: number;
-        // private _inFlight: boolean;
 
         // PUBLIC PROPERTIES ++++++++++++++++++++++++++++++++++++++++++
-        // get Speed(): number { return this._speed; }
-        // set Speed(newSpeed: number) { this._speed = newSpeed; }
-        // get InFlight(): boolean { return this._inFlight; }
-        // set InFlight(newState: boolean) { this._inFlight = newState; }
 
         // CONSTRUCTORS +++++++++++++++++++++++++++++++++++++++++++++++
         constructor() {
@@ -28,8 +21,6 @@ module objects {
         }
 
         // PUBLIC METHODS +++++++++++++++++++++++++++++++++++++++++++++
-
-
         // typescript doesnt let abstract methods be private
         public _checkBounds(): void {
             if (this.position.x <= this.width * 0.5) {

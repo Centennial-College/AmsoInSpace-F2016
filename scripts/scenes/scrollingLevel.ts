@@ -100,7 +100,7 @@ module scenes {
             // this._blinkUpgradesAvailableLbl()
 
             if (lives < 1) {
-                this._bgSound.stop();
+                createjs.Sound.stop()
                 scene = config.Scene.OVER;
                 changeScene();
             }
@@ -155,6 +155,8 @@ module scenes {
                 .to({ alpha: 0, y: this._lblLevelComplete.y - 100 }, 1000)
                 .call(function () {
                     stage.removeChild(this._lblLevelComplete);
+
+                    // wait until this animation finishes before changing scenes
                     changeScene()
                 });
         }

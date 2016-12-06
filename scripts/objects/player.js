@@ -118,7 +118,8 @@ var objects;
             if (beamEnergyPercent >= 10) {
                 for (var bullet in this._bullets) {
                     if (!this._bullets[bullet].InFlight) {
-                        this._bullets[bullet].fire(this.position);
+                        // fixed position where beam is fired out of, from player
+                        this._bullets[bullet].fire(new objects.Vector2(this.position.x + 30, this.position.y + 15));
                         break;
                     }
                 }

@@ -1,8 +1,9 @@
 /**
  * @file enemy2.ts
  * @author Chamsol Yoon cyoon2@my.centennialcollege.ca
+ * @author Kevin Ma kma45@my.centennialcollege.ca
  * @date December 6 2016
- * @version 0.2.5 added player invulnerability when collide, asteroids reset upon collision
+ * @version 0.3.2 refactored enemy bullets from level2.ts into enemy2.ts
  * @description Defines enemy object introduced in the second stage
  **/
 var __extends = (this && this.__extends) || function (d, b) {
@@ -27,6 +28,11 @@ var objects;
         // PUBLIC METHODS +++++++++++++++++++++++++++++++++++++++++++++
         Enemy2.prototype.start = function () {
             this._reset();
+            // creating bullets for each enemy ship
+            this._bullets = new Array();
+            for (var bullet = 0; bullet < 5; bullet++) {
+                this._bullets.push(new objects.Enemy2_bullet());
+            }
         };
         Enemy2.prototype.update = function () {
             this.position = new objects.Vector2(this.x, this.y);
@@ -37,8 +43,22 @@ var objects;
             if (this.x > 600)
                 this.x -= this._dx;
             this._checkBounds();
+            // update every bullet
+            this._bullets.forEach(function (bullet) {
+                bullet.update();
+            });
+            // enemies of this type can only fire 5 times per second
             if (this.Reload < this.DefaultFireRate) {
                 this.Reload++;
+            }
+            if (this.Reload === this.DefaultFireRate) {
+                this.Reload = 0;
+                for (var bullet in this._bullets) {
+                    if (!this._bullets[bullet].InFlight) {
+                        this._bullets[bullet].fire(this.position);
+                        break;
+                    }
+                }
             }
         };
         Enemy2.prototype.destroy = function () {

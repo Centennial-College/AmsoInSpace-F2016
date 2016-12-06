@@ -17,14 +17,7 @@ var objects;
     var Enemy2_bullet = (function (_super) {
         __extends(Enemy2_bullet, _super);
         // PRIVATE VARIABLES ++++++++++++++++++++++++++++++++++++++++++
-        // private _defaultPostion: objects.Vector2;
-        // private _speed: number;
-        // private _inFlight: boolean;
         // PUBLIC PROPERTIES ++++++++++++++++++++++++++++++++++++++++++
-        // get Speed(): number { return this._speed; }
-        // set Speed(newSpeed: number) { this._speed = newSpeed; }
-        // get InFlight(): boolean { return this._inFlight; }
-        // set InFlight(newState: boolean) { this._inFlight = newState; }
         // CONSTRUCTORS +++++++++++++++++++++++++++++++++++++++++++++++
         function Enemy2_bullet() {
             _super.call(this, "enemy2_bullet", -8);

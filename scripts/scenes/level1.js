@@ -54,15 +54,12 @@ var scenes;
             });
             // level 1 requires score of 1000 points to advance to the next level
             // if (score >= 1000 && !this._canAdvanceToNextLevel) {
-            if (score >= 100 && !this._levelComplete) {
+            if (score >= 1000 && !this._levelComplete) {
                 // this._canAdvanceToNextLevel = true
                 this._advanceToNextLevel();
-                scene = config.Scene.LEVEL2;
-            }
-            if (lives < 1) {
                 this._bgSound.stop();
-                scene = config.Scene.OVER;
-                changeScene();
+                // createjs.Sound.stop()
+                scene = config.Scene.LEVEL2;
             }
         };
         return Level1;

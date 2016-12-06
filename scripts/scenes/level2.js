@@ -3,7 +3,7 @@
  * @author Chamsol Yoon cyoon2@my.centennialcollege.ca
  * @author Kevin Ma kma45@my.centennialcollege.ca
  * @date December 6 2016
- * @version 0.2.3 fixed asteroid positioning with new ui
+ * @version 0.3.2 refactored enemy bullets from level2.ts into enemy2.ts
  * @description This level introduces enemy ships and shooting feature
  **/
 var __extends = (this && this.__extends) || function (d, b) {
@@ -15,6 +15,7 @@ var scenes;
 (function (scenes) {
     var Level2 = (function (_super) {
         __extends(Level2, _super);
+        // private _enemyBullets: objects.Enemy2_bullet[];
         // CONSTRUCTOR ++++++++++++++++++++++++++++++++++++++++++++++++
         function Level2() {
             _super.call(this, "level2_bgsound", "bg2");
@@ -29,29 +30,28 @@ var scenes;
             console.log("Level2 Scene started");
             this.addChild(this._player = new objects.Player());
             this._collision = new managers.Collision();
+            // adding diamond gameobjects
             this._diamonds = new Array();
             for (var count = 0; count < 2; count++) {
                 this._diamonds.push(new objects.Diamond());
                 this.addChild(this._diamonds[count]);
             }
+            // adding enemy ships
             this._enemyShips = new Array();
             for (var count = 0; count < 2; count++) {
                 this._enemyShips.push(new objects.Enemy2());
                 this.addChild(this._enemyShips[count]);
             }
-            // this._bullets = new Array<objects.Player_bullet>();
-            // for (var bullet = 0; bullet < 20; bullet++) {
-            //     this._bullets.push(new objects.Player_bullet("player_bullet"));
-            //     this.addChild(this._bullets[bullet]);
-            // }
+            // adding player bullets to the scene
             this._player._bullets.forEach(function (bullet) {
                 _this.addChild(bullet);
             });
-            this._enemyBullets = new Array();
-            for (var bullet = 0; bullet < 5; bullet++) {
-                this._enemyBullets.push(new objects.Enemy2_bullet());
-                this.addChild(this._enemyBullets[bullet]);
-            }
+            // adding enemy bullets to the scene
+            this._enemyShips.forEach(function (enemy) {
+                enemy._bullets.forEach(function (bullet) {
+                    _this.addChild(bullet);
+                });
+            });
             stage.addChild(this);
         };
         Level2.prototype.update = function () {
@@ -64,15 +64,6 @@ var scenes;
             });
             this._enemyShips.forEach(function (enemy) {
                 enemy.update();
-                if (enemy.Reload === enemy.DefaultFireRate) {
-                    enemy.Reload = 0;
-                    for (var bullet in _this._enemyBullets) {
-                        if (!_this._enemyBullets[bullet].InFlight) {
-                            _this._enemyBullets[bullet].fire(enemy.position);
-                            break;
-                        }
-                    }
-                }
                 if (_this._collision.check(_this._player, enemy)) {
                     enemy.destroy();
                 }
@@ -82,12 +73,6 @@ var scenes;
                 _this._enemyShips.forEach(function (enemy) {
                     _this._collision.check(enemy, bullet);
                 });
-            });
-            this._enemyBullets.forEach(function (enemyBullet) {
-                enemyBullet.update();
-                if (_this._collision.check(_this._player, enemyBullet)) {
-                    enemyBullet._reset();
-                }
             });
         };
         return Level2;
