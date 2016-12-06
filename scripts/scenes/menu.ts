@@ -27,6 +27,7 @@ module scenes {
 
         // PUBLIC METHODS +++++++++++++++++++++++++++++++++++++++++++++
         public start(): void {
+            stage.cursor="auto"; // shows cursor
             console.log("Menu Scene started");
             this._setupBackground()
             this._setupAmsoMenuImage()

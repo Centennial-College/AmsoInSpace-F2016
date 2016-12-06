@@ -19,6 +19,7 @@ var scenes;
         }
         // PUBLIC METHODS +++++++++++++++++++++++++++++++++++++++++++++
         Level1.prototype.start = function () {
+            stage.cursor = "none"; // hide cursor
             console.log("Level1 Scene started");
             this._collision = new managers.Collision();
             this._bg = new objects.Background("bg1");

@@ -26,6 +26,7 @@ module scenes {
 
         // PUBLIC METHODS +++++++++++++++++++++++++++++++++++++++++++++
         public start():void{
+            stage.cursor="none"; // hide cursor
             console.log("Level1 Scene started");
             
             this._collision = new managers.Collision();

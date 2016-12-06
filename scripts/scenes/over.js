@@ -19,7 +19,8 @@ var scenes;
         }
         // PUBLIC METHODS +++++++++++++++++++++++++++++++++++++++++++++
         Over.prototype.start = function () {
-            console.log("Menu Scene started");
+            stage.cursor = "auto"; // hide cursor
+            console.log("Over Scene started");
             this._bg = new objects.Background("bg1");
             this.addChild(this._bg);
             this._lblGameover = new objects.Label("GAME OVER", "80px customfont", "#FDFDFD", config.Screen.CENTER_X, config.Screen.CENTER_Y - 150);

@@ -22,6 +22,7 @@ var scenes;
         }
         // PUBLIC METHODS +++++++++++++++++++++++++++++++++++++++++++++
         Menu.prototype.start = function () {
+            stage.cursor = "auto"; // shows cursor
             console.log("Menu Scene started");
             this._setupBackground();
             this._setupAmsoMenuImage();

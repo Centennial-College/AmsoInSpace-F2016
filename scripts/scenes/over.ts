@@ -20,7 +20,8 @@ module scenes {
 
         // PUBLIC METHODS +++++++++++++++++++++++++++++++++++++++++++++
         public start():void {
-            console.log("Menu Scene started");
+            stage.cursor="auto"; // hide cursor
+            console.log("Over Scene started");
 
             this._bg = new objects.Background("bg1");
             this.addChild(this._bg);
