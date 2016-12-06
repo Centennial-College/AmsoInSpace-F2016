@@ -39,10 +39,10 @@ module objects {
             this.visible = true;
             this._dx = Math.floor((Math.random() * 3) + 5); // horizontal drift
             this._dy = Math.floor((Math.random() * 4) + 2); // horizontal drift
-            this.x = 890;
+            this.x = config.Screen.WIDTH;
 
             // get a random x location
-            this.y = Math.floor((Math.random() * (628 - (this.height * 0.5))) + (this.height * 0.5));
+            this.y = Math.floor((Math.random() * (config.Screen.HEIGHT - (this.height * 0.5))) + (this.height * 0.5));
 
         }
 

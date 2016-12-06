@@ -2,8 +2,8 @@
  * @file scrollingLevel.ts
  * @author Chamsol Yoon cyoon2@my.centennialcollege.ca
  * @author Kevin Ma kma45@my.centennialcollege.ca
- * @date December 5 2016
- * @version 0.2.1 recreated Level1 to extend from abstract scrollingLevel
+ * @date December 6 2016
+ * @version 0.2.3 fixed asteroid positioning with new ui
  * @description This will be the training level in the game
  **/
 
@@ -12,7 +12,7 @@ module scenes {
 
         // PRIVATE VARIABLES ++++++++++++++++++++++++++++++++++++++++++
         private _diamond: objects.Diamond[];
-        private _enemy: objects.Enemy1[];
+        private _enemy: objects.Asteroid[];
 
         // CONSTRUCTOR ++++++++++++++++++++++++++++++++++++++++++++++++
         constructor() {
@@ -33,9 +33,9 @@ module scenes {
                 this.addChild(this._diamond[count]);
             }
 
-            this._enemy = new Array<objects.Enemy1>();
+            this._enemy = new Array<objects.Asteroid>();
             for (var count: number = 0; count < 2; count++) {
-                this._enemy.push(new objects.Enemy1());
+                this._enemy.push(new objects.Asteroid());
                 this.addChild(this._enemy[count]);
             }
 
