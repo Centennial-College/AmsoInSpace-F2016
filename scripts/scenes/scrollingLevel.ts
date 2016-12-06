@@ -7,7 +7,7 @@
  **/
 
 module scenes {
-    export class ScrollingLevel extends objects.Scene {
+    export abstract class ScrollingLevel extends objects.Scene {
 
         // PRIVATE VARIABLES ++++++++++++++++++++++++++++++++++++++++++
         private _bg: objects.Background;
@@ -21,18 +21,20 @@ module scenes {
         protected _player: objects.Player;
         protected _collision: managers.Collision;
         protected _lblBeam: objects.Label;
-        protected _beamEnergyPercent: number
         protected _beamEnergyBar: createjs.Shape
         protected _lblUpgradesAvailable: objects.Label
         protected _lblLevelComplete: objects.Label
         protected _canAdvanceToNextLevel: boolean
         protected _keyboardcontrol: managers.KeyboardControls
+        protected _levelComplete: boolean
 
         // CONSTRUCTOR ++++++++++++++++++++++++++++++++++++++++++++++++
         constructor(private _bgmString: string, private _bgImgString: string) {
             super();
 
             stage.cursor = 'none'
+
+            this._levelComplete = false
 
             // had to do the initializations in constructor due to constraints of super class
             // didnt want to break the structure for all the remaining classes
@@ -69,9 +71,9 @@ module scenes {
             this._lblUpgradesAvailable.alpha = 0
 
             // Player
-            this._player = new objects.Player();
+            // this._player = new objects.Player();
 
-            this.addChild(this._bg, this._scoreBoard, this._lblBeam, this._lblLevel, this._lblLives, this._lblScore, this._lblBeam, this._beamEnergyBar, this._lblUpgradesAvailable, this._player);
+            this.addChild(this._bg, this._scoreBoard, this._lblBeam, this._lblLevel, this._lblLives, this._lblScore, this._lblBeam, this._beamEnergyBar, this._lblUpgradesAvailable);
             stage.addChild(this);
 
             // test code
@@ -126,7 +128,7 @@ module scenes {
         protected _updateBeamEnergyBar(): void {
             this._beamEnergyBar.graphics.clear();
             this._beamEnergyBar.graphics.beginFill('#00FF48');
-            this._beamEnergyBar.graphics.drawRect(0, 0, 300 * this._beamEnergyPercent / 100, 20);
+            this._beamEnergyBar.graphics.drawRect(0, 0, 300 * beamEnergyPercent / 100, 20);
             this._beamEnergyBar.graphics.endFill();
             this._beamEnergyBar.graphics.setStrokeStyle(2);
             this._beamEnergyBar.graphics.beginStroke('#000');
@@ -142,15 +144,18 @@ module scenes {
             }
         }
 
-        protected _levelCompleteNotification(): void {
+        // provides level up notification and advances player to next level
+        protected _advanceToNextLevel(): void {
             // generate level complete notification and let fade away
             this.addChild(this._lblLevelComplete = new objects.Label("LEVEL " + level + " COMPLETE!", "40px customfont", "#fff", config.Screen.CENTER_X, config.Screen.CENTER_Y))
             this._lblLevelComplete.shadow = new createjs.Shadow("#fff", 0, 0, 2)
+            this._levelComplete = true
 
             createjs.Tween.get(this._lblLevelComplete)
                 .to({ alpha: 0, y: this._lblLevelComplete.y - 100 }, 1000)
                 .call(function () {
                     stage.removeChild(this._lblLevelComplete);
+                    changeScene()
                 });
         }
     }

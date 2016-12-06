@@ -34,6 +34,10 @@ module objects {
         }
 
         public _reset(): void {
+            // set it to invisible while moving, to prevent
+            // blinking/flickering effect where it jumps to the side
+            this.alpha = 0
+
             this.isColliding = false;
             this._dx = Math.floor((Math.random() * 5) + 8); // vertical drispeedft
             this._dy = Math.floor((Math.random() * 3) + 1); // horizontal drift
@@ -41,6 +45,8 @@ module objects {
             this.x = config.Screen.WIDTH;
             // get a random y location
             this.y = Math.floor((Math.random() * ((config.Screen.HEIGHT - (this.height * 0.5)) - (this.height * 0.5))) + (this.height * 0.5));
+
+            this.alpha = 1
         }
 
         // PRIVATE METHODS ++++++++++++++++++++++++++++++++++++++++++++

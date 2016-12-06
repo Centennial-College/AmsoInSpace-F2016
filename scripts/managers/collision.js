@@ -33,6 +33,25 @@ var managers;
                             prime.isColliding = true;
                             return true;
                         }
+                        if (other.objName === "enemy2") {
+                            console.log("hit enemy2");
+                            createjs.Sound.play("enemy1_sound");
+                            lives -= 1;
+                            prime.isColliding = true;
+                            return true;
+                        }
+                        if (other.objName === "enemy2_bullet") {
+                            createjs.Sound.play("enemy1_sound");
+                            lives -= 1;
+                            prime.isColliding = true;
+                            return true;
+                        }
+                        if (other.objName === "player_bullet") {
+                            createjs.Sound.play("diamond_sound");
+                            prime.destroy();
+                            other.destroy();
+                            score += 300;
+                        }
                     }
                 }
             }

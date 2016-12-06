@@ -21,6 +21,7 @@ var score = 0;
 var highScore = 0;
 var lives = 5;
 var level = 1;
+var beamEnergyPercent;
 // Game Scenes;
 var currentScene;
 // Preload Assets
@@ -154,6 +155,8 @@ function changeScene() {
             break;
         case config.Scene.LEVEL2:
             stage.removeAllChildren();
+            currentScene = new scenes.Level2();
+            console.log("Level2 Scene changed");
             break;
         case config.Scene.LEVEL3:
             stage.removeAllChildren();

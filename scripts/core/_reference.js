@@ -1,5 +1,5 @@
 /// <reference path="../../typings/index.d.ts" />
-/// <reference path="./collision.ts"/>
+/// <reference path="./../managers/collision.ts"/>
 /// <reference path="../config/config.ts" />
 /// <reference path="../managers/keyboardcontrol.ts"/>
 /// <reference path="../objects/asset.ts" />
@@ -11,10 +11,14 @@
 /// <reference path="../objects/gameobject.ts" />
 /// <reference path="../objects/diamond.ts" />
 /// <reference path="../objects/asteroid.ts" />
+/// <reference path="../objects/enemy2.ts" />
+/// <reference path="../objects/enemy2_bullet.ts" />
+/// <reference path="../objects/player_bullet.ts" />
 /// <reference path="../objects/player.ts" />
 /// <reference path="../scenes/menu.ts" />
 /// <reference path="../scenes/rule.ts" />
 /// <reference path="../scenes/scrollingLevel.ts" />
 /// <reference path="../scenes/level1.ts" />
+/// <reference path="../scenes/level2.ts" />
 /// <reference path="../scenes/pause.ts" /> 
 //# sourceMappingURL=_reference.js.map

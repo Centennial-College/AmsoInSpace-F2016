@@ -25,6 +25,8 @@ var score: number = 0;
 var highScore: number = 0;
 var lives: number = 5;
 let level: number = 1;
+let beamEnergyPercent: number
+
 
 // Game Scenes;
 let currentScene: objects.Scene;
@@ -176,6 +178,8 @@ function changeScene(): void {
             break;
         case config.Scene.LEVEL2:
             stage.removeAllChildren();
+            currentScene = new scenes.Level2();
+            console.log("Level2 Scene changed");
             break;
         case config.Scene.LEVEL3:
             stage.removeAllChildren();

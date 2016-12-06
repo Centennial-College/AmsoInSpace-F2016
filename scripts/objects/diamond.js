@@ -32,6 +32,9 @@ var objects;
         };
         // PRIVATE METHODS ++++++++++++++++++++++++++++++++++++++++++++       
         Diamond.prototype._reset = function () {
+            // set it to invisible while moving, to prevent
+            // blinking/flickering effect where it jumps to the side
+            this.alpha = 0;
             this.isColliding = false;
             this.visible = true;
             this._dx = Math.floor((Math.random() * 3) + 5); // horizontal drift
@@ -39,6 +42,7 @@ var objects;
             this.x = config.Screen.WIDTH;
             // get a random y location
             this.y = Math.floor((Math.random() * ((config.Screen.HEIGHT - (this.height * 0.5)) - (this.height * 0.5))) + (this.height * 0.5));
+            this.alpha = 1;
         };
         Diamond.prototype._checkBounds = function () {
             if (this.y >= (config.Screen.HEIGHT - config.Game.SCORE_BOARD_HEIGHT - (this.height * 0.5)) || (this.x <= (0 + (this.width * 0.5)))) {

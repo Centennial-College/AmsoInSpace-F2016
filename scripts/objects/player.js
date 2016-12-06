@@ -3,7 +3,7 @@
  * @author Chamsol Yoon cyoon2@my.centennialcollege.ca
  * @author Kevin Ma kma45@my.centennialcollege.ca
  * @date December 6 2016
- * @version 0.2.5 added player invulnerability when collide, asteroids reset upon collision
+ * @version 0.3.0 merged level2, changed ui and underlying code
  * @description Behavior and Properties of Player GameObject
  **/
 var __extends = (this && this.__extends) || function (d, b) {
@@ -15,6 +15,7 @@ var objects;
 (function (objects) {
     var Player = (function (_super) {
         __extends(Player, _super);
+        // public ShieldDamage: boolean = false;
         // CONSTRUCTORS +++++++++++++++++++++++++++++++++++++++++++++++
         function Player() {
             _super.call(this, "player");
@@ -31,14 +32,23 @@ var objects;
         Player.prototype.start = function () {
             this.x = 50;
             this.y = 300;
+            this._bulletSpawnTimer = 5;
             this.position = new objects.Vector2(this.x, this.y);
             this._isInvulnerable = false;
+            this.on("click", this._fire, this);
+            this._bullets = new Array();
+            for (var bullet = 0; bullet < 20; bullet++) {
+                this._bullets.push(new objects.Player_bullet("player_bullet"));
+            }
         };
         Player.prototype.update = function () {
             this.x = stage.mouseX;
             this.y = stage.mouseY;
             this.position = new objects.Vector2(this.x, this.y);
             this._checkBounds();
+            // if (this.Reload < this.DefaultFireRate) {
+            //     this.Reload++;
+            // }
             // if the player is invulnerable, he cannot collide for 2 seconds
             if (this._isInvulnerable) {
                 // the player blinks while he is invulnerable
@@ -61,6 +71,15 @@ var objects;
                 // become invulnerable for brief duration
                 this._isInvulnerable = true;
                 this._invulnderableStartTime = createjs.Ticker.getTime();
+            }
+            console.log('bullet spawn time: ' + this._bulletSpawnTimer);
+            // only charge beam energy when < 100%
+            if (beamEnergyPercent < 100)
+                this._bulletSpawnTimer--;
+            // beam energy recharges every 0.5 seconds
+            if (this._bulletSpawnTimer <= 0) {
+                this._bulletSpawnTimer = 5;
+                beamEnergyPercent++;
             }
         };
         Player.prototype.damage = function () {
@@ -92,6 +111,19 @@ var objects;
             }
             if (this.y >= (config.Screen.HEIGHT - config.Game.SCORE_BOARD_HEIGHT - (this.height * 0.5))) {
                 this.y = (config.Screen.HEIGHT - config.Game.SCORE_BOARD_HEIGHT - (this.height * 0.5)); // bottom
+            }
+        };
+        Player.prototype._fire = function () {
+            // can only shoot bullets when you have at least 10% 
+            // beam energy
+            if (beamEnergyPercent >= 10) {
+                for (var bullet in this._bullets) {
+                    if (!this._bullets[bullet].InFlight) {
+                        this._bullets[bullet].fire(this.position);
+                        break;
+                    }
+                }
+                beamEnergyPercent -= 10;
             }
         };
         return Player;
