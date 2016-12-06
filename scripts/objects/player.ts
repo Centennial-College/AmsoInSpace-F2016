@@ -1,8 +1,10 @@
 /**
- * @description Define player object
- * @export
- * @class Player
- * @extends {objects.GameObject}
+ * @file player.ts
+ * @author Chamsol Yoon cyoon2@my.centennialcollege.ca
+ * @author Kevin Ma kma45@my.centennialcollege.ca
+ * @date December 5 2016
+ * @version 0.1.9 - corrected player.ts checkbounds
+ * @description Behavior and Properties of Player GameObject
  **/
 
 module objects {
@@ -11,7 +13,7 @@ module objects {
         // PRIVATE VARIABLES ++++++++++++++++++++++++++++++++++++++++++
         private _isArmorOn: boolean = false;
         private _livesOfArmor: number = 2;
-        
+
         // PUBLIC VARIABLES +++++++++++++++++++++++++++++++++++++++++++
         public numOfArmors: number = 3;
         public numOfFriend: number = 3;
@@ -26,18 +28,18 @@ module objects {
 
         // PUBLIC METHODS +++++++++++++++++++++++++++++++++++++++++++++
 
-        public start():void {
+        public start(): void {
             this.x = 50;
             this.y = 300;
 
             this.position = new Vector2(this.x, this.y);
         }
 
-        public update():void {
+        public update(): void {
             this.x = stage.mouseX;
             this.y = stage.mouseY;
             this.position = new Vector2(this.x, this.y);
-            this._checkBounds(); 
+            this._checkBounds();
         }
 
         public damage(): boolean {
@@ -55,20 +57,23 @@ module objects {
                 }
             }
         }
-        
+
         // PRIVATE METHODS ++++++++++++++++++++++++++++++++++++++++++++
         private _checkBounds(): void {
 
             // checkbounds to stop player from going outside
 
             if (this.x <= (0 + (this.width * 0.5))) {
-                this.x = (0 + (this.width * 0.5)); // left
-            } else if(this.x >= (630 - (this.width * 0.5))) {
-                this.x = (630 - (this.width * 0.5)); // right
-            } else if(this.y <= (100 - (this.height * 0.5))) {
-                this.y = (100 - (this.height * 0.5)); // top
-            } else if (this.y >= (628 - (this.height * 0.5))) {
-                this.y = (628 - (this.height * 0.5)); // bottom
+                this.x = (this.width * 0.5); // left
+            }
+            if (this.x >= (config.Screen.WIDTH - (this.width * 0.5))) {
+                this.x = (config.Screen.WIDTH - (this.width * 0.5)); // right
+            }
+            if (this.y <= (0 - (this.height * 0.5))) {
+                this.y = (this.height * 0.5); // top
+            }
+            if (this.y >= (config.Screen.HEIGHT - (this.height * 0.5))) {
+                this.y = (config.Screen.HEIGHT - (this.height * 0.5)); // bottom
             }
         }
 

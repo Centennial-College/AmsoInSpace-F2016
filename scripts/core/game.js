@@ -117,7 +117,7 @@ function init() {
         }
     };
     textureAtlas = new createjs.SpriteSheet(atlasData);
-    scene = config.Scene.MENU;
+    scene = config.Scene.LEVEL1;
     changeScene();
 }
 function gameLoop(event) {

@@ -1,8 +1,10 @@
 /**
- * @description Define player object
- * @export
- * @class Player
- * @extends {objects.GameObject}
+ * @file player.ts
+ * @author Chamsol Yoon cyoon2@my.centennialcollege.ca
+ * @author Kevin Ma kma45@my.centennialcollege.ca
+ * @date December 5 2016
+ * @version 0.1.9 - corrected player.ts checkbounds
+ * @description Behavior and Properties of Player GameObject
  **/
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -56,16 +58,16 @@ var objects;
         Player.prototype._checkBounds = function () {
             // checkbounds to stop player from going outside
             if (this.x <= (0 + (this.width * 0.5))) {
-                this.x = (0 + (this.width * 0.5)); // left
+                this.x = (this.width * 0.5); // left
             }
-            else if (this.x >= (630 - (this.width * 0.5))) {
-                this.x = (630 - (this.width * 0.5)); // right
+            if (this.x >= (config.Screen.WIDTH - (this.width * 0.5))) {
+                this.x = (config.Screen.WIDTH - (this.width * 0.5)); // right
             }
-            else if (this.y <= (100 - (this.height * 0.5))) {
-                this.y = (100 - (this.height * 0.5)); // top
+            if (this.y <= (0 - (this.height * 0.5))) {
+                this.y = (this.height * 0.5); // top
             }
-            else if (this.y >= (628 - (this.height * 0.5))) {
-                this.y = (628 - (this.height * 0.5)); // bottom
+            if (this.y >= (config.Screen.HEIGHT - (this.height * 0.5))) {
+                this.y = (config.Screen.HEIGHT - (this.height * 0.5)); // bottom
             }
         };
         return Player;
