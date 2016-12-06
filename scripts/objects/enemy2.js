@@ -51,11 +51,17 @@ var objects;
             if (this.Reload < this.DefaultFireRate) {
                 this.Reload++;
             }
+            // these bullets spray like ak47
+            // they dont have accurate aim at player, but they spread out 
+            // as they are fired from the enemy's location as the enemy ship drifts
+            // around the map
             if (this.Reload === this.DefaultFireRate) {
                 this.Reload = 0;
                 for (var bullet in this._bullets) {
                     if (!this._bullets[bullet].InFlight) {
-                        this._bullets[bullet].fire(this.position);
+                        // fixed position where bullets are fired out from, from the 
+                        // "mouth" of the enemy ship
+                        this._bullets[bullet].fire(new objects.Vector2(this.position.x - 60, this.position.y));
                         break;
                     }
                 }

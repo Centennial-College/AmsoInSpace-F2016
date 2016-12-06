@@ -3,7 +3,7 @@
  * @author Chamsol Yoon cyoon2@my.centennialcollege.ca
  * @author Kevin Ma kma45@my.centennialcollege.ca
  * @date December 6 2016
- * @version 0.3.2 refactored enemy bullets from level2.ts into enemy2.ts
+ * @version 0.3.3 fixed position where enemy2 bullets fire from
  * @description Defines enemy object introduced in the second stage
  **/
 
@@ -61,11 +61,19 @@ module objects {
             if (this.Reload < this.DefaultFireRate) {
                 this.Reload++;
             }
+            // these bullets spray like ak47
+            // they dont have accurate aim at player, but they spread out 
+            // as they are fired from the enemy's location as the enemy ship drifts
+            // around the map
             if (this.Reload === this.DefaultFireRate) {
                 this.Reload = 0;
                 for (var bullet in this._bullets) {
                     if (!this._bullets[bullet].InFlight) {
-                        this._bullets[bullet].fire(this.position);
+                        // fixed position where bullets are fired out from, from the 
+                        // "mouth" of the enemy ship
+                        this._bullets[bullet].fire(
+                            new objects.Vector2(this.position.x - 60, this.position.y)
+                        );
                         break;
                     }
                 }
