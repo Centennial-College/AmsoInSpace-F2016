@@ -3,7 +3,7 @@
  * @author Chamsol Yoon cyoon2@my.centennialcollege.ca
  * @author Kevin Ma kma45@my.centennialcollege.ca
  * @date December 5 2016
- * @version 0.1.10 - added pause scene
+ * @version 0.2.0 added abstract scrollingLevel class
  * @description Defines the global static configuration values for the game
  **/
 var config;
@@ -35,6 +35,7 @@ var config;
         function Game() {
         }
         Game.FPS = 60;
+        Game.SCORE_BOARD_HEIGHT = 75;
         return Game;
     }());
     config.Game = Game;

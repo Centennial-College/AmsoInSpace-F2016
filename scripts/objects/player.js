@@ -3,7 +3,7 @@
  * @author Chamsol Yoon cyoon2@my.centennialcollege.ca
  * @author Kevin Ma kma45@my.centennialcollege.ca
  * @date December 5 2016
- * @version 0.1.9 - corrected player.ts checkbounds
+ * @version 0.2.0 added abstract scrollingLevel class
  * @description Behavior and Properties of Player GameObject
  **/
 var __extends = (this && this.__extends) || function (d, b) {
@@ -66,8 +66,8 @@ var objects;
             if (this.y <= (0 - (this.height * 0.5))) {
                 this.y = (this.height * 0.5); // top
             }
-            if (this.y >= (config.Screen.HEIGHT - (this.height * 0.5))) {
-                this.y = (config.Screen.HEIGHT - (this.height * 0.5)); // bottom
+            if (this.y >= (config.Screen.HEIGHT - config.Game.SCORE_BOARD_HEIGHT - (this.height * 0.5))) {
+                this.y = (config.Screen.HEIGHT - config.Game.SCORE_BOARD_HEIGHT - (this.height * 0.5)); // bottom
             }
         };
         return Player;

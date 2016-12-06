@@ -4,7 +4,7 @@
  * @author Chamsol Yoon cyoon2@my.centennialcollege.ca
  * @author Kevin Ma kma45@my.centennialcollege.ca
  * @date December 5 2016
- * @version 0.1.10 - added pause scene
+ * @version 0.2.0 added abstract scrollingLevel class
  * @description This file starts the game
  **/
 // Global Variable
@@ -19,6 +19,7 @@ var endingModifier;
 var score = 0;
 var highScore = 0;
 var lives = 5;
+var level = 1;
 // Game Scenes;
 var currentScene;
 // Preload Assets
@@ -135,7 +136,7 @@ function changeScene() {
             break;
         case config.Scene.LEVEL1:
             stage.removeAllChildren();
-            currentScene = new scenes.Level1();
+            currentScene = new scenes.ScrollingLevel("level1_bgsound", "bg1");
             console.log("Level1 Scene changed");
             break;
         case config.Scene.LEVEL2:
