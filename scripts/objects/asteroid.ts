@@ -3,7 +3,7 @@
  * @author Chamsol Yoon cyoon2@my.centennialcollege.ca
  * @author Kevin Ma kma45@my.centennialcollege.ca
  * @date December 6 2016
- * @version 0.2.3 fixed asteroid positioning with new ui
+ * @version 0.3.4 fixed collisions for current game objects
  * @description Behavior and Properties of Asteroid GameObject
  **/
 
@@ -49,6 +49,10 @@ module objects {
             this.alpha = 1
         }
 
+        public destroy(): void {
+            this._reset()
+        }
+        
         // PRIVATE METHODS ++++++++++++++++++++++++++++++++++++++++++++
         private _checkBounds(): void {
             if ((this.y >= (config.Screen.HEIGHT - config.Game.SCORE_BOARD_HEIGHT - (this.height * 0.5)))

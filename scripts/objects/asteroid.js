@@ -3,7 +3,7 @@
  * @author Chamsol Yoon cyoon2@my.centennialcollege.ca
  * @author Kevin Ma kma45@my.centennialcollege.ca
  * @date December 6 2016
- * @version 0.2.3 fixed asteroid positioning with new ui
+ * @version 0.3.4 fixed collisions for current game objects
  * @description Behavior and Properties of Asteroid GameObject
  **/
 var __extends = (this && this.__extends) || function (d, b) {
@@ -41,6 +41,9 @@ var objects;
             // get a random y location
             this.y = Math.floor((Math.random() * ((config.Screen.HEIGHT - (this.height * 0.5)) - (this.height * 0.5))) + (this.height * 0.5));
             this.alpha = 1;
+        };
+        Asteroid.prototype.destroy = function () {
+            this._reset();
         };
         // PRIVATE METHODS ++++++++++++++++++++++++++++++++++++++++++++
         Asteroid.prototype._checkBounds = function () {

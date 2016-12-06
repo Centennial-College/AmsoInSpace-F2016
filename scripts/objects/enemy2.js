@@ -3,7 +3,7 @@
  * @author Chamsol Yoon cyoon2@my.centennialcollege.ca
  * @author Kevin Ma kma45@my.centennialcollege.ca
  * @date December 6 2016
- * @version 0.3.2 refactored enemy bullets from level2.ts into enemy2.ts
+ * @version 0.3.3 fixed position where enemy2 bullets fire from
  * @description Defines enemy object introduced in the second stage
  **/
 var __extends = (this && this.__extends) || function (d, b) {

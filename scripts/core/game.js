@@ -3,8 +3,8 @@
  * @file game.ts
  * @author Chamsol Yoon cyoon2@my.centennialcollege.ca
  * @author Kevin Ma kma45@my.centennialcollege.ca
- * @date December 5 2016
- * @version 0.2.0 added abstract scrollingLevel class
+ * @date December 6 2016
+ * @version 0.3.4 fixed collisions for current game objects
  * @description This file starts the game
  **/
 // Global Variable
@@ -118,7 +118,7 @@ function init() {
         }
     };
     textureAtlas = new createjs.SpriteSheet(atlasData);
-    scene = config.Scene.LEVEL2;
+    scene = config.Scene.MENU;
     changeScene();
 }
 function gameLoop(event) {

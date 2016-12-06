@@ -3,7 +3,7 @@
  * @author Chamsol Yoon cyoon2@my.centennialcollege.ca
  * @author Kevin Ma kma45@my.centennialcollege.ca
  * @date December 6 2016
- * @version 0.2.3 fixed asteroid positioning with new ui
+ * @version 0.3.4 fixed collisions for current game objects
  * @description This will be the training level in the game
  **/
 
@@ -56,9 +56,7 @@ module scenes {
 
             this._asteroids.forEach(asteroid => {
                 asteroid.update();
-                if (this._collision.check(this._player, asteroid)) {
-                    asteroid._reset()
-                }
+                this._collision.check(this._player, asteroid)
             });
 
             // level 1 requires score of 1000 points to advance to the next level

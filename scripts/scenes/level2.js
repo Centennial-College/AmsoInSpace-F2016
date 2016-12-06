@@ -3,7 +3,7 @@
  * @author Chamsol Yoon cyoon2@my.centennialcollege.ca
  * @author Kevin Ma kma45@my.centennialcollege.ca
  * @date December 6 2016
- * @version 0.3.2 refactored enemy bullets from level2.ts into enemy2.ts
+ * @version 0.3.4 fixed collisions for current game objects
  * @description This level introduces enemy ships and shooting feature
  **/
 var __extends = (this && this.__extends) || function (d, b) {
@@ -58,16 +58,22 @@ var scenes;
             var _this = this;
             _super.prototype.update.call(this);
             this._updateBeamEnergyBar();
+            // updates diamonds position and checks for collision b/t player and diamonds
             this._diamonds.forEach(function (diamond) {
                 diamond.update();
                 _this._collision.check(_this._player, diamond);
             });
+            // updates enemy position and checks for collision b/t player and enemy
             this._enemyShips.forEach(function (enemy) {
                 enemy.update();
                 if (_this._collision.check(_this._player, enemy)) {
                     enemy.destroy();
                 }
+                enemy._bullets.forEach(function (bullet) {
+                    _this._collision.check(_this._player, bullet);
+                });
             });
+            // updates bullets position and checks for collision b/t enemy and bullets
             this._player._bullets.forEach(function (bullet) {
                 bullet.update();
                 _this._enemyShips.forEach(function (enemy) {
