@@ -3,7 +3,7 @@
  * @author Chamsol Yoon cyoon2@my.centennialcollege.ca
  * @author Kevin Ma kma45@my.centennialcollege.ca
  * @date December 6 2016
- * @version 0.3.4 fixed collisions for current game objects
+ * @version 0.3.5 updated links on over.ts
  * @description This will be the training level in the game
  **/
 
@@ -27,6 +27,7 @@ module scenes {
 
             this.addChild(this._player = new objects.Player())
 
+            lives = 5
             level = 1
             score = 0
 

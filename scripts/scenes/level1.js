@@ -24,6 +24,7 @@ var scenes;
         Level1.prototype.start = function () {
             console.log("Level1 Scene started");
             this.addChild(this._player = new objects.Player());
+            lives = 5;
             level = 1;
             score = 0;
             this._diamonds = new Array();

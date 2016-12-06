@@ -3,7 +3,7 @@
  * @author Chamsol Yoon cyoon2@my.centennialcollege.ca
  * @author Kevin Ma kma45@my.centennialcollege.ca
  * @date December 6 2016
- * @version 0.2.7 changed gameover scene font to customfont
+ * @version 0.3.5 updated links on over.ts
  * @description This is the gameover scene that is displayed
  *              when the player loses the game. 
  **/
@@ -15,7 +15,8 @@ module scenes {
         private _bg: objects.Background;
         private _lblGameover: objects.Label;
         private _lblScore: objects.Label;
-        private _btnRestart: objects.Button;
+        private _playagainBtn: objects.Button;
+        private _menuBtn: objects.Button
 
         // CONSTRUCTOR ++++++++++++++++++++++++++++++++++++++++++++++++
         constructor() {
@@ -34,9 +35,12 @@ module scenes {
             this._lblScore = new objects.Label("SCORE: " + score, "60px customfont", "#1AFBF4", config.Screen.CENTER_X, config.Screen.CENTER_Y);
             this.addChild(this._lblGameover, this._lblScore);
 
-            this._btnRestart = new objects.Button("restartButton", config.Screen.CENTER_X, config.Screen.CENTER_Y + 150);
-            this._btnRestart.on("click", this._btnRestartClick, this);
-            this.addChild(this._btnRestart);
+            this._playagainBtn = new objects.Button("restartButton", config.Screen.CENTER_X + 125, config.Screen.CENTER_Y + 150);
+            this._playagainBtn.on("click", this._playagainBtnClick, this);
+            this.addChild(this._playagainBtn);
+
+            this.addChild(this._menuBtn = new objects.Button("menubtn", config.Screen.CENTER_X - 125, config.Screen.CENTER_Y + 150))
+            this._menuBtn.on('click', this._menuBtnClick, this)
 
             stage.addChild(this);
         }
@@ -46,10 +50,13 @@ module scenes {
         }
 
         // PRIVATE METHODS +++++++++++++++++++++++++++++++++++++++++++
-        private _btnRestartClick(): void {
-            lives = 5;
-            score = 0;
+        private _playagainBtnClick(): void {
             scene = config.Scene.LEVEL1;
+            changeScene();
+        }
+
+        private _menuBtnClick(): void {
+            scene = config.Scene.MENU;
             changeScene();
         }
     }
