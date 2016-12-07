@@ -3,7 +3,7 @@
  * @author Chamsol Yoon cyoon2@my.centennialcollege.ca
  * @author Kevin Ma kma45@my.centennialcollege.ca
  * @date December 6 2016
- * @version 0.3.0 merged level2, changed ui and underlying code
+ * @version 0.3.8 implemented diff controls feature
  * @description Behavior and Properties of Player GameObject
  **/
 var __extends = (this && this.__extends) || function (d, b) {
@@ -15,10 +15,15 @@ var objects;
 (function (objects) {
     var Player = (function (_super) {
         __extends(Player, _super);
-        // public ShieldDamage: boolean = false;
         // CONSTRUCTORS +++++++++++++++++++++++++++++++++++++++++++++++
-        function Player() {
+        function Player(_moveSpeed, _fireRate, _reload) {
+            if (_moveSpeed === void 0) { _moveSpeed = 10; }
+            if (_fireRate === void 0) { _fireRate = 10; }
+            if (_reload === void 0) { _reload = 0; }
             _super.call(this, "player");
+            this._moveSpeed = _moveSpeed;
+            this._fireRate = _fireRate;
+            this._reload = _reload;
             // PRIVATE VARIABLES ++++++++++++++++++++++++++++++++++++++++++
             this._isArmorOn = false;
             this._livesOfArmor = 2;
@@ -33,22 +38,49 @@ var objects;
             this.x = 50;
             this.y = 300;
             this._bulletSpawnTimer = 5;
+            this._keyboardcontrol = new managers.KeyboardControls;
             this.position = new objects.Vector2(this.x, this.y);
             this._isInvulnerable = false;
-            this.on("click", this._fire, this);
+            // only shoots with mouse if mouse controls selected
+            if (mouseControls) {
+                this.on("click", this._fire, this);
+            }
             this._bullets = new Array();
             for (var bullet = 0; bullet < 20; bullet++) {
                 this._bullets.push(new objects.Player_bullet());
             }
         };
         Player.prototype.update = function () {
-            this.x = stage.mouseX;
-            this.y = stage.mouseY;
+            if (this._reload < this._fireRate)
+                this._reload++;
+            // only follows mouse if mouse controls selected
+            if (mouseControls) {
+                this.x = stage.mouseX;
+                this.y = stage.mouseY;
+            }
+            else {
+                // kb controls selected
+                if (this._keyboardcontrol.moveUp) {
+                    this.y -= this._moveSpeed;
+                }
+                if (this._keyboardcontrol.moveRight) {
+                    this.x += this._moveSpeed;
+                }
+                if (this._keyboardcontrol.moveDown) {
+                    this.y += this._moveSpeed;
+                }
+                if (this._keyboardcontrol.moveLeft) {
+                    this.x -= this._moveSpeed;
+                }
+                if (this._keyboardcontrol.fire) {
+                    if (this._reload === this._fireRate) {
+                        this._reload = 0;
+                        this._fire();
+                    }
+                }
+            }
             this.position = new objects.Vector2(this.x, this.y);
             this._checkBounds();
-            // if (this.Reload < this.DefaultFireRate) {
-            //     this.Reload++;
-            // }
             // if the player is invulnerable, he cannot collide for 2 seconds
             if (this._isInvulnerable) {
                 // the player blinks while he is invulnerable

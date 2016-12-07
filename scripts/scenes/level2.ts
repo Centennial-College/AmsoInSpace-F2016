@@ -36,7 +36,7 @@ module scenes {
 
             // adding diamond gameobjects
             this._diamonds = new Array<objects.Diamond>();
-            for (var count: number = 0; count < 2; count++) {
+            for (var count: number = 0; count < 1; count++) {
                 this._diamonds.push(new objects.Diamond());
                 this.addChild(this._diamonds[count]);
             }

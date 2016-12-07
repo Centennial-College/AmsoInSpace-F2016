@@ -4,7 +4,7 @@
  * @author Chamsol Yoon cyoon2@my.centennialcollege.ca
  * @author Kevin Ma kma45@my.centennialcollege.ca
  * @date December 6 2016
- * @version 0.3.4 fixed collisions for current game objects
+ * @version 0.3.7 added controlSelection scene
  * @description This file starts the game
  **/
 // Global Variable
@@ -22,6 +22,7 @@ var highScore = 0;
 var lives = 5;
 var level = 1;
 var beamEnergyPercent;
+var mouseControls;
 // Game Scenes;
 var currentScene;
 // Preload Assets
@@ -31,6 +32,8 @@ var assetData = [
     { id: "restartButton", src: "../../assets/images/playagainbtn.png" },
     { id: "menubtn", src: "../../assets/images/menubtn.png" },
     { id: "upgradesbtn", src: "../../assets/images/upgradesbtn.png" },
+    { id: "kbcontrols", src: "../../assets/images/kbcontrols.png" },
+    { id: "mousecontrols", src: "../../assets/images/mousecontrols.png" },
     { id: "rules", src: "../../assets/images/instruction.png" },
     { id: "bg1", src: "../../assets/images/background1.png" },
     { id: "bg2", src: "../../assets/images/background2.png" },
@@ -168,8 +171,13 @@ function changeScene() {
             break;
         case config.Scene.PAUSE:
             stage.removeAllChildren();
-            currentScene = new scenes.Pause;
+            currentScene = new scenes.Pause();
             console.log("Pause Scene changed");
+            break;
+        case config.Scene.CONTROLSELECT:
+            stage.removeAllChildren();
+            currentScene = new scenes.ControlSelection();
+            console.log('Control Selection Scene changed');
             break;
     }
 }

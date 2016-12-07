@@ -3,7 +3,7 @@
  * @author Chamsol Yoon cyoon2@my.centennialcollege.ca
  * @author Kevin Ma kma45@my.centennialcollege.ca
  * @date December 6 2016
- * @version 0.2.6 hide cursor during scrollingLevel scenes
+ * @version 0.3.7 added controlSelection scene
  * @description This is the main title scene 
  **/
 
@@ -168,7 +168,7 @@ module scenes {
                 scaleY: 0,
                 alpha: 0
             }, 1500).call(e => {
-                scene = config.Scene.LEVEL1;
+                scene = config.Scene.CONTROLSELECT;
                 changeScene();
             })
 

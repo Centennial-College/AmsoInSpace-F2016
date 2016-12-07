@@ -3,7 +3,7 @@
  * @author Chamsol Yoon cyoon2@my.centennialcollege.ca
  * @author Kevin Ma kma45@my.centennialcollege.ca
  * @date December 6 2016
- * @version 0.2.4 added keyboard controls
+ * @version 0.3.8 implemented diff controls feature
  * @description Defines the keyboard controls for the game
  **/
 var managers;
@@ -19,54 +19,60 @@ var managers;
         }
         // PUBLIC METHODS +++++++++++++++++++++++++++++++++++++++++++++
         KeyboardControls.prototype.onKeyDown = function (event) {
-            switch (event.keyCode) {
-                case 38: /*up arrow*/
-                case 87:
-                    this.armor = true;
-                    break;
-                case 37: /*left arrow*/
-                case 65:
-                    this.friend = true;
-                    break;
-                case 40: /*down arrow*/
-                case 83:
-                    this.moveBackward = true;
-                    break;
-                case 39: /*right arrow*/
-                case 68:
-                    this.moveRight = true;
-                    break;
-                case 32:
-                    this.fire = true;
-                    break;
-                case 80:
-                    if (createjs.Ticker.paused) {
-                        createjs.Ticker.paused = false;
-                    }
-                    else {
-                        currentScene.addChild(pause = new scenes.Pause());
-                        // currentScene.update()
-                        createjs.Ticker.paused = true;
-                    }
-                    // createjs.Ticker.paused = createjs.Ticker.paused ? false : true;
-                    // currentScene.addChild(new objects.Label("-PAUSED-", "60px customfont", "#fff", config.Screen.CENTER_X, config.Screen.CENTER_Y))
-                    // this.paused = (this.paused) ? false : true;
-                    break;
+            // the only key that should be used if mouse controls are selected 
+            // is p for pause
+            if (!mouseControls) {
+                switch (event.keyCode) {
+                    case 38: /*up arrow*/
+                    case 87:
+                        // this.armor = true;
+                        this.moveUp = true;
+                        break;
+                    case 37: /*left arrow*/
+                    case 65:
+                        this.moveLeft = true;
+                        // this.friend = true;
+                        break;
+                    case 40: /*down arrow*/
+                    case 83:
+                        this.moveDown = true;
+                        break;
+                    case 39: /*right arrow*/
+                    case 68:
+                        this.moveRight = true;
+                        break;
+                    case 32:
+                        this.fire = true;
+                        break;
+                }
+            }
+            // P key - for pause
+            if (event.keyCode === 80) {
+                if (createjs.Ticker.paused) {
+                    createjs.Ticker.paused = false;
+                }
+                else {
+                    currentScene.addChild(pause = new scenes.Pause());
+                    // currentScene.update()
+                    createjs.Ticker.paused = true;
+                }
             }
         };
         KeyboardControls.prototype.onKeyUp = function (event) {
             switch (event.keyCode) {
                 case 38: /*up arrow*/
                 case 87:
-                    this.armor = false;
+                    this.moveUp = false;
+                    // this.armor = false;
                     break;
                 case 37: /*left arrow*/
                 case 65:
-                    this.friend = false;
+                    this.moveLeft = false;
+                    // this.friend = false;
                     break;
                 case 40: /*down arrow*/
                 case 83:
-                    this.moveBackward = false;
+                    this.moveDown = false;
                     break;
                 case 39: /*right arrow*/
                 case 68:

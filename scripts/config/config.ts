@@ -2,8 +2,8 @@
  * @file config.ts 
  * @author Chamsol Yoon cyoon2@my.centennialcollege.ca
  * @author Kevin Ma kma45@my.centennialcollege.ca
- * @date December 5 2016
- * @version 0.2.0 added abstract scrollingLevel class
+ * @date December 6 2016
+ * @version 0.3.7 added controlSelection scene
  * @description Defines the global static configuration values for the game 
  **/
 
@@ -16,7 +16,7 @@ module config {
         public static LEVEL3: number = 4;
         public static OVER: number = 5;
         public static PAUSE: number = 6;
-
+        public static CONTROLSELECT: number = 7
     }
     export class Screen {
         public static WIDTH: number = 890;
