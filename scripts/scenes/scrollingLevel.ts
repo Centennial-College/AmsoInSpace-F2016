@@ -2,7 +2,7 @@
  * @file scrollingLevel.ts
  * @author Kevin Ma kma45@my.centennialcollege.ca
  * @date December 6 2016
- * @version 0.2.6 hide cursor during scrollingLevel scenes
+ * @version 0.3.8 implemented diff controls feature
  * @description Abstract class for all levels with scrolling background in this game. 
  **/
 
@@ -25,7 +25,6 @@ module scenes {
         protected _lblUpgradesAvailable: objects.Label
         protected _lblLevelComplete: objects.Label
         protected _canAdvanceToNextLevel: boolean
-        protected _keyboardcontrol: managers.KeyboardControls
         protected _levelComplete: boolean
 
         // CONSTRUCTOR ++++++++++++++++++++++++++++++++++++++++++++++++
@@ -39,7 +38,6 @@ module scenes {
             // had to do the initializations in constructor due to constraints of super class
             // didnt want to break the structure for all the remaining classes
             this._collision = new managers.Collision();
-            this._keyboardcontrol = new managers.KeyboardControls
             this._canAdvanceToNextLevel = false
 
             // bgm

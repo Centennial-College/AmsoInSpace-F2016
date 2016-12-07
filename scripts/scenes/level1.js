@@ -3,7 +3,7 @@
  * @author Chamsol Yoon cyoon2@my.centennialcollege.ca
  * @author Kevin Ma kma45@my.centennialcollege.ca
  * @date December 6 2016
- * @version 0.3.5 updated links on over.ts
+ * @version 0.3.8 implemented diff controls feature
  * @description This will be the training level in the game
  **/
 var __extends = (this && this.__extends) || function (d, b) {
@@ -53,7 +53,7 @@ var scenes;
             });
             // level 1 requires score of 1000 points to advance to the next level
             // if (score >= 1000 && !this._canAdvanceToNextLevel) {
-            if (score >= 1000 && !this._levelComplete) {
+            if (score >= 100 && !this._levelComplete) {
                 // this._canAdvanceToNextLevel = true
                 this._advanceToNextLevel();
                 this._bgSound.stop();
