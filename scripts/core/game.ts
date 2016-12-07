@@ -5,7 +5,7 @@
  * @author Chamsol Yoon cyoon2@my.centennialcollege.ca
  * @author Kevin Ma kma45@my.centennialcollege.ca
  * @date December 6 2016
- * @version 0.3.6 added control images
+ * @version 0.3.7 added controlSelection scene
  * @description This file starts the game 
  **/
 
@@ -26,6 +26,7 @@ var highScore: number = 0;
 var lives: number = 5;
 let level: number = 1;
 let beamEnergyPercent: number
+let mouseControls: boolean
 
 
 // Game Scenes;
@@ -193,8 +194,13 @@ function changeScene(): void {
             break;
         case config.Scene.PAUSE:
             stage.removeAllChildren();
-            currentScene = new scenes.Pause
+            currentScene = new scenes.Pause()
             console.log("Pause Scene changed");
+            break;
+        case config.Scene.CONTROLSELECT:
+            stage.removeAllChildren();
+            currentScene = new scenes.ControlSelection()
+            console.log('Control Selection Scene changed');
             break;
     }
 }

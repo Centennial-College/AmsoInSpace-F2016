@@ -22,6 +22,7 @@
 /// <reference path="../objects/player.ts" />
 
 /// <reference path="../scenes/menu.ts" />
+/// <reference path="../scenes/controlSelection.ts" />
 /// <reference path="../scenes/rule.ts" />
 /// <reference path="../scenes/scrollingLevel.ts" />
 /// <reference path="../scenes/level1.ts" />

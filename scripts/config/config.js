@@ -2,8 +2,8 @@
  * @file config.ts
  * @author Chamsol Yoon cyoon2@my.centennialcollege.ca
  * @author Kevin Ma kma45@my.centennialcollege.ca
- * @date December 5 2016
- * @version 0.2.0 added abstract scrollingLevel class
+ * @date December 6 2016
+ * @version 0.3.7 added controlSelection scene
  * @description Defines the global static configuration values for the game
  **/
 var config;
@@ -18,6 +18,7 @@ var config;
         Scene.LEVEL3 = 4;
         Scene.OVER = 5;
         Scene.PAUSE = 6;
+        Scene.CONTROLSELECT = 7;
         return Scene;
     }());
     config.Scene = Scene;
