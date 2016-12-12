@@ -17,6 +17,7 @@ module config {
         public static OVER: number = 5;
         public static PAUSE: number = 6;
         public static CONTROLSELECT: number = 7
+        public static WIN: number = 8
     }
     export class Screen {
         public static WIDTH: number = 890;

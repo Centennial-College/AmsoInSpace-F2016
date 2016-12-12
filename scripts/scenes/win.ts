@@ -1,20 +1,19 @@
 /**
- * @file over.ts
- * @author Chamsol Yoon cyoon2@my.centennialcollege.ca
+ * @file wins.ts
  * @author Kevin Ma kma45@my.centennialcollege.ca
  * @date December 12 2016
  * @version 0.4.3 added gameover and gamewin sounds
- * @description This is the gameover scene that is displayed
- *              when the player loses the game. 
+ * @description This is the gamewin scene that is displayed
+ *              when the player wins the game. 
  **/
 
 module scenes {
-    export class Over extends objects.Scene {
+    export class Win extends objects.Scene {
 
         // PRIVATE VARIABLES ++++++++++++++++++++++++++++++++++++++++++
         private _bg: objects.Background;
         private _bgBuffer: objects.Background;
-        private _lblGameover: objects.Label;
+        private _lblGamewin: objects.Label;
         private _lblScore: objects.Label;
         private _playagainBtn: objects.Button;
         private _menuBtn: objects.Button
@@ -27,9 +26,9 @@ module scenes {
 
         // PUBLIC METHODS +++++++++++++++++++++++++++++++++++++++++++++
         public start(): void {
-            console.log("Gameover Scene started");
+            console.log("Gamewin Scene started");
 
-            createjs.Sound.play('gameover')
+            createjs.Sound.play('gamewin')
 
             // Setting up BACKGROUND
             this._bg = new objects.Background(currBgImgString, 0, 1);
@@ -45,16 +44,16 @@ module scenes {
             this._bgBuffer.cache(bgBufBound.x, bgBufBound.y, bgBufBound.width, bgBufBound.height);
             this.addChild(this._bg, this._bgBuffer);
 
-            this._lblGameover = new objects.Label("GAME OVER", "80px customfont", "#FDFDFD", config.Screen.CENTER_X, config.Screen.CENTER_Y - 150);
+            this._lblGamewin = new objects.Label("Congratulations, you win!", "80px customfont", "#FDFDFD", config.Screen.CENTER_X, config.Screen.CENTER_Y - 150);
             this._lblScore = new objects.Label("SCORE: " + score, "60px customfont", "#1AFBF4", config.Screen.CENTER_X, config.Screen.CENTER_Y);
-            this.addChild(this._lblGameover, this._lblScore);
+            this.addChild(this._lblGamewin, this._lblScore);
 
-            this._playagainBtn = new objects.Button("playagainbtn", config.Screen.CENTER_X + 125, config.Screen.CENTER_Y + 150);
-            this._playagainBtn.on("click", this._playagainBtnClick, this);
-            this.addChild(this._playagainBtn);
+            // this._playagainBtn = new objects.Button("playagainbtn", config.Screen.CENTER_X + 125, config.Screen.CENTER_Y + 150);
+            // this._playagainBtn.on("click", this._playagainBtnClick, this);
+            // this.addChild(this._playagainBtn);
 
-            this.addChild(this._menuBtn = new objects.Button("menubtn", config.Screen.CENTER_X - 125, config.Screen.CENTER_Y + 150))
-            this._menuBtn.on('click', this._menuBtnClick, this)
+            // this.addChild(this._menuBtn = new objects.Button("menubtn", config.Screen.CENTER_X - 125, config.Screen.CENTER_Y + 150))
+            // this._menuBtn.on('click', this._menuBtnClick, this)
 
             stage.addChild(this);
         }

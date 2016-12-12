@@ -86,24 +86,14 @@ var scenes;
             // level 2 requires score of 2000 points to advance to the next level
             if (missionProgress >= missionGoal && !this._levelComplete) {
                 // this._canAdvanceToNextLevel = true
+                scene = config.Scene.LEVEL3;
                 this._advanceToNextLevel();
                 this._bgSound.stop();
-                // createjs.Sound.stop()
-                scene = config.Scene.LEVEL3;
             }
             this._missionObjectiveLbl.text = "- Destroy enemy ships to get ship parts: " + missionProgress +
                 "/" + missionGoal;
             // this._missionObjectiveLbl.text = "- Earn enough money to fix the ship: " + this._missionObjProgress +
             // "/" + this._missionObjectiveGoal
-            // level 1 requires score of 1000 points to advance to the next level
-            // if (score >= 1000 && !this._canAdvanceToNextLevel) {
-            if (missionProgress >= missionGoal && !this._levelComplete) {
-                // this._canAdvanceToNextLevel = true
-                this._advanceToNextLevel();
-                this._bgSound.stop();
-                // createjs.Sound.stop()
-                scene = config.Scene.LEVEL3;
-            }
         };
         return Level2;
     }(scenes.ScrollingLevel));
