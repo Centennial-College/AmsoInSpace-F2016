@@ -2,8 +2,8 @@
  * @file over.ts
  * @author Chamsol Yoon cyoon2@my.centennialcollege.ca
  * @author Kevin Ma kma45@my.centennialcollege.ca
- * @date December 6 2016
- * @version 0.3.5 updated links on over.ts
+ * @date December 12 2016
+ * @version 0.4.3 added gameover and gamewin sounds
  * @description This is the gameover scene that is displayed
  *              when the player loses the game. 
  **/
@@ -28,6 +28,8 @@ module scenes {
         // PUBLIC METHODS +++++++++++++++++++++++++++++++++++++++++++++
         public start(): void {
             console.log("Menu Scene started");
+
+            createjs.Sound.play('gameover')
 
             // Setting up BACKGROUND
             this._bg = new objects.Background(gameOverBGImgString, 0, 1);

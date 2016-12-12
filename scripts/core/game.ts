@@ -47,6 +47,9 @@ var assetData: objects.Asset[] = [
     { id: "level1_bgsound", src: "../../assets/audio/level1_bgsound.wav" },
     { id: "level2_bgsound", src: "../../assets/audio/level2_bgsound.wav" },
     { id: "level3_bgsound", src: "../../assets/audio/level3_bgsound.wav" },
+    { id: "level3_bgsound", src: "../../assets/audio/level3_bgsound.wav" },
+    { id: "gameover", src: "../../assets/audio/gameover.mp3" },
+    { id: "gamewin", src: "../../assets/audio/yay.mp3" },
 
     // missing images
 ];
