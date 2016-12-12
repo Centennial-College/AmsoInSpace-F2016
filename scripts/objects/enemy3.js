@@ -83,7 +83,7 @@ var objects;
                 this._dx = 0;
                 this._dy = 0;
                 missionProgress++;
-                this.gotoAndPlay("explosion");
+                this.gotoAndPlay("explosion1");
                 //this._reset();
                 score += 300;
             }

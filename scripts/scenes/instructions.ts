@@ -11,6 +11,7 @@ module scenes {
 
         // PRIVATE VARIABLES ++++++++++++++++++++++++++++++++++++++++++
         private _bg: objects.Background;
+        private _bgBuffer: objects.Background
         private _beginBtn: objects.Button;
         private _menuBtn: objects.Button
         private _instructionsRRectBGs: createjs.Shape[]
@@ -47,6 +48,7 @@ module scenes {
 
         public update(): void {
             this._bg.update()
+            this._bgBuffer.update()
 
             // flashing of click to continue
             if (createjs.Ticker.getTime() % 1000 < 500) {
@@ -265,15 +267,18 @@ module scenes {
          */
         private _setupBackground(): void {
             // Setting up BACKGROUND
-            this._bg = new objects.Background("bg1", 1);
+            this._bg = new objects.Background("bg1", 0, 1);
+            this._bgBuffer = new objects.Background("bg1", 1024, 1);
 
             // 5x5 Box Blur filter on bg image
             let blurFilter = new createjs.BlurFilter(5, 5);
             this._bg.filters = [blurFilter];
+            this._bgBuffer.filters = [blurFilter];
             let bitmapBounds = this._bg.getBounds();
-
+            let bgBufBound = this._bgBuffer.getBounds();
             this._bg.cache(bitmapBounds.x, bitmapBounds.y, bitmapBounds.width, bitmapBounds.height);
-            this.addChild(this._bg);
+            this._bgBuffer.cache(bgBufBound.x, bgBufBound.y, bgBufBound.width, bgBufBound.height);
+            this.addChild(this._bg, this._bgBuffer);
         }
     }
 }

@@ -24,7 +24,7 @@ var scenes;
         // PUBLIC METHODS +++++++++++++++++++++++++++++++++++++++++++++
         Over.prototype.start = function () {
             console.log("Menu Scene started");
-            this._bg = new objects.Background("bg1");
+            this._bg = new objects.Background("bg1", 0);
             this.addChild(this._bg);
             this._lblGameover = new objects.Label("GAME OVER", "80px customfont", "#FDFDFD", config.Screen.CENTER_X, config.Screen.CENTER_Y - 150);
             this._lblScore = new objects.Label("SCORE: " + score, "60px customfont", "#1AFBF4", config.Screen.CENTER_X, config.Screen.CENTER_Y);

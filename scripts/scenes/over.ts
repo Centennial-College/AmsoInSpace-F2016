@@ -28,7 +28,7 @@ module scenes {
         public start(): void {
             console.log("Menu Scene started");
 
-            this._bg = new objects.Background("bg1");
+            this._bg = new objects.Background("bg1", 0);
             this.addChild(this._bg);
 
             this._lblGameover = new objects.Label("GAME OVER", "80px customfont", "#FDFDFD", config.Screen.CENTER_X, config.Screen.CENTER_Y - 150);

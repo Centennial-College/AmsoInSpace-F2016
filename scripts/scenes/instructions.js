@@ -38,6 +38,7 @@ var scenes;
         };
         Instructions.prototype.update = function () {
             this._bg.update();
+            this._bgBuffer.update();
             // flashing of click to continue
             if (createjs.Ticker.getTime() % 1000 < 500) {
                 this._flashingClickToContinue.alpha = 0;
@@ -213,13 +214,17 @@ var scenes;
          */
         Instructions.prototype._setupBackground = function () {
             // Setting up BACKGROUND
-            this._bg = new objects.Background("bg1", 1);
+            this._bg = new objects.Background("bg1", 0, 1);
+            this._bgBuffer = new objects.Background("bg1", 1024, 1);
             // 5x5 Box Blur filter on bg image
             var blurFilter = new createjs.BlurFilter(5, 5);
             this._bg.filters = [blurFilter];
+            this._bgBuffer.filters = [blurFilter];
             var bitmapBounds = this._bg.getBounds();
+            var bgBufBound = this._bgBuffer.getBounds();
             this._bg.cache(bitmapBounds.x, bitmapBounds.y, bitmapBounds.width, bitmapBounds.height);
-            this.addChild(this._bg);
+            this._bgBuffer.cache(bgBufBound.x, bgBufBound.y, bgBufBound.width, bgBufBound.height);
+            this.addChild(this._bg, this._bgBuffer);
         };
         return Instructions;
     }(objects.Scene));

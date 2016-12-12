@@ -156,7 +156,7 @@ module objects {
             if (this.x >= (config.Screen.WIDTH - (this.width * 0.5))) {
                 this.x = (config.Screen.WIDTH - (this.width * 0.5)); // right
             }
-            if (this.y <= (0 - (this.height * 0.5))) {
+            if (this.y <= (0 + (this.height * 0.5))) {
                 this.y = (this.height * 0.5); // top
             }
             if (this.y >= (config.Screen.HEIGHT - config.Game.SCORE_BOARD_HEIGHT - (this.height * 0.5))) {
