@@ -29,6 +29,7 @@ let beamEnergyPercent: number
 let mouseControls: boolean
 let missionGoal: number
 let missionProgress: number
+let gameOverBGImgString: string
 
 // Game Scenes;
 let currentScene: objects.Scene;
@@ -139,7 +140,7 @@ function init() {
 
     // mouseControls = true
     // scene = config.Scene.LEVEL2;
-    scene = config.Scene.MENU;
+    scene = config.Scene.LEVEL3;
     changeScene();
 }
 

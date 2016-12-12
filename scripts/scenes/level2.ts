@@ -27,7 +27,8 @@ module scenes {
             // intiial setup
             level = 2
             beamEnergyPercent = 100
-            missionGoal = 5
+            missionGoal = 1
+            // missionGoal = 5
             missionProgress = 0
 
             console.log("Level2 Scene started");
@@ -82,7 +83,7 @@ module scenes {
                 if (this._collision.check(this._player, enemy)) {
                     enemy.destroy()
                 }
-               
+
                 enemy._bullets.forEach(bullet => {
                     this._collision.check(this._player, bullet)
                 });
@@ -109,6 +110,17 @@ module scenes {
                 "/" + missionGoal
             // this._missionObjectiveLbl.text = "- Earn enough money to fix the ship: " + this._missionObjProgress +
             // "/" + this._missionObjectiveGoal
+
+
+            // level 1 requires score of 1000 points to advance to the next level
+            // if (score >= 1000 && !this._canAdvanceToNextLevel) {
+            if (missionProgress >= missionGoal && !this._levelComplete) {
+                // this._canAdvanceToNextLevel = true
+                this._advanceToNextLevel()
+                this._bgSound.stop()
+                // createjs.Sound.stop()
+                scene = config.Scene.LEVEL3
+            }
         }
 
         // PRIVATE METHODS ++++++++++++++++++++++++++++++++++++++++++++

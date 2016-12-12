@@ -49,7 +49,7 @@ module scenes {
 
             // bg
             this._bg = new objects.Background(this._bgImgString, 0);
-            this._bgBuffer = new objects.Background(this._bgImgString, 1024);            
+            this._bgBuffer = new objects.Background(this._bgImgString, 1024);
             this._bgTrigger = true;
 
             // SCOREBOARD configuration
@@ -89,7 +89,7 @@ module scenes {
         public start(): void { }
 
         public update(): void {
-            if(this._bgTrigger){
+            if (this._bgTrigger) {
                 this._bg.update();
                 this._bgBuffer.update();
             }
@@ -108,6 +108,7 @@ module scenes {
 
             if (lives < 1) {
                 createjs.Sound.stop()
+                gameOverBGImgString = this._bgImgString
                 scene = config.Scene.OVER;
                 changeScene();
             }

@@ -76,6 +76,7 @@ var scenes;
             // this._blinkUpgradesAvailableLbl()
             if (lives < 1) {
                 createjs.Sound.stop();
+                gameOverBGImgString = this._bgImgString;
                 scene = config.Scene.OVER;
                 changeScene();
             }

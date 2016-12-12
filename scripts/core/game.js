@@ -25,6 +25,7 @@ var beamEnergyPercent;
 var mouseControls;
 var missionGoal;
 var missionProgress;
+var gameOverBGImgString;
 // Game Scenes;
 var currentScene;
 // Preload Assets
@@ -120,7 +121,7 @@ function init() {
     textureAtlas = new createjs.SpriteSheet(atlasData);
     // mouseControls = true
     // scene = config.Scene.LEVEL2;
-    scene = config.Scene.MENU;
+    scene = config.Scene.LEVEL3;
     changeScene();
 }
 function gameLoop(event) {

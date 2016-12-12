@@ -24,8 +24,18 @@ var scenes;
         // PUBLIC METHODS +++++++++++++++++++++++++++++++++++++++++++++
         Over.prototype.start = function () {
             console.log("Menu Scene started");
-            this._bg = new objects.Background("bg1", 0);
-            this.addChild(this._bg);
+            // Setting up BACKGROUND
+            this._bg = new objects.Background(gameOverBGImgString, 0, 1);
+            this._bgBuffer = new objects.Background(gameOverBGImgString, 1024, 1);
+            // 5x5 Box Blur filter on bg image
+            var blurFilter = new createjs.BlurFilter(5, 5);
+            this._bg.filters = [blurFilter];
+            this._bgBuffer.filters = [blurFilter];
+            var bitmapBounds = this._bg.getBounds();
+            var bgBufBound = this._bgBuffer.getBounds();
+            this._bg.cache(bitmapBounds.x, bitmapBounds.y, bitmapBounds.width, bitmapBounds.height);
+            this._bgBuffer.cache(bgBufBound.x, bgBufBound.y, bgBufBound.width, bgBufBound.height);
+            this.addChild(this._bg, this._bgBuffer);
             this._lblGameover = new objects.Label("GAME OVER", "80px customfont", "#FDFDFD", config.Screen.CENTER_X, config.Screen.CENTER_Y - 150);
             this._lblScore = new objects.Label("SCORE: " + score, "60px customfont", "#1AFBF4", config.Screen.CENTER_X, config.Screen.CENTER_Y);
             this.addChild(this._lblGameover, this._lblScore);
@@ -37,6 +47,8 @@ var scenes;
             stage.addChild(this);
         };
         Over.prototype.update = function () {
+            this._bg.update();
+            this._bgBuffer.update();
         };
         // PRIVATE METHODS +++++++++++++++++++++++++++++++++++++++++++
         Over.prototype._playagainBtnClick = function () {
