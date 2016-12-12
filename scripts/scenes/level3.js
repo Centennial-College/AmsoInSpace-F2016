@@ -1,9 +1,9 @@
 /**
- * @file level2.ts
+ * @file level3.ts
  * @author Chamsol Yoon cyoon2@my.centennialcollege.ca
  * @author Kevin Ma kma45@my.centennialcollege.ca
- * @date December 11 2016
- * @version 0.4.2 - added mission objectives to scrollingLevel
+ * @date December 6 2016
+ * @version 0.1 initial
  * @description This level introduces enemy ships and shooting feature
  **/
 var __extends = (this && this.__extends) || function (d, b) {
@@ -13,23 +13,22 @@ var __extends = (this && this.__extends) || function (d, b) {
 };
 var scenes;
 (function (scenes) {
-    var Level2 = (function (_super) {
-        __extends(Level2, _super);
-        // private _enemyBullets: objects.Enemy2_bullet[];
+    var Level3 = (function (_super) {
+        __extends(Level3, _super);
         // CONSTRUCTOR ++++++++++++++++++++++++++++++++++++++++++++++++
-        function Level2() {
-            _super.call(this, "level2_bgsound", "bg2");
+        function Level3() {
+            _super.call(this, "level3_bgsound", "bg3");
             this.start();
         }
         // PUBLIC METHODS +++++++++++++++++++++++++++++++++++++++++++++
-        Level2.prototype.start = function () {
+        Level3.prototype.start = function () {
             var _this = this;
             // intiial setup
-            level = 2;
+            level = 3;
             beamEnergyPercent = 100;
-            missionGoal = 5;
+            missionGoal = 10;
             missionProgress = 0;
-            console.log("Level2 Scene started");
+            console.log("Level3 Scene started");
             this.addChild(this._player = new objects.Player());
             this._collision = new managers.Collision();
             // adding diamond gameobjects
@@ -41,7 +40,7 @@ var scenes;
             // adding enemy ships
             this._enemyShips = new Array();
             for (var count = 0; count < 2; count++) {
-                this._enemyShips.push(new objects.Enemy2());
+                this._enemyShips.push(new objects.Enemy3());
                 this.addChild(this._enemyShips[count]);
             }
             // adding player bullets to the scene
@@ -56,7 +55,7 @@ var scenes;
             });
             stage.addChild(this);
         };
-        Level2.prototype.update = function () {
+        Level3.prototype.update = function () {
             var _this = this;
             _super.prototype.update.call(this);
             this._updateBeamEnergyBar();
@@ -85,21 +84,13 @@ var scenes;
                     _this._collision.check(enemy, bullet);
                 });
             });
-            // level 2 requires score of 2000 points to advance to the next level
-            if (missionProgress >= missionGoal && !this._levelComplete) {
-                // this._canAdvanceToNextLevel = true
-                this._advanceToNextLevel();
-                this._bgSound.stop();
-                // createjs.Sound.stop()
-                scene = config.Scene.LEVEL3;
-            }
             this._missionObjectiveLbl.text = "- Destroy enemy ships to get ship parts: " + missionProgress +
                 "/" + missionGoal;
             // this._missionObjectiveLbl.text = "- Earn enough money to fix the ship: " + this._missionObjProgress +
             // "/" + this._missionObjectiveGoal
         };
-        return Level2;
+        return Level3;
     }(scenes.ScrollingLevel));
-    scenes.Level2 = Level2;
+    scenes.Level3 = Level3;
 })(scenes || (scenes = {}));
-//# sourceMappingURL=level2.js.map
+//# sourceMappingURL=level3.js.map

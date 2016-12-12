@@ -26,8 +26,11 @@ var objects;
         };
         Asteroid.prototype.update = function () {
             this.position = new objects.Vector2(this.x, this.y);
-            this.y += this._dy;
             this.x -= this._dx;
+            if (this._startY < config.Screen.CENTER_Y)
+                this.y += this._dy;
+            else
+                this.y -= this._dy;
             this._checkBounds();
         };
         Asteroid.prototype._reset = function () {
@@ -40,6 +43,7 @@ var objects;
             this.x = config.Screen.WIDTH;
             // get a random y location
             this.y = Math.floor((Math.random() * ((config.Screen.HEIGHT - (this.height * 0.5)) - (this.height * 0.5))) + (this.height * 0.5));
+            this._startY = this.y;
             this.alpha = 1;
         };
         Asteroid.prototype.destroy = function () {

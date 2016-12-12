@@ -88,7 +88,7 @@ var objects;
             if (this._isInvulnerable) {
                 // the player blinks while he is invulnerable
                 if ((createjs.Ticker.getTime() - this._invulnderableStartTime) <= 2000) {
-                    if (createjs.Ticker.getTime() % 500 >= 250) {
+                    if (createjs.Ticker.getTime() % 200 >= 100) {
                         this.alpha = 0;
                     }
                     else {

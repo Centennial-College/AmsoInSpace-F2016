@@ -49,6 +49,13 @@ var managers;
                             prime.isColliding = true;
                             return true;
                         }
+                        // player colliding with enemy3
+                        if (other.objName === "enemy3") {
+                            console.log("hit enemy3");
+                            createjs.Sound.play("enemy1_sound");
+                            lives -= 1;
+                            prime.isColliding = true;
+                        }
                         // player colliding with enemy2's bullets
                         if (other.objName === "enemy2_bullet") {
                             createjs.Sound.play("enemy1_sound");
@@ -57,12 +64,18 @@ var managers;
                             other.destroy(); // bullets explode upon collision
                             return true;
                         }
+                        // player colliding with enemy3's bullets
+                        if (other.objName === "enemy3_bullet") {
+                            createjs.Sound.play("enemy1_sound");
+                            lives -= 1;
+                            prime.isColliding = true;
+                            other.destroy(); // bullets explode upon collision
+                        }
                         // enemy colliding with player bullets
                         if (other.objName === "player_bullet") {
                             createjs.Sound.play("diamond_sound");
                             prime.destroy();
                             other.destroy();
-                            score += 300;
                             return true;
                         }
                     }

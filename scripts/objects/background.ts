@@ -9,17 +9,19 @@ module objects {
     export class Background extends createjs.Bitmap {
 
         private _dx: number;
+        private _offset: number;
 
-        constructor(imageString: string, scrollSpeed: number = 3) {
+        constructor(imageString: string, offset: number, scrollSpeed: number = 3) {
             super(assets.getResult(imageString));
             this._dx = scrollSpeed
+            this._offset = offset;
             this.start();
         }
 
         // PUBLIC METHODS +++++++++++++++++++++++++++++++++++++++++++++
 
         public start(): void {
-            this.x = 0;
+            this.x = this._offset;
             // this._dx = 3; // 5px per frame down
 
         }
@@ -32,8 +34,8 @@ module objects {
         // PRIVATE METHODS +++++++++++++++++++++++++++++++++++++++++++
 
         private _reset(): void {
-            if (this.x <= -1108) {
-                this.x = 0;
+            if (this.x <= -1022) {
+                this.x = 1022;
             }
         }
     }

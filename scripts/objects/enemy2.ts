@@ -14,7 +14,8 @@ module objects {
         private _dy: number;
         private _dx: number;
         private _startY: number;
-        private _life: number = 2
+        private _life: number = 2;
+        private _hitTime: number;
         //private _explosion:objects.GameObject;
 
         // PUBLIC VARIABLES +++++++++++++++++++++++++++++++++++++++++++
@@ -48,6 +49,18 @@ module objects {
                 this.y -= this._dy;
             if (this.x > 600)
                 this.x -= this._dx;
+            
+            // blink when enemy3 is hit
+            if(createjs.Ticker.getTime() - this._hitTime < 400) {
+                if(createjs.Ticker.getTime() % 20 >= 10) {
+                    this.alpha = 0.5;
+                } else {
+                    this.alpha = 1;
+                }
+            }
+            else {
+                this.alpha = 1;
+            }
 
             this._checkBounds();
 
@@ -81,17 +94,27 @@ module objects {
 
         public destroy(): void {
             this._life--;
+            this._hitTime = createjs.Ticker.getTime();
             if (this._life === 0) {
+                this._hitTime = 0;
+                this._dx = 0;
+                this._dy = 0;
                 missionProgress++
-                this._reset();
+                this.gotoAndPlay("explosion");
+                //this._reset();
+                score += 100;
             }
         }
 
+        public reset(): void {
+            this._reset();
+        }
         // PRIVATE METHODS ++++++++++++++++++++++++++++++++++++++++++++
         private _reset(): void {
             // set it to invisible while moving, to prevent
             // blinking/flickering effect where it jumps to the side
-            this.alpha = 0
+            this.alpha = 0;
+            this.gotoAndStop("enemy2");
             this.isColliding = false;
             this._life = 2;
             this._dx = Math.floor((Math.random() * 8) + 5); // horizontal drispeedft
@@ -111,6 +134,10 @@ module objects {
             if (this.y >= (config.Screen.HEIGHT - config.Game.SCORE_BOARD_HEIGHT - (this.height * 0.5)) || this.y <= (0 - (this.height * 0.5))) {
                 this._reset();
             }
+        }
+        
+        private _fire(): void {
+
         }
     }
 }

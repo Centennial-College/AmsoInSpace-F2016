@@ -14,15 +14,16 @@ var objects;
 (function (objects) {
     var Background = (function (_super) {
         __extends(Background, _super);
-        function Background(imageString, scrollSpeed) {
+        function Background(imageString, offset, scrollSpeed) {
             if (scrollSpeed === void 0) { scrollSpeed = 3; }
             _super.call(this, assets.getResult(imageString));
             this._dx = scrollSpeed;
+            this._offset = offset;
             this.start();
         }
         // PUBLIC METHODS +++++++++++++++++++++++++++++++++++++++++++++
         Background.prototype.start = function () {
-            this.x = 0;
+            this.x = this._offset;
             // this._dx = 3; // 5px per frame down
         };
         Background.prototype.update = function () {
@@ -31,8 +32,8 @@ var objects;
         };
         // PRIVATE METHODS +++++++++++++++++++++++++++++++++++++++++++
         Background.prototype._reset = function () {
-            if (this.x <= -1108) {
-                this.x = 0;
+            if (this.x <= -1022) {
+                this.x = 1022;
             }
         };
         return Background;
