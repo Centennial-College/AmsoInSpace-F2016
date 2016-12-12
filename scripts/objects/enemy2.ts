@@ -84,6 +84,7 @@ module objects {
             if (this._life === 0) {
                 missionProgress++
                 this._reset();
+                score += 300;
             }
         }
 

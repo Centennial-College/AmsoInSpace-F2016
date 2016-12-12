@@ -11,6 +11,7 @@ module scenes {
 
         // PRIVATE VARIABLES ++++++++++++++++++++++++++++++++++++++++++
         private _bg: objects.Background;
+        private _bgBuffer: objects.Background;
         private _lblScore: objects.Label;
         private _lblLives: objects.Label;
         private _lblLevel: objects.Label;
@@ -26,6 +27,7 @@ module scenes {
         protected _lblLevelComplete: objects.Label
         protected _canAdvanceToNextLevel: boolean
         protected _levelComplete: boolean
+        protected _bgTrigger: boolean
         protected _missionObjectiveLbl: objects.Label
 
         // CONSTRUCTOR ++++++++++++++++++++++++++++++++++++++++++++++++
@@ -46,7 +48,9 @@ module scenes {
             this._bgSound.loop = -1;
 
             // bg
-            this._bg = new objects.Background(this._bgImgString);
+            this._bg = new objects.Background(this._bgImgString, 0);
+            this._bgBuffer = new objects.Background(this._bgImgString, 1024);            
+            this._bgTrigger = true;
 
             // SCOREBOARD configuration
             // draws ui scoreboard panel at bottom of screen
@@ -73,7 +77,7 @@ module scenes {
             // Player
             // this._player = new objects.Player();
 
-            this.addChild(this._bg, this._scoreBoard, this._lblBeam, this._lblLevel, this._lblLives, this._lblScore, this._missionObjectiveLbl, this._lblBeam, this._beamEnergyBar, this._lblUpgradesAvailable);
+            this.addChild(this._bg, this._bgBuffer, this._scoreBoard, this._lblBeam, this._lblLevel, this._lblLives, this._lblScore, this._missionObjectiveLbl, this._lblBeam, this._beamEnergyBar, this._lblUpgradesAvailable);
             stage.addChild(this);
 
             // test code
@@ -85,7 +89,10 @@ module scenes {
         public start(): void { }
 
         public update(): void {
-            this._bg.update();
+            if(this._bgTrigger){
+                this._bg.update();
+                this._bgBuffer.update();
+            }
             this._player.update();
             this._updateScoreBoard();
 

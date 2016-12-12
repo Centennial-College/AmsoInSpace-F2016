@@ -1,23 +1,23 @@
 /**
- * @file level2.ts
+ * @file level3.ts
  * @author Chamsol Yoon cyoon2@my.centennialcollege.ca
  * @author Kevin Ma kma45@my.centennialcollege.ca
- * @date December 11 2016
- * @version 0.4.2 - added mission objectives to scrollingLevel
+ * @date December 6 2016
+ * @version 0.1 initial
  * @description This level introduces enemy ships and shooting feature
  **/
 
 module scenes {
-    export class Level2 extends scenes.ScrollingLevel {
+    export class Level3 extends scenes.ScrollingLevel {
 
         // PRIVATE VARIABLES ++++++++++++++++++++++++++++++++++++++++++
         private _diamonds: objects.Diamond[];
-        private _enemyShips: objects.Enemy2[];
+        private _enemyShips: objects.Enemy3[];
         // private _enemyBullets: objects.Enemy2_bullet[];
 
         // CONSTRUCTOR ++++++++++++++++++++++++++++++++++++++++++++++++
         constructor() {
-            super("level2_bgsound", "bg2");
+            super("level3_bgsound", "bg3");
             this.start()
         }
 
@@ -27,10 +27,8 @@ module scenes {
             // intiial setup
             level = 2
             beamEnergyPercent = 100
-            missionGoal = 5
-            missionProgress = 0
 
-            console.log("Level2 Scene started");
+            console.log("Level3 Scene started");
 
             this.addChild(this._player = new objects.Player())
 
@@ -44,9 +42,9 @@ module scenes {
             }
 
             // adding enemy ships
-            this._enemyShips = new Array<objects.Enemy2>();
+            this._enemyShips = new Array<objects.Enemy3>();
             for (var count: number = 0; count < 2; count++) {
-                this._enemyShips.push(new objects.Enemy2());
+                this._enemyShips.push(new objects.Enemy3());
                 this.addChild(this._enemyShips[count]);
             }
 
@@ -92,23 +90,9 @@ module scenes {
             this._player._bullets.forEach(bullet => {
                 bullet.update();
                 this._enemyShips.forEach(enemy => {
-                    this._collision.check(enemy, bullet)
+                    this._collision.check(enemy, bullet);
                 })
             });
-
-            // level 2 requires score of 2000 points to advance to the next level
-            if (score >= 2000 && !this._levelComplete) {
-                // this._canAdvanceToNextLevel = true
-                this._advanceToNextLevel()
-                this._bgSound.stop()
-                // createjs.Sound.stop()
-                scene = config.Scene.LEVEL3
-            }
-
-            this._missionObjectiveLbl.text = "- Destroy enemy ships to get ship parts: " + missionProgress +
-                "/" + missionGoal
-            // this._missionObjectiveLbl.text = "- Earn enough money to fix the ship: " + this._missionObjProgress +
-            // "/" + this._missionObjectiveGoal
         }
 
         // PRIVATE METHODS ++++++++++++++++++++++++++++++++++++++++++++

@@ -62,7 +62,6 @@ var managers;
                             createjs.Sound.play("diamond_sound");
                             prime.destroy();
                             other.destroy();
-                            score += 300;
                             return true;
                         }
                     }

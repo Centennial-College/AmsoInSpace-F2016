@@ -150,6 +150,8 @@ function changeScene() {
             break;
         case config.Scene.LEVEL3:
             stage.removeAllChildren();
+            currentScene = new scenes.Level3();
+            console.log("Level3 Scene changed");
             break;
         case config.Scene.OVER:
             stage.removeAllChildren();
