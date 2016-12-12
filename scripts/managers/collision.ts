@@ -2,8 +2,8 @@
  * @file collision.ts
  * @author Chamsol Yoon cyoon2@my.centennialcollege.ca
  * @author Kevin Ma kma45@my.centennialcollege.ca
- * @date December 6 2016
- * @version 0.3.4 fixed collisions for current game objects
+ * @date December 11 2016
+ * @version 0.4.2 - added mission objectives to scrollingLevel
  * @description Defines behaviors for collision manager, handles collisions
  *              of various game objects in the game.
  **/
@@ -20,7 +20,7 @@ module managers {
         public update(): void { }
 
         // PUBLIC METHODS +++++++++++++++++++++++++++++++++++++++++++++
-        public check(prime: objects.GameObject, other: objects.GameObject, newFrameRate: number = 0) {
+        public check(prime: objects.GameObject, other: objects.GameObject, newFrameRate: number = 0): boolean {
             //check to see if object is colliding
             if (objects.Vector2.distance(prime.position, other.position) < (prime.height + other.height) / 2) {
                 if (!other.isColliding) {
@@ -32,6 +32,7 @@ module managers {
                         createjs.Sound.play("diamond_sound");
                         score += 100;
                         other.visible = false;
+                        return true
                     }
                     // only check for collisions if player hasn't collided 
                     if (!prime.isColliding) {
@@ -42,6 +43,7 @@ module managers {
                             // if player is colliding, set to invulnerable for brief duration
                             prime.isColliding = true
                             other.destroy() // asteroid explodes upon collision w/player
+                            return true
                         }
 
                         // player colliding with enemy2
@@ -50,6 +52,7 @@ module managers {
                             createjs.Sound.play("enemy1_sound");
                             lives -= 1;
                             prime.isColliding = true
+                            return true
                         }
 
                         // player colliding with enemy2's bullets
@@ -58,6 +61,7 @@ module managers {
                             lives -= 1;
                             prime.isColliding = true
                             other.destroy() // bullets explode upon collision
+                            return true
                         }
 
                         // enemy colliding with player bullets
@@ -66,12 +70,15 @@ module managers {
                             prime.destroy();
                             other.destroy();
                             score += 300;
+                            return true
                         }
                     }
 
 
                 }
             }
+            // not colliding
+            return false
         }
     }
 }

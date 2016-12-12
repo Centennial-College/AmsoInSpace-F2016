@@ -2,8 +2,8 @@
  * @file enemy2.ts
  * @author Chamsol Yoon cyoon2@my.centennialcollege.ca
  * @author Kevin Ma kma45@my.centennialcollege.ca
- * @date December 6 2016
- * @version 0.3.3 fixed position where enemy2 bullets fire from
+ * @date December 11 2016
+ * @version 0.4.2 - added mission objectives to scrollingLevel
  * @description Defines enemy object introduced in the second stage
  **/
 
@@ -14,14 +14,13 @@ module objects {
         private _dy: number;
         private _dx: number;
         private _startY: number;
-        private _life: number = 2;
+        private _life: number = 2
         //private _explosion:objects.GameObject;
 
         // PUBLIC VARIABLES +++++++++++++++++++++++++++++++++++++++++++
         public DefaultFireRate: number = 10;
         public Reload: number = 0;
         public _bullets: objects.Enemy2_bullet[];
-
 
         // CONSTRUCTORS +++++++++++++++++++++++++++++++++++++++++++++++
         constructor() {
@@ -83,6 +82,7 @@ module objects {
         public destroy(): void {
             this._life--;
             if (this._life === 0) {
+                missionProgress++
                 this._reset();
             }
         }
@@ -94,8 +94,8 @@ module objects {
             this.alpha = 0
             this.isColliding = false;
             this._life = 2;
-            this._dx = Math.floor((Math.random() * 5) + 8); // vertical drispeedft
-            this._dy = Math.floor((Math.random() * 4) + 2); // horizontal drift
+            this._dx = Math.floor((Math.random() * 8) + 5); // horizontal drispeedft
+            this._dy = Math.floor((Math.random() * 4) + 2); // vertical drift
 
             this.x = config.Screen.WIDTH;
             // get a random x location

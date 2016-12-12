@@ -2,8 +2,8 @@
  * @file level2.ts
  * @author Chamsol Yoon cyoon2@my.centennialcollege.ca
  * @author Kevin Ma kma45@my.centennialcollege.ca
- * @date December 6 2016
- * @version 0.3.4 fixed collisions for current game objects
+ * @date December 11 2016
+ * @version 0.4.2 - added mission objectives to scrollingLevel
  * @description This level introduces enemy ships and shooting feature
  **/
 var __extends = (this && this.__extends) || function (d, b) {
@@ -27,6 +27,8 @@ var scenes;
             // intiial setup
             level = 2;
             beamEnergyPercent = 100;
+            missionGoal = 5;
+            missionProgress = 0;
             console.log("Level2 Scene started");
             this.addChild(this._player = new objects.Player());
             this._collision = new managers.Collision();
@@ -80,6 +82,10 @@ var scenes;
                     _this._collision.check(enemy, bullet);
                 });
             });
+            this._missionObjectiveLbl.text = "- Destroy enemy ships to get ship parts: " + missionProgress +
+                "/" + missionGoal;
+            // this._missionObjectiveLbl.text = "- Earn enough money to fix the ship: " + this._missionObjProgress +
+            // "/" + this._missionObjectiveGoal
         };
         return Level2;
     }(scenes.ScrollingLevel));

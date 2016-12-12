@@ -1,8 +1,8 @@
 /**
  * @file scrollingLevel.ts
  * @author Kevin Ma kma45@my.centennialcollege.ca
- * @date December 6 2016
- * @version 0.3.8 implemented diff controls feature
+ * @date December 11 2016
+ * @version 0.4.2 - added mission objectives to scrollingLevel
  * @description Abstract class for all levels with scrolling background in this game. 
  **/
 
@@ -26,6 +26,7 @@ module scenes {
         protected _lblLevelComplete: objects.Label
         protected _canAdvanceToNextLevel: boolean
         protected _levelComplete: boolean
+        protected _missionObjectiveLbl: objects.Label
 
         // CONSTRUCTOR ++++++++++++++++++++++++++++++++++++++++++++++++
         constructor(private _bgmString: string, private _bgImgString: string) {
@@ -54,12 +55,13 @@ module scenes {
                 .drawRect(0, 0, config.Screen.WIDTH, config.Game.SCORE_BOARD_HEIGHT);
             this._scoreBoard.y = config.Screen.HEIGHT - config.Game.SCORE_BOARD_HEIGHT;
 
-            this._lblLevel = new objects.Label("Level: " + level, "20px customfont", "#fff", config.Screen.CENTER_X, config.Screen.HEIGHT - 55);
-            this._lblLives = new objects.Label("Lives: " + lives, "20px customfont", "#fff", 60, config.Screen.HEIGHT - 55);
-            this._lblScore = new objects.Label("Score: " + score, "20px customfont", "#fff", 60, config.Screen.HEIGHT - 25);
+            this._missionObjectiveLbl = new objects.Label("-", "20px customfont", "#fff", config.Screen.CENTER_X - 133, config.Screen.HEIGHT - 65, false)
+            this._lblLevel = new objects.Label("Mission " + level, "20px customfont", "#fff", config.Screen.CENTER_X - 250, config.Screen.HEIGHT - 65, false);
+            this._lblLives = new objects.Label("Lives: " + lives, "20px customfont", "#fff", 10, config.Screen.HEIGHT - 65, false);
+            this._lblScore = new objects.Label("Score: " + score, "20px customfont", "#fff", 10, config.Screen.HEIGHT - 35, false);
 
             // beam energy will be hidden from level 1, only shows for level 2 and 3 + boss (but that wont be scrollingLevel descendent)
-            this._lblBeam = new objects.Label("Beam: ", "20px customfont", "#fff", config.Screen.CENTER_X, config.Screen.HEIGHT - 25);
+            this._lblBeam = new objects.Label("Beam: ", "20px customfont", "#fff", config.Screen.CENTER_X - 250, config.Screen.HEIGHT - 35, false);
             this._createBeamEnergyBar()
             if (level == 1)
                 this._hideBeamEnergyControls()
@@ -71,7 +73,7 @@ module scenes {
             // Player
             // this._player = new objects.Player();
 
-            this.addChild(this._bg, this._scoreBoard, this._lblBeam, this._lblLevel, this._lblLives, this._lblScore, this._lblBeam, this._beamEnergyBar, this._lblUpgradesAvailable);
+            this.addChild(this._bg, this._scoreBoard, this._lblBeam, this._lblLevel, this._lblLives, this._lblScore, this._missionObjectiveLbl, this._lblBeam, this._beamEnergyBar, this._lblUpgradesAvailable);
             stage.addChild(this);
 
             // test code
@@ -111,7 +113,7 @@ module scenes {
         }
         private _createBeamEnergyBar(): void {
             this._beamEnergyBar = new createjs.Shape();
-            this._beamEnergyBar.x = config.Screen.CENTER_X + 37
+            this._beamEnergyBar.x = config.Screen.CENTER_X - 175
             this._beamEnergyBar.y = config.Screen.HEIGHT - 35
             this._beamEnergyBar.graphics.setStrokeStyle(2);
             this._beamEnergyBar.graphics.beginStroke('#000');
@@ -145,7 +147,7 @@ module scenes {
         // provides level up notification and advances player to next level
         protected _advanceToNextLevel(): void {
             // generate level complete notification and let fade away
-            this.addChild(this._lblLevelComplete = new objects.Label("LEVEL " + level + " COMPLETE!", "40px customfont", "#fff", config.Screen.CENTER_X, config.Screen.CENTER_Y))
+            this.addChild(this._lblLevelComplete = new objects.Label("MISSION " + level + " COMPLETE!", "40px customfont", "#fff", config.Screen.CENTER_X, config.Screen.CENTER_Y))
             this._lblLevelComplete.shadow = new createjs.Shadow("#fff", 0, 0, 2)
             this._levelComplete = true
 
