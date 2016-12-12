@@ -42,6 +42,18 @@ var objects;
                 this.y -= this._dy;
             if (this.x > 600)
                 this.x -= this._dx;
+            // blink when enemy3 is hit
+            if (createjs.Ticker.getTime() - this._hitTime < 400) {
+                if (createjs.Ticker.getTime() % 20 >= 10) {
+                    this.alpha = 0.5;
+                }
+                else {
+                    this.alpha = 1;
+                }
+            }
+            else {
+                this.alpha = 1;
+            }
             this._checkBounds();
             // update every bullet
             this._bullets.forEach(function (bullet) {
@@ -69,11 +81,18 @@ var objects;
         };
         Enemy2.prototype.destroy = function () {
             this._life--;
+            this._hitTime = createjs.Ticker.getTime();
             if (this._life === 0) {
+                this._hitTime = 0;
+                this._dx = 0;
+                this._dy = 0;
                 missionProgress++;
                 this._reset();
-                score += 300;
+                score += 100;
             }
+        };
+        Enemy2.prototype.reset = function () {
+            this._reset();
         };
         // PRIVATE METHODS ++++++++++++++++++++++++++++++++++++++++++++
         Enemy2.prototype._reset = function () {
@@ -95,6 +114,8 @@ var objects;
             if (this.y >= (config.Screen.HEIGHT - config.Game.SCORE_BOARD_HEIGHT - (this.height * 0.5)) || this.y <= (0 - (this.height * 0.5))) {
                 this._reset();
             }
+        };
+        Enemy2.prototype._fire = function () {
         };
         return Enemy2;
     }(objects.GameObject));

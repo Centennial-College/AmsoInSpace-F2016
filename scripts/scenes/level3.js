@@ -15,7 +15,6 @@ var scenes;
 (function (scenes) {
     var Level3 = (function (_super) {
         __extends(Level3, _super);
-        // private _enemyBullets: objects.Enemy2_bullet[];
         // CONSTRUCTOR ++++++++++++++++++++++++++++++++++++++++++++++++
         function Level3() {
             _super.call(this, "level3_bgsound", "bg3");
@@ -25,8 +24,10 @@ var scenes;
         Level3.prototype.start = function () {
             var _this = this;
             // intiial setup
-            level = 2;
+            level = 3;
             beamEnergyPercent = 100;
+            missionGoal = 10;
+            missionProgress = 0;
             console.log("Level3 Scene started");
             this.addChild(this._player = new objects.Player());
             this._collision = new managers.Collision();
@@ -80,6 +81,10 @@ var scenes;
                     _this._collision.check(enemy, bullet);
                 });
             });
+            this._missionObjectiveLbl.text = "- Destroy enemy ships to get ship parts: " + missionProgress +
+                "/" + missionGoal;
+            // this._missionObjectiveLbl.text = "- Earn enough money to fix the ship: " + this._missionObjProgress +
+            // "/" + this._missionObjectiveGoal
         };
         return Level3;
     }(scenes.ScrollingLevel));

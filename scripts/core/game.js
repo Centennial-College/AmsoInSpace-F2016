@@ -39,7 +39,9 @@ var assetData = [
     { id: "diamond_sound", src: "../../assets/audio/diamond_sound.wav" },
     { id: "level1_bgsound", src: "../../assets/audio/level1_bgsound.wav" },
     { id: "level2_bgsound", src: "../../assets/audio/level2_bgsound.wav" },
-    { id: "level3_bgsound", src: "../../assets/audio/level3_bgsound.wav" }
+    { id: "level3_bgsound", src: "../../assets/audio/level3_bgsound.wav" },
+    // missing images
+    { id: "enemy3_bullet", src: "../../assets/images/missile_round_yellow_enemy_l.png" }
 ];
 function preload() {
     // create a queue for assets
@@ -103,7 +105,8 @@ function init() {
             "diamond": { "frames": [17] },
             "enemy2_bullet": { "frames": [18] },
             "player_bullet": { "frames": [19] },
-            "enemy2": { "frames": [20] }
+            "enemy2": { "frames": [20] },
+            "explosion": { "frames": [8, 3, 2], "speed": 0.2, next: false }
         }
     };
     textureAtlas = new createjs.SpriteSheet(atlasData);

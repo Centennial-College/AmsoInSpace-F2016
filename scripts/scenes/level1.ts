@@ -31,7 +31,7 @@ module scenes {
             level = 1
             score = 0
 
-            missionGoal = 1000
+            missionGoal = 100
             missionProgress = 0
 
             this._diamonds = new Array<objects.Diamond>();

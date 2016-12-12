@@ -83,7 +83,7 @@ var scenes;
                 });
             });
             // level 2 requires score of 2000 points to advance to the next level
-            if (score >= 2000 && !this._levelComplete) {
+            if (missionProgress >= missionGoal && !this._levelComplete) {
                 // this._canAdvanceToNextLevel = true
                 this._advanceToNextLevel();
                 this._bgSound.stop();

@@ -13,7 +13,6 @@ module scenes {
         // PRIVATE VARIABLES ++++++++++++++++++++++++++++++++++++++++++
         private _diamonds: objects.Diamond[];
         private _enemyShips: objects.Enemy3[];
-        // private _enemyBullets: objects.Enemy2_bullet[];
 
         // CONSTRUCTOR ++++++++++++++++++++++++++++++++++++++++++++++++
         constructor() {
@@ -25,8 +24,10 @@ module scenes {
         public start(): void {
 
             // intiial setup
-            level = 2
+            level = 3
             beamEnergyPercent = 100
+            missionGoal = 10
+            missionProgress = 0
 
             console.log("Level3 Scene started");
 
@@ -93,6 +94,11 @@ module scenes {
                     this._collision.check(enemy, bullet);
                 })
             });
+
+            this._missionObjectiveLbl.text = "- Destroy enemy ships to get ship parts: " + missionProgress +
+                "/" + missionGoal
+            // this._missionObjectiveLbl.text = "- Earn enough money to fix the ship: " + this._missionObjProgress +
+            // "/" + this._missionObjectiveGoal
         }
 
         // PRIVATE METHODS ++++++++++++++++++++++++++++++++++++++++++++

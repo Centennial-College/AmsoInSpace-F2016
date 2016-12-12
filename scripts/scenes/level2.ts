@@ -82,7 +82,6 @@ module scenes {
                 if (this._collision.check(this._player, enemy)) {
                     enemy.destroy()
                 }
-
                 enemy._bullets.forEach(bullet => {
                     this._collision.check(this._player, bullet)
                 });
@@ -97,7 +96,7 @@ module scenes {
             });
 
             // level 2 requires score of 2000 points to advance to the next level
-            if (score >= 2000 && !this._levelComplete) {
+            if (missionProgress >= missionGoal && !this._levelComplete) {
                 // this._canAdvanceToNextLevel = true
                 this._advanceToNextLevel()
                 this._bgSound.stop()
