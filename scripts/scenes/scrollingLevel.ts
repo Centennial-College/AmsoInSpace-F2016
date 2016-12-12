@@ -34,6 +34,8 @@ module scenes {
         constructor(private _bgmString: string, private _bgImgString: string) {
             super();
 
+            currBgImgString = this._bgImgString
+
             stage.cursor = 'none'
 
             this._levelComplete = false
@@ -108,7 +110,6 @@ module scenes {
 
             if (lives < 1) {
                 createjs.Sound.stop()
-                gameOverBGImgString = this._bgImgString
                 scene = config.Scene.OVER;
                 changeScene();
             }

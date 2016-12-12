@@ -25,7 +25,7 @@ var beamEnergyPercent;
 var mouseControls;
 var missionGoal;
 var missionProgress;
-var gameOverBGImgString;
+var currBgImgString;
 // Game Scenes;
 var currentScene;
 // Preload Assets
@@ -65,65 +65,83 @@ function init() {
         ],
         "frames": [
             [1, 1, 277, 274, 0, 0, 0],
-            [1, 277, 252, 250, 0, 0, 0],
-            [1, 529, 214, 212, 0, 0, 0],
-            [1, 743, 18, 17, 0, 0, 0],
-            [21, 743, 39, 11, 0, 0, 0],
-            [217, 529, 250, 188, 0, 0, 0],
-            [255, 277, 252, 250, 0, 0, 0],
-            [217, 719, 150, 49, 0, 0, 0],
-            [369, 719, 80, 49, 0, 0, 0],
-            [451, 719, 150, 48, 0, 0, 0],
-            [469, 529, 140, 120, 0, 0, 0],
-            [469, 651, 200, 59, 0, 0, 0],
-            [671, 1, 300, 96, 0, 0, 0],
-            [509, 1, 140, 120, 0, 0, 0],
-            [280, 1, 200, 59, 0, 0, 0],
-            [280, 62, 200, 59, 0, 0, 0],
-            [280, 123, 140, 120, 0, 0, 0],
-            [422, 123, 140, 120, 0, 0, 0],
-            [671, 99, 300, 96, 0, 0, 0],
-            [671, 197, 200, 59, 0, 0, 0],
-            [873, 197, 140, 120, 0, 0, 0],
-            [671, 258, 200, 59, 0, 0, 0],
-            [509, 245, 140, 120, 0, 0, 0],
-            [509, 367, 140, 120, 0, 0, 0],
-            [611, 489, 140, 120, 0, 0, 0],
-            [671, 611, 140, 120, 0, 0, 0],
-            [813, 319, 200, 59, 0, 0, 0],
-            [651, 319, 140, 120, 0, 0, 0],
-            [813, 380, 171, 85, 0, 0, 0],
-            [753, 467, 140, 120, 0, 0, 0],
-            [895, 467, 120, 108, 0, 0, 0],
-            [813, 589, 140, 120, 0, 0, 0]
+            [1, 277, 269, 242, 0, 0, 0],
+            [280, 1, 252, 250, 0, 0, 0],
+            [1, 521, 252, 250, 0, 0, 0],
+            [534, 1, 250, 188, 0, 0, 0],
+            [786, 1, 214, 212, 0, 0, 0],
+            [1, 773, 300, 96, 0, 0, 0],
+            [1, 871, 300, 30, 0, 0, 0],
+            [534, 191, 250, 22, 0, 0, 0],
+            [534, 215, 300, 96, 0, 0, 0],
+            [836, 215, 171, 85, 0, 0, 0],
+            [280, 253, 208, 198, 0, 0, 0],
+            [272, 453, 200, 59, 0, 0, 0],
+            [490, 313, 140, 120, 0, 0, 0],
+            [632, 313, 140, 120, 0, 0, 0],
+            [490, 435, 200, 59, 0, 0, 0],
+            [272, 514, 200, 59, 0, 0, 0],
+            [255, 575, 140, 120, 0, 0, 0],
+            [474, 496, 200, 59, 0, 0, 0],
+            [474, 557, 200, 59, 0, 0, 0],
+            [255, 697, 200, 59, 0, 0, 0],
+            [303, 758, 140, 120, 0, 0, 0],
+            [774, 313, 140, 120, 0, 0, 0],
+            [692, 435, 148, 88, 0, -2, -3],
+            [676, 525, 140, 120, 0, 0, 0],
+            [457, 618, 140, 120, 0, 0, 0],
+            [842, 435, 120, 108, 0, 0, 0],
+            [818, 545, 140, 120, 0, 0, 0],
+            [457, 740, 140, 120, 0, 0, 0],
+            [599, 647, 140, 120, 0, 0, 0],
+            [599, 769, 140, 120, 0, 0, 0],
+            [741, 667, 140, 120, 0, 0, 0],
+            [883, 667, 124, 118, 0, 0, 0],
+            [741, 789, 150, 49, 0, 0, 0],
+            [741, 840, 150, 48, 0, 0, 0],
+            [893, 787, 120, 65, 0, 0, -2],
+            [916, 302, 94, 58, 0, 0, 0],
+            [916, 362, 80, 49, 0, 0, 0],
+            [893, 854, 80, 45, 0, 0, 0],
+            [741, 890, 39, 11, 0, 0, 0],
+            [490, 253, 18, 17, 0, 0, 0]
         ],
         "animations": {
             "shield_l": { "frames": [0] },
-            "kbcontrols": { "frames": [1] },
-            "shield_m": { "frames": [2] },
-            "enemy2_bullet": { "frames": [3] },
-            "player_bullet": { "frames": [4] },
-            "enemy3": { "frames": [5] },
-            "mousecontrols": { "frames": [6] },
-            "playerSD": { "frames": [7] },
-            "diamond": { "frames": [8] },
-            "playerFT": { "frames": [9] },
-            "explosion1": { "frames": [10, 13, 16, 17, 20, 22, 23, 24, 25, 27, 29, 31] },
-            "instructionsBtn": { "frames": [11] },
-            "Saja_b": { "frames": [12] },
-            "letsbeginbtn": { "frames": [14] },
-            "menubtn": { "frames": [15] },
-            "Saja_w": { "frames": [18] },
-            "playagainbtn": { "frames": [19] },
-            "playgameBtn": { "frames": [21] },
-            "upgradesbtn": { "frames": [26] },
-            "enemy2": { "frames": [28] },
-            "enemy1": { "frames": [30] }
+            "explosion_l": { "frames": [1] },
+            "kbcontrols": { "frames": [2] },
+            "mousecontrols": { "frames": [3] },
+            "enemy3": { "frames": [4] },
+            "shield_m": { "frames": [5] },
+            "Saja_b": { "frames": [6] },
+            "beam-l": { "frames": [7] },
+            "beam_m": { "frames": [8] },
+            "Saja_w": { "frames": [9] },
+            "enemy2": { "frames": [10] },
+            "explosion_m": { "frames": [11] },
+            "instructionsBtn": { "frames": [12] },
+            "explosion1": { "frames": [13, 14, 17, 21, 22, 24, 25, 27, 28, 29, 30, 31] },
+            "letsbeginbtn": { "frames": [15] },
+            "menubtn": { "frames": [16] },
+            "playagainbtn": { "frames": [18] },
+            "playgameBtn": { "frames": [19] },
+            "upgradesbtn": { "frames": [20] },
+            "missile_round_yellow_enemy_l": { "frames": [23] },
+            "enemy1": { "frames": [26] },
+            "explosion_s": { "frames": [32] },
+            "playerSD": { "frames": [33] },
+            "playerFT": { "frames": [34] },
+            "missile_round_blue_enemy_m": { "frames": [35] },
+            "missile_large_red": { "frames": [36] },
+            "diamond": { "frames": [37] },
+            "missile_round_blue": { "frames": [38] },
+            "player_bullet": { "frames": [39] },
+            "enemy2_bullet": { "frames": [40] }
         },
     };
     textureAtlas = new createjs.SpriteSheet(atlasData);
     // mouseControls = true
-    // scene = config.Scene.LEVEL2;
+    // scene = config.Scene.MENU;
     scene = config.Scene.LEVEL3;
     changeScene();
 }
@@ -183,6 +201,11 @@ function changeScene() {
             stage.removeAllChildren();
             currentScene = new scenes.ControlSelection();
             console.log('Control Selection Scene changed');
+            break;
+        case config.Scene.WIN:
+            stage.removeAllChildren();
+            currentScene = new scenes.Win();
+            console.log('Win Scene changed');
             break;
     }
 }

@@ -19,6 +19,7 @@ var config;
         Scene.OVER = 5;
         Scene.PAUSE = 6;
         Scene.CONTROLSELECT = 7;
+        Scene.WIN = 8;
         return Scene;
     }());
     config.Scene = Scene;

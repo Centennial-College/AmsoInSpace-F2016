@@ -79,7 +79,7 @@ module scenes {
                 this._collision.check(this._player, diamond);
             });
 
-            if(!this._bossFlag){
+            if (!this._bossFlag) {
                 // updates enemy position and checks for collision b/t player and enemy
                 this._enemyShips.forEach(enemy => {
                     enemy.update();
@@ -103,12 +103,21 @@ module scenes {
                     })
                 });
 
-                this._missionObjectiveLbl.text = "- Destroy enemy ships to get ship parts: " + missionProgress +
+                this._missionObjectiveLbl.text = "- Defeat Saja's Grand Generals: " + missionProgress +
                     "/" + missionGoal
 
             }
             // this._missionObjectiveLbl.text = "- Earn enough money to fix the ship: " + this._missionObjProgress +
             // "/" + this._missionObjectiveGoal
+
+            // if (missionProgress >= missionGoal && !this._levelComplete) {
+            //     // this._canAdvanceToNextLevel = true
+            //     createjs.Sound.stop()
+            //     scene = config.Scene.WIN
+            //     this._advanceToNextLevel()
+            //     this._bgSound.stop()
+            //     // createjs.Sound.stop()
+            // }
         }
 
         // PRIVATE METHODS ++++++++++++++++++++++++++++++++++++++++++++

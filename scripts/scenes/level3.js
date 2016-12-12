@@ -87,11 +87,19 @@ var scenes;
                         _this._collision.check(enemy, bullet);
                     });
                 });
-                this._missionObjectiveLbl.text = "- Destroy enemy ships to get ship parts: " + missionProgress +
+                this._missionObjectiveLbl.text = "- Defeat Saja's Grand Generals: " + missionProgress +
                     "/" + missionGoal;
             }
             // this._missionObjectiveLbl.text = "- Earn enough money to fix the ship: " + this._missionObjProgress +
             // "/" + this._missionObjectiveGoal
+            // if (missionProgress >= missionGoal && !this._levelComplete) {
+            //     // this._canAdvanceToNextLevel = true
+            //     createjs.Sound.stop()
+            //     scene = config.Scene.WIN
+            //     this._advanceToNextLevel()
+            //     this._bgSound.stop()
+            //     // createjs.Sound.stop()
+            // }
         };
         return Level3;
     }(scenes.ScrollingLevel));

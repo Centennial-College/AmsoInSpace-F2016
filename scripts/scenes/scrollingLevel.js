@@ -19,6 +19,7 @@ var scenes;
             _super.call(this);
             this._bgmString = _bgmString;
             this._bgImgString = _bgImgString;
+            currBgImgString = this._bgImgString;
             stage.cursor = 'none';
             this._levelComplete = false;
             // had to do the initializations in constructor due to constraints of super class
@@ -76,7 +77,6 @@ var scenes;
             // this._blinkUpgradesAvailableLbl()
             if (lives < 1) {
                 createjs.Sound.stop();
-                gameOverBGImgString = this._bgImgString;
                 scene = config.Scene.OVER;
                 changeScene();
             }
