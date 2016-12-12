@@ -6,12 +6,12 @@
  **/
 
 module objects {
-    export class Button extends createjs.Bitmap {
+    export class Button extends createjs.Sprite {
         width: number;
-        height : number;
+        height: number;
 
-        constructor(pathString: string, x:number, y:number) {
-            super(assets.getResult(pathString));
+        constructor(imgString: string, x: number, y: number) {
+            super(textureAtlas, imgString);
             // Set the registration point of the button. This is used for transformations
             this.regX = this.getBounds().width * 0.5;
             this.regY = this.getBounds().height * 0.5;
@@ -26,12 +26,12 @@ module objects {
         }
 
         // Modify the bitmaps alpha value when hovering over the button
-        overButton(event: createjs.MouseEvent) : void {
+        overButton(event: createjs.MouseEvent): void {
             event.currentTarget.alpha = 0.7;
         }
-        
+
         // Modify the bitmaps alphave when mouse is not hovering
-        outButton(event:createjs.MouseEvent) : void {
+        outButton(event: createjs.MouseEvent): void {
             event.currentTarget.alpha = 1.0;
         }
     }

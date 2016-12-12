@@ -5,7 +5,7 @@
  * @author Chamsol Yoon cyoon2@my.centennialcollege.ca
  * @author Kevin Ma kma45@my.centennialcollege.ca
  * @date December 11 2016
- * @version 0.3.9 - implemented instructions scene
+ * @version 0.4.1 - cleaned up loaded assets; small images into spritesheet
  * @description This file starts the game 
  **/
 
@@ -34,28 +34,17 @@ let currentScene: objects.Scene;
 
 // Preload Assets
 var assetData: objects.Asset[] = [
-    { id: "playgameBtn", src: "../../assets/images/playgameBtn.png" },
-    { id: "instructionsBtn", src: "../../assets/images/instructionsBtn.png" },
-    { id: "restartButton", src: "../../assets/images/playagainbtn.png" },
-    { id: "menubtn", src: "../../assets/images/menubtn.png" },
-    { id: "upgradesbtn", src: "../../assets/images/upgradesbtn.png" },
-    { id: "kbcontrols", src: "../../assets/images/kbcontrols.png" },
-    { id: "mousecontrols", src: "../../assets/images/mousecontrols.png" },
-    { id: "letsbeginbtn", src: "../../assets/images/letsbeginbtn.png" },
-    { id: "rules", src: "../../assets/images/instruction.png" },
     { id: "bg1", src: "../../assets/images/background1.png" },
     { id: "bg2", src: "../../assets/images/background2.png" },
     { id: "bg3", src: "../../assets/images/background3.png" },
     { id: "amsomenu", src: "../../assets/images/amsomenu.png" },
     { id: "spritesheet", src: "../../assets/images/spritesheet.png" },
-    //{ id: "test", src: "../../assets/images/ "},
     { id: "moo", src: "../../assets/audio/moo.mp3" },
     { id: "enemy1_sound", src: "../../assets/audio/enemy1_sound.wav" },
     { id: "diamond_sound", src: "../../assets/audio/diamond_sound.wav" },
     { id: "level1_bgsound", src: "../../assets/audio/level1_bgsound.wav" },
     { id: "level2_bgsound", src: "../../assets/audio/level2_bgsound.wav" },
     { id: "level3_bgsound", src: "../../assets/audio/level3_bgsound.wav" }
-
 ];
 
 function preload() {

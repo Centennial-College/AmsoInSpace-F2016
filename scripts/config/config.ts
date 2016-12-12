@@ -28,8 +28,4 @@ module config {
         public static FPS: number = 60;
         public static SCORE_BOARD_HEIGHT: number = 75;
     }
-    export class ShipType {
-        public static SPEED_DEMON: number = 666;
-        public static FAT_TANK: number = 9000;
-    }
 }

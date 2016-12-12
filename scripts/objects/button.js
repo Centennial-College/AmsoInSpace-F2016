@@ -13,8 +13,8 @@ var objects;
 (function (objects) {
     var Button = (function (_super) {
         __extends(Button, _super);
-        function Button(pathString, x, y) {
-            _super.call(this, assets.getResult(pathString));
+        function Button(imgString, x, y) {
+            _super.call(this, textureAtlas, imgString);
             // Set the registration point of the button. This is used for transformations
             this.regX = this.getBounds().width * 0.5;
             this.regY = this.getBounds().height * 0.5;
@@ -34,7 +34,7 @@ var objects;
             event.currentTarget.alpha = 1.0;
         };
         return Button;
-    }(createjs.Bitmap));
+    }(createjs.Sprite));
     objects.Button = Button;
 })(objects || (objects = {}));
 //# sourceMappingURL=button.js.map

@@ -35,7 +35,7 @@ module scenes {
             this._lblScore = new objects.Label("SCORE: " + score, "60px customfont", "#1AFBF4", config.Screen.CENTER_X, config.Screen.CENTER_Y);
             this.addChild(this._lblGameover, this._lblScore);
 
-            this._playagainBtn = new objects.Button("restartButton", config.Screen.CENTER_X + 125, config.Screen.CENTER_Y + 150);
+            this._playagainBtn = new objects.Button("playagainbtn", config.Screen.CENTER_X + 125, config.Screen.CENTER_Y + 150);
             this._playagainBtn.on("click", this._playagainBtnClick, this);
             this.addChild(this._playagainBtn);
 
