@@ -13,6 +13,7 @@ module scenes {
         // PRIVATE VARIABLES ++++++++++++++++++++++++++++++++++++++++++
         private _diamonds: objects.Diamond[];
         private _enemyShips: objects.Enemy3[];
+        private _bossFlag: boolean;
 
         // CONSTRUCTOR ++++++++++++++++++++++++++++++++++++++++++++++++
         constructor() {
@@ -26,7 +27,7 @@ module scenes {
             // intiial setup
             level = 3
             beamEnergyPercent = 100
-            missionGoal = 10
+            missionGoal = 3
             missionProgress = 0
 
             console.log("Level3 Scene started");
@@ -61,6 +62,10 @@ module scenes {
                 });
             });
             stage.addChild(this);
+
+            // true when objective of stage has done.
+            this._bossFlag = false;
+
         }
 
         public update(): void {
@@ -74,31 +79,34 @@ module scenes {
                 this._collision.check(this._player, diamond);
             });
 
-            // updates enemy position and checks for collision b/t player and enemy
-            this._enemyShips.forEach(enemy => {
-                enemy.update();
-
-                if (this._collision.check(this._player, enemy)) {
-                    enemy.destroy()
-                }
-                if (enemy.currentFrame === 23) {
-                    enemy.reset();
-                }
-                enemy._bullets.forEach(bullet => {
-                    this._collision.check(this._player, bullet)
-                });
-            });
-
-            // updates bullets position and checks for collision b/t enemy and bullets
-            this._player._bullets.forEach(bullet => {
-                bullet.update();
+            if(!this._bossFlag){
+                // updates enemy position and checks for collision b/t player and enemy
                 this._enemyShips.forEach(enemy => {
-                    this._collision.check(enemy, bullet);
-                })
-            });
+                    enemy.update();
 
-            this._missionObjectiveLbl.text = "- Destroy enemy ships to get ship parts: " + missionProgress +
-                "/" + missionGoal
+                    if (this._collision.check(this._player, enemy)) {
+                        enemy.destroy()
+                    }
+                    if (enemy.currentFrame === 23) {
+                        enemy.reset();
+                    }
+                    enemy._bullets.forEach(bullet => {
+                        this._collision.check(this._player, bullet)
+                    });
+                });
+
+                // updates bullets position and checks for collision b/t enemy and bullets
+                this._player._bullets.forEach(bullet => {
+                    bullet.update();
+                    this._enemyShips.forEach(enemy => {
+                        this._collision.check(enemy, bullet);
+                    })
+                });
+
+                this._missionObjectiveLbl.text = "- Destroy enemy ships to get ship parts: " + missionProgress +
+                    "/" + missionGoal
+
+            }
             // this._missionObjectiveLbl.text = "- Earn enough money to fix the ship: " + this._missionObjProgress +
             // "/" + this._missionObjectiveGoal
         }

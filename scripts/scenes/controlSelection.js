@@ -54,12 +54,12 @@ var scenes;
          */
         ControlSelection.prototype._kbBtnClick = function () {
             mouseControls = false;
-            scene = config.Scene.LEVEL1;
+            scene = config.Scene.LEVEL3;
             changeScene();
         };
         ControlSelection.prototype._mouseBtnClick = function () {
             mouseControls = true;
-            scene = config.Scene.LEVEL1;
+            scene = config.Scene.LEVEL3;
             changeScene();
         };
         return ControlSelection;
