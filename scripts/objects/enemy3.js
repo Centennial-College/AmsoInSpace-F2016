@@ -18,7 +18,7 @@ var objects;
         // CONSTRUCTORS +++++++++++++++++++++++++++++++++++++++++++++++
         function Enemy3() {
             _super.call(this, "enemy3");
-            this._life = 5;
+            this._life = 4;
             //private _explosion:objects.GameObject;
             // PUBLIC VARIABLES +++++++++++++++++++++++++++++++++++++++++++
             this.DefaultFireRate = 10;
@@ -79,18 +79,26 @@ var objects;
             this._life--;
             this._hitTime = createjs.Ticker.getTime();
             if (this._life === 0) {
+                this._hitTime = 0;
+                this._dx = 0;
+                this._dy = 0;
                 missionProgress++;
-                this._reset();
+                this.gotoAndPlay("explosion");
+                //this._reset();
                 score += 300;
             }
+        };
+        Enemy3.prototype.reset = function () {
+            this._reset();
         };
         // PRIVATE METHODS ++++++++++++++++++++++++++++++++++++++++++++
         Enemy3.prototype._reset = function () {
             // set it to invisible while moving, to prevent
             // blinking/flickering effect where it jumps to the side
             this.alpha = 0;
+            this.gotoAndStop("enemy3");
             this.isColliding = false;
-            this._life = 5;
+            this._life = 4;
             this._dx = Math.floor((Math.random() * 5) + 6); // vertical drispeedft
             this._dy = Math.floor((Math.random() * 4) + 1); // horizontal drift
             this.x = config.Screen.WIDTH;

@@ -27,7 +27,7 @@ var scenes;
             lives = 5;
             level = 1;
             score = 0;
-            missionGoal = 100;
+            missionGoal = 1000;
             missionProgress = 0;
             this._diamonds = new Array();
             for (var count = 0; count < 1; count++) {

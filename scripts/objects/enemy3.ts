@@ -14,7 +14,7 @@ module objects {
         private _dy: number;
         private _dx: number;
         private _startY: number;
-        private _life: number = 5;
+        private _life: number = 4;
         private _hitTime: number;
         //private _explosion:objects.GameObject;
 
@@ -94,19 +94,27 @@ module objects {
             this._life--;
             this._hitTime = createjs.Ticker.getTime();
             if (this._life === 0) {
+                this._hitTime = 0;
+                this._dx = 0;
+                this._dy = 0;
                 missionProgress++
-                this._reset();
+                this.gotoAndPlay("explosion");
+                //this._reset();
                 score += 300;
             }
         }
 
+        public reset(): void {
+            this._reset();
+        }
         // PRIVATE METHODS ++++++++++++++++++++++++++++++++++++++++++++
         private _reset(): void {
             // set it to invisible while moving, to prevent
             // blinking/flickering effect where it jumps to the side
             this.alpha = 0
+            this.gotoAndStop("enemy3");
             this.isColliding = false;
-            this._life = 5;
+            this._life = 4;
             this._dx = Math.floor((Math.random() * 5) + 6); // vertical drispeedft
             this._dy = Math.floor((Math.random() * 4) + 1); // horizontal drift
 

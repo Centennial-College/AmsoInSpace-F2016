@@ -87,7 +87,8 @@ var objects;
                 this._dx = 0;
                 this._dy = 0;
                 missionProgress++;
-                this._reset();
+                this.gotoAndPlay("explosion");
+                //this._reset();
                 score += 100;
             }
         };
@@ -99,6 +100,7 @@ var objects;
             // set it to invisible while moving, to prevent
             // blinking/flickering effect where it jumps to the side
             this.alpha = 0;
+            this.gotoAndStop("enemy2");
             this.isColliding = false;
             this._life = 2;
             this._dx = Math.floor((Math.random() * 8) + 5); // horizontal drispeedft

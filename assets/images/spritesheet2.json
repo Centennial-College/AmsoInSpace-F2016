@@ -1,0 +1,84 @@
+{
+
+"images": [
+    "spritesheet.png"
+],
+
+"frames": [
+    [1, 1, 277, 274, 0, 0, 0],
+    [280, 1, 252, 250, 0, 0, 0],
+    [534, 1, 252, 250, 0, 0, 0],
+    [788, 1, 214, 212, 0, 0, 0],
+    [1004, 1, 18, 17, 0, 0, 0],
+    [788, 215, 140, 120, 0, 0, 0],
+    [930, 215, 80, 49, 0, 0, 0],
+    [930, 266, 39, 11, 0, 0, 0],
+    [280, 253, 250, 188, 0, 0, 0],
+    [532, 253, 140, 120, 0, 0, 0],
+    [674, 253, 94, 58, 0, 0, 0],
+    [1, 277, 140, 120, 0, 0, 0],
+    [143, 277, 120, 108, 0, 0, 0],
+    [1, 399, 140, 120, 0, 0, 0],
+    [674, 337, 300, 96, 0, 0, 0],
+    [532, 375, 140, 120, 0, 0, 0],
+    [674, 435, 300, 96, 0, 0, 0],
+    [143, 443, 140, 120, 0, 0, 0],
+    [1, 521, 140, 120, 0, 0, 0],
+    [285, 443, 140, 120, 0, 0, 0],
+    [427, 497, 140, 120, 0, 0, 0],
+    [143, 565, 140, 120, 0, 0, 0],
+    [1, 643, 140, 120, 0, 0, 0],
+    [285, 565, 140, 120, 0, 0, 0],
+    [569, 533, 171, 85, 0, 0, 0],
+    [742, 533, 148, 88, 0, -2, -3],
+    [427, 620, 200, 59, 0, 0, 0],
+    [629, 623, 200, 59, 0, 0, 0],
+    [427, 681, 200, 59, 0, 0, 0],
+    [831, 623, 150, 49, 0, 0, 0],
+    [831, 674, 150, 48, 0, 0, 0],
+    [629, 684, 200, 59, 0, 0, 0],
+    [143, 687, 200, 59, 0, 0, 0]
+],
+
+"animations": {
+    "shield_l": { "frames": [0] },
+    "kbcontrols": { "frames": [1] },
+    "mousecontrols": { "frames": [2] },
+    "shield_m": { "frames": [3] },
+    "enemy_bullet": { "frames": [4] },
+    "explosion01": { "frames": [5] },
+    "diamond": { "frames": [6] },
+    "player_bullet": { "frames": [7] },
+    "enemy3": { "frames": [8] },
+    "explosion02": { "frames": [9] },
+    "missile_large_red": { "frames": [10] },
+    "explosion03": { "frames": [11] },
+    "enemy1": { "frames": [12] },
+    "explosion04": { "frames": [13] },
+    "Saja_b": { "frames": [14] },
+    "explosion05": { "frames": [15] },
+    "Saja_w": { "frames": [16] },
+    "explosion06": { "frames": [17] },
+    "explosion07": { "frames": [18] },
+    "explosion08": { "frames": [19] },
+    "explosion09": { "frames": [20] },
+    "explosion10": { "frames": [21] },
+    "explosion11": { "frames": [22] },
+    "explosion12": { "frames": [23] },
+    "enemy2": { "frames": [24] },
+    "missile_round_yellow_enemy_l": { "frames": [25] },
+    "instructionsBtn": { "frames": [26] },
+    "menubtn": { "frames": [27] },
+    "playagainbtn": { "frames": [28] },
+    "player": { "frames": [29] },
+    "friend": { "frames": [30] },
+    "playgameBtn": { "frames": [31] },
+    "upgradesbtn": { "frames": [32] }
+},
+
+"texturepacker": [
+        "SmartUpdateHash: $TexturePacker:SmartUpdate:5a83646427c8ac5b5d622f860cd5d64f:70d11553ef44a2cc9acd5efd78c610b6:729adc6043343cfda41c447ce8f464d6$",
+        "Created with TexturePacker (https://www.codeandweb.com/texturepacker) for EaselJS"
+]
+
+}
