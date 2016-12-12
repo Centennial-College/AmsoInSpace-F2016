@@ -182,7 +182,7 @@ module scenes {
          * @memberOf Menu
          */
         private _instructionsBtnClick(): void {
-            scene = config.Scene.RULE;
+            scene = config.Scene.INSTRUCTIONS;
             changeScene();
         }
     } // end class Menu
