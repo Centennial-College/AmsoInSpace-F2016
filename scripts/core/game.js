@@ -23,6 +23,8 @@ var lives = 5;
 var level = 1;
 var beamEnergyPercent;
 var mouseControls;
+var missionGoal;
+var missionProgress;
 // Game Scenes;
 var currentScene;
 // Preload Assets
@@ -105,6 +107,7 @@ function init() {
         }
     };
     textureAtlas = new createjs.SpriteSheet(atlasData);
+    // mouseControls = true
     scene = config.Scene.MENU;
     changeScene();
 }

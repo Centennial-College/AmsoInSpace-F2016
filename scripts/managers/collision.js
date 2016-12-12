@@ -2,8 +2,8 @@
  * @file collision.ts
  * @author Chamsol Yoon cyoon2@my.centennialcollege.ca
  * @author Kevin Ma kma45@my.centennialcollege.ca
- * @date December 6 2016
- * @version 0.3.4 fixed collisions for current game objects
+ * @date December 11 2016
+ * @version 0.4.2 - added mission objectives to scrollingLevel
  * @description Defines behaviors for collision manager, handles collisions
  *              of various game objects in the game.
  **/
@@ -28,6 +28,7 @@ var managers;
                         createjs.Sound.play("diamond_sound");
                         score += 100;
                         other.visible = false;
+                        return true;
                     }
                     // only check for collisions if player hasn't collided 
                     if (!prime.isColliding) {
@@ -38,6 +39,7 @@ var managers;
                             // if player is colliding, set to invulnerable for brief duration
                             prime.isColliding = true;
                             other.destroy(); // asteroid explodes upon collision w/player
+                            return true;
                         }
                         // player colliding with enemy2
                         if (other.objName === "enemy2") {
@@ -45,6 +47,7 @@ var managers;
                             createjs.Sound.play("enemy1_sound");
                             lives -= 1;
                             prime.isColliding = true;
+                            return true;
                         }
                         // player colliding with enemy2's bullets
                         if (other.objName === "enemy2_bullet") {
@@ -52,6 +55,7 @@ var managers;
                             lives -= 1;
                             prime.isColliding = true;
                             other.destroy(); // bullets explode upon collision
+                            return true;
                         }
                         // enemy colliding with player bullets
                         if (other.objName === "player_bullet") {
@@ -59,10 +63,13 @@ var managers;
                             prime.destroy();
                             other.destroy();
                             score += 300;
+                            return true;
                         }
                     }
                 }
             }
+            // not colliding
+            return false;
         };
         return Collision;
     }());

@@ -27,7 +27,8 @@ var lives: number = 5;
 let level: number = 1;
 let beamEnergyPercent: number
 let mouseControls: boolean
-
+let missionGoal: number
+let missionProgress: number
 
 // Game Scenes;
 let currentScene: objects.Scene;
@@ -123,6 +124,7 @@ function init() {
 
     textureAtlas = new createjs.SpriteSheet(atlasData);
 
+    // mouseControls = true
     scene = config.Scene.MENU;
     changeScene();
 }

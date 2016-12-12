@@ -2,8 +2,8 @@
  * @file scrollingLevel.ts
  * @author Chamsol Yoon cyoon2@my.centennialcollege.ca
  * @author Kevin Ma kma45@my.centennialcollege.ca
- * @date December 6 2016
- * @version 0.3.8 implemented diff controls feature
+ * @date December 11 2016
+ * @version 0.4.2 - added mission objectives to scrollingLevel
  * @description This will be the training level in the game
  **/
 
@@ -31,6 +31,9 @@ module scenes {
             level = 1
             score = 0
 
+            missionGoal = 1000
+            missionProgress = 0
+
             this._diamonds = new Array<objects.Diamond>();
             for (var count: number = 0; count < 1; count++) {
                 this._diamonds.push(new objects.Diamond());
@@ -52,8 +55,12 @@ module scenes {
 
             this._diamonds.forEach(diamond => {
                 diamond.update();
-                this._collision.check(this._player, diamond);
+                if (this._collision.check(this._player, diamond))
+                    missionProgress += 100
             });
+
+            this._missionObjectiveLbl.text = "- Earn enough money to fix the ship: " + missionProgress +
+                "/" + missionGoal
 
             this._asteroids.forEach(asteroid => {
                 asteroid.update();
@@ -62,7 +69,7 @@ module scenes {
 
             // level 1 requires score of 1000 points to advance to the next level
             // if (score >= 1000 && !this._canAdvanceToNextLevel) {
-            if (score >= 1000 && !this._levelComplete) {
+            if (missionProgress >= missionGoal && !this._levelComplete) {
                 // this._canAdvanceToNextLevel = true
                 this._advanceToNextLevel()
                 this._bgSound.stop()
