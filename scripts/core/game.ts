@@ -138,6 +138,7 @@ function init() {
     textureAtlas = new createjs.SpriteSheet(atlasData);
 
     // mouseControls = true
+    // scene = config.Scene.LEVEL2;
     scene = config.Scene.MENU;
     changeScene();
 }

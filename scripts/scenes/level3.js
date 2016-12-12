@@ -70,9 +70,6 @@ var scenes;
                 if (_this._collision.check(_this._player, enemy)) {
                     enemy.destroy();
                 }
-                if (enemy.currentFrame === 23) {
-                    enemy.reset();
-                }
                 enemy._bullets.forEach(function (bullet) {
                     _this._collision.check(_this._player, bullet);
                 });

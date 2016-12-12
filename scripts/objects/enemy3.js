@@ -84,7 +84,7 @@ var objects;
                 this._dy = 0;
                 missionProgress++;
                 this.gotoAndPlay("explosion1");
-                //this._reset();
+                this.on("animationend", this._reset);
                 score += 300;
             }
         };

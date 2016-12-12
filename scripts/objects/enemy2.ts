@@ -115,6 +115,7 @@ module objects {
             // blinking/flickering effect where it jumps to the side
             this.alpha = 0;
             this.gotoAndStop("enemy2");
+            this.on("animationend",this._reset)
             this.isColliding = false;
             this._life = 2;
             this._dx = Math.floor((Math.random() * 8) + 5); // horizontal drispeedft

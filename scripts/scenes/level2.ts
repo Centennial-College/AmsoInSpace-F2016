@@ -82,9 +82,7 @@ module scenes {
                 if (this._collision.check(this._player, enemy)) {
                     enemy.destroy()
                 }
-                if (enemy.currentFrame === 31) {
-                    enemy.reset();
-                }
+               
                 enemy._bullets.forEach(bullet => {
                     this._collision.check(this._player, bullet)
                 });

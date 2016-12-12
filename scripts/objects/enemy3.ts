@@ -50,10 +50,10 @@ module objects {
                 this.y -= this._dy;
             if (this.x > 700)
                 this.x -= this._dx;
-            
+
             // blink when enemy3 is hit
-            if(createjs.Ticker.getTime() - this._hitTime < 400) {
-                if(createjs.Ticker.getTime() % 20 >= 10) {
+            if (createjs.Ticker.getTime() - this._hitTime < 400) {
+                if (createjs.Ticker.getTime() % 20 >= 10) {
                     this.alpha = 0.5;
                 } else {
                     this.alpha = 1;
@@ -99,7 +99,7 @@ module objects {
                 this._dy = 0;
                 missionProgress++
                 this.gotoAndPlay("explosion1");
-                //this._reset();
+                this.on("animationend", this._reset)
                 score += 300;
             }
         }
