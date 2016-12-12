@@ -3,8 +3,8 @@
  * @file game.ts
  * @author Chamsol Yoon cyoon2@my.centennialcollege.ca
  * @author Kevin Ma kma45@my.centennialcollege.ca
- * @date December 6 2016
- * @version 0.3.7 added controlSelection scene
+ * @date December 11 2016
+ * @version 0.3.9 - implemented instructions scene
  * @description This file starts the game
  **/
 // Global Variable
@@ -34,6 +34,7 @@ var assetData = [
     { id: "upgradesbtn", src: "../../assets/images/upgradesbtn.png" },
     { id: "kbcontrols", src: "../../assets/images/kbcontrols.png" },
     { id: "mousecontrols", src: "../../assets/images/mousecontrols.png" },
+    { id: "letsbeginbtn", src: "../../assets/images/letsbeginbtn.png" },
     { id: "rules", src: "../../assets/images/instruction.png" },
     { id: "bg1", src: "../../assets/images/background1.png" },
     { id: "bg2", src: "../../assets/images/background2.png" },
@@ -146,10 +147,10 @@ function changeScene() {
             currentScene = new scenes.Menu();
             console.log("Menu Scene changed");
             break;
-        case config.Scene.RULE:
+        case config.Scene.INSTRUCTIONS:
             stage.removeAllChildren();
-            currentScene = new scenes.Rule();
-            console.log("Rule Scene changed");
+            currentScene = new scenes.Instructions();
+            console.log("Instructions Scene changed");
             break;
         case config.Scene.LEVEL1:
             stage.removeAllChildren();

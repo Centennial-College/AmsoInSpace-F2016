@@ -160,7 +160,7 @@ var scenes;
          * @memberOf Menu
          */
         Menu.prototype._instructionsBtnClick = function () {
-            scene = config.Scene.RULE;
+            scene = config.Scene.INSTRUCTIONS;
             changeScene();
         };
         return Menu;
