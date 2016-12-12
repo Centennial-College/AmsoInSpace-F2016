@@ -18,15 +18,14 @@
     [1292, 182, 200, 59, 0, 0, 0],
     [1368, 1, 120, 108, 0, 0, 0],
     [1444, 111, 200, 59, 0, 0, 0],
-    [1494, 172, 200, 59, 0, 0, 0],
-    [1494, 233, 18, 17, 0, 0, 0],
-    [1514, 233, 39, 11, 0, 0, 0],
-    [1696, 1, 171, 85, 0, 0, 0],
-    [1490, 1, 200, 59, 0, 0, 0],
-    [1646, 88, 153, 49, 0, 0, 0],
-    [1801, 88, 80, 49, 0, 0, 0],
-    [1696, 139, 153, 49, 0, 0, 0],
-    [1696, 190, 150, 49, 0, 0, 0]
+    [1646, 1, 200, 59, 0, 0, 0],
+    [1490, 1, 153, 49, 0, 0, 0],
+    [1490, 52, 153, 49, 0, 0, 0],
+    [1646, 62, 200, 59, 0, 0, 0],
+    [1494, 172, 80, 49, 0, 0, 0],
+    [1494, 223, 18, 17, 0, 0, 0],
+    [1514, 223, 39, 11, 0, 0, 0],
+    [1646, 123, 171, 85, 0, 0, 0]
 ],
 
 "animations": {
@@ -44,18 +43,17 @@
     "enemy1": { "frames": [11] },
     "playagainbtn": { "frames": [12] },
     "playgameBtn": { "frames": [13] },
-    "enemy2_bullet": { "frames": [14] },
-    "player_bullet": { "frames": [15] },
-    "enemy2": { "frames": [16] },
-    "upgradesbtn": { "frames": [17] },
-    "playerFT": { "frames": [18] },
-    "diamond": { "frames": [19] },
-    "playerSD": { "frames": [20] },
-    "player": { "frames": [21] }
+    "playerFT": { "frames": [14] },
+    "playerSD": { "frames": [15] },
+    "upgradesbtn": { "frames": [16] },
+    "diamond": { "frames": [17] },
+    "enemy2_bullet": { "frames": [18] },
+    "player_bullet": { "frames": [19] },
+    "enemy2": { "frames": [20] }
 },
 
 "texturepacker": [
-        "SmartUpdateHash: $TexturePacker:SmartUpdate:80a269bc9ad1da20091dc7fdf015cbe5:f5a0b67d25b6562d2658bca85eff7d94:729adc6043343cfda41c447ce8f464d6$",
+        "SmartUpdateHash: $TexturePacker:SmartUpdate:ff9925e2cb16bdf76d3d65fb49ef0b57:749de44f4f0de82a64f7cdf9238de50d:729adc6043343cfda41c447ce8f464d6$",
         "Created with TexturePacker (https://www.codeandweb.com/texturepacker) for EaselJS"
 ]
 

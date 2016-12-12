@@ -68,16 +68,17 @@ function init() {
             [1090, 191, 200, 59, 0, 0, 0],
             [1242, 1, 124, 118, 0, 0, 0],
             [1242, 121, 200, 59, 0, 0, 0],
-            [1368, 1, 120, 108, 0, 0, 0],
             [1292, 182, 200, 59, 0, 0, 0],
-            [1292, 243, 39, 11, 0, 0, 0],
+            [1368, 1, 120, 108, 0, 0, 0],
             [1444, 111, 200, 59, 0, 0, 0],
-            [1490, 1, 171, 85, 0, 0, 0],
-            [1490, 88, 18, 17, 0, 0, 0],
-            [1494, 172, 200, 59, 0, 0, 0],
-            [1646, 88, 153, 49, 0, 0, 0],
-            [1663, 1, 153, 49, 0, 0, 0],
-            [1696, 139, 80, 49, 0, 0, 0]
+            [1646, 1, 200, 59, 0, 0, 0],
+            [1490, 1, 153, 49, 0, 0, 0],
+            [1490, 52, 153, 49, 0, 0, 0],
+            [1646, 62, 200, 59, 0, 0, 0],
+            [1494, 172, 80, 49, 0, 0, 0],
+            [1494, 223, 18, 17, 0, 0, 0],
+            [1514, 223, 39, 11, 0, 0, 0],
+            [1646, 123, 171, 85, 0, 0, 0]
         ],
         "animations": {
             "kbcontrols": { "frames": [0] },
@@ -90,16 +91,17 @@ function init() {
             "instructionsBtn": { "frames": [7] },
             "explosion_s": { "frames": [8] },
             "letsbeginbtn": { "frames": [9] },
-            "enemy1": { "frames": [10] },
-            "menubtn": { "frames": [11] },
-            "player_bullet": { "frames": [12] },
-            "playagainbtn": { "frames": [13] },
-            "enemy2": { "frames": [14] },
-            "enemy2_bullet": { "frames": [15] },
-            "playgameBtn": { "frames": [16] },
-            "playerFT": { "frames": [17] },
-            "playerSD": { "frames": [18] },
-            "diamond": { "frames": [19] }
+            "menubtn": { "frames": [10] },
+            "enemy1": { "frames": [11] },
+            "playagainbtn": { "frames": [12] },
+            "playgameBtn": { "frames": [13] },
+            "playerFT": { "frames": [14] },
+            "playerSD": { "frames": [15] },
+            "upgradesbtn": { "frames": [16] },
+            "diamond": { "frames": [17] },
+            "enemy2_bullet": { "frames": [18] },
+            "player_bullet": { "frames": [19] },
+            "enemy2": { "frames": [20] }
         }
     };
     textureAtlas = new createjs.SpriteSheet(atlasData);
