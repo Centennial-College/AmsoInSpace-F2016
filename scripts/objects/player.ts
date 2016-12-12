@@ -2,8 +2,9 @@
  * @file player.ts
  * @author Chamsol Yoon cyoon2@my.centennialcollege.ca
  * @author Kevin Ma kma45@my.centennialcollege.ca
- * @date December 6 2016
- * @version 0.3.8 implemented diff controls feature
+ * @date December 11 2016
+ * @version 0.4.0 added type property to Player, Speed Demon or FatTank 
+ *          depending on controls selection
  * @description Behavior and Properties of Player GameObject
  **/
 
@@ -28,9 +29,11 @@ module objects {
         constructor(
             private _moveSpeed: number = 10,
             private _fireRate: number = 10,
-            private _reload: number = 0
+            private _reload: number = 0,
+            private _type: string =
+                mouseControls ? "playerFT" : "playerSD"
         ) {
-            super("player")
+            super(_type)
 
             this.start();
         }

@@ -40,5 +40,13 @@ var config;
         return Game;
     }());
     config.Game = Game;
+    var ShipType = (function () {
+        function ShipType() {
+        }
+        ShipType.SPEED_DEMON = 666;
+        ShipType.FAT_TANK = 9000;
+        return ShipType;
+    }());
+    config.ShipType = ShipType;
 })(config || (config = {}));
 //# sourceMappingURL=config.js.map

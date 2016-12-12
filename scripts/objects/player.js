@@ -2,8 +2,9 @@
  * @file player.ts
  * @author Chamsol Yoon cyoon2@my.centennialcollege.ca
  * @author Kevin Ma kma45@my.centennialcollege.ca
- * @date December 6 2016
- * @version 0.3.8 implemented diff controls feature
+ * @date December 11 2016
+ * @version 0.4.0 added type property to Player, Speed Demon or FatTank
+ *          depending on controls selection
  * @description Behavior and Properties of Player GameObject
  **/
 var __extends = (this && this.__extends) || function (d, b) {
@@ -16,14 +17,16 @@ var objects;
     var Player = (function (_super) {
         __extends(Player, _super);
         // CONSTRUCTORS +++++++++++++++++++++++++++++++++++++++++++++++
-        function Player(_moveSpeed, _fireRate, _reload) {
+        function Player(_moveSpeed, _fireRate, _reload, _type) {
             if (_moveSpeed === void 0) { _moveSpeed = 10; }
             if (_fireRate === void 0) { _fireRate = 10; }
             if (_reload === void 0) { _reload = 0; }
-            _super.call(this, "player");
+            if (_type === void 0) { _type = mouseControls ? "playerFT" : "playerSD"; }
+            _super.call(this, _type);
             this._moveSpeed = _moveSpeed;
             this._fireRate = _fireRate;
             this._reload = _reload;
+            this._type = _type;
             // PRIVATE VARIABLES ++++++++++++++++++++++++++++++++++++++++++
             this._isArmorOn = false;
             this._livesOfArmor = 2;
