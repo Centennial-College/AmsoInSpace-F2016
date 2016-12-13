@@ -24,6 +24,7 @@ var scenes;
         Win.prototype.start = function () {
             console.log("Gamewin Scene started");
             createjs.Sound.play('gamewin');
+            createjs.Sound.stop();
             // Setting up BACKGROUND
             this._bg = new objects.Background(currBgImgString, 0, 1);
             this._bgBuffer = new objects.Background(currBgImgString, 1024, 1);

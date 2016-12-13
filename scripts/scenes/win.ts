@@ -29,6 +29,7 @@ module scenes {
             console.log("Gamewin Scene started");
 
             createjs.Sound.play('gamewin')
+            createjs.Sound.stop()
 
             // Setting up BACKGROUND
             this._bg = new objects.Background(currBgImgString, 0, 1);
