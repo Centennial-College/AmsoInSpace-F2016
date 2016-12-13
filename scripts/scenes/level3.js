@@ -95,6 +95,9 @@ var scenes;
             // run only once when when boss is coming out
             if (missionProgress >= missionGoal && !this._bossFlag) {
                 this._bossFlag = true;
+                this._lblLevel.text = "SAJA :";
+                this._createSajaHPBar();
+                this._missionObjectiveLbl.text = "";
                 // code from super._advanceToNextLevel()
                 this.addChild(this._lblLevelComplete = new objects.Label("MISSION " + level + " COMPLETE!", "40px customfont", "#fff", config.Screen.CENTER_X, config.Screen.CENTER_Y));
                 this._lblLevelComplete.shadow = new createjs.Shadow("#fff", 0, 0, 2);
@@ -131,7 +134,7 @@ var scenes;
                     _this._collision.check(_this._player, bullet);
                 });
             });
-            this._missionObjectiveLbl.text = "- Destroy enemy ships to get ship parts: " + missionProgress + "/" + missionGoal;
+            this._missionObjectiveLbl.text = "- Defeat Saja's Grand Generals: " + missionProgress + "/" + missionGoal;
         };
         Level3.prototype._bossStage = function () {
             var _this = this;
@@ -148,6 +151,8 @@ var scenes;
             else if (createjs.Ticker.getTime() - this._bossSpawnTime > 2500) {
                 this._bossSignal.alpha = 0;
                 this._boss.update();
+                this._updateSajaHPBar();
+                console.log('ticker paused: ' + createjs.Ticker.paused);
                 if (this._collision.check(this._player, this._boss)) {
                     this._boss.destroy();
                 }
@@ -155,7 +160,25 @@ var scenes;
                     _this._collision.check(_this._player, bullet);
                 });
             }
-            this._missionObjectiveLbl.text = "- Defeat Saja's Grand Generals: " + missionProgress + "/" + missionGoal;
+        };
+        Level3.prototype._createSajaHPBar = function () {
+            this._sajaHPBar = new createjs.Shape();
+            this._sajaHPBar.x = config.Screen.CENTER_X - 175;
+            this._sajaHPBar.y = config.Screen.HEIGHT - 65;
+            this._sajaHPBar.graphics.setStrokeStyle(2);
+            this._sajaHPBar.graphics.beginStroke('#000');
+            this._sajaHPBar.graphics.drawRect(0, 0, 300, 20);
+            this.addChild(this._sajaHPBar);
+        };
+        Level3.prototype._updateSajaHPBar = function () {
+            this._sajaHPBar.graphics.clear();
+            this._sajaHPBar.graphics.beginFill('#f00');
+            this._sajaHPBar.graphics.drawRect(0, 0, 300 * this._boss._life / 20, 20);
+            this._sajaHPBar.graphics.endFill();
+            this._sajaHPBar.graphics.setStrokeStyle(2);
+            this._sajaHPBar.graphics.beginStroke('#000');
+            this._sajaHPBar.graphics.drawRect(0, 0, 300, 20);
+            this._sajaHPBar.graphics.endStroke();
         };
         // clear enemy3s and their bullets
         Level3.prototype._clearStage = function () {

@@ -16,7 +16,6 @@ module objects {
         private _dyF: boolean = true; // distinguish +-
         private _dx: number;
         private _dxF: boolean = true; // distinguish +-
-        private _life: number = 10;
         private _hitTime: number;
         //private _explosion:objects.GameObject;
 
@@ -24,6 +23,7 @@ module objects {
         public DefaultFireRate: number = 10;
         public Reload: number = 0;
         public _bullets: objects.Saja_bullet[];
+        public _life: number = 10;
 
 
         // CONSTRUCTORS +++++++++++++++++++++++++++++++++++++++++++++++

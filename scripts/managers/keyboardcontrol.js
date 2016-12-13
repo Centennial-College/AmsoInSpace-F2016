@@ -48,14 +48,7 @@ var managers;
             }
             // P key - for pause
             if (event.keyCode === 80) {
-                if (createjs.Ticker.paused) {
-                    createjs.Ticker.paused = false;
-                }
-                else {
-                    currentScene.addChild(pause = new scenes.Pause());
-                    // currentScene.update()
-                    createjs.Ticker.paused = true;
-                }
+                createjs.Ticker.paused = !createjs.Ticker.paused;
             }
         };
         KeyboardControls.prototype.onKeyUp = function (event) {

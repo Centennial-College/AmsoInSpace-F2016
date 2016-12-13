@@ -17,6 +17,7 @@ module scenes {
         private _bossFlag: boolean;
         private _bossSpawnTime: number;
         private _bossSignal: objects.Label;
+        private _sajaHPBar: createjs.Shape
 
         private _boss: objects.Saja;
 
@@ -116,6 +117,9 @@ module scenes {
             // run only once when when boss is coming out
             if (missionProgress >= missionGoal && !this._bossFlag) {
                 this._bossFlag = true;
+                this._lblLevel.text = "SAJA :"
+                this._createSajaHPBar()
+                this._missionObjectiveLbl.text = "";
 
                 // code from super._advanceToNextLevel()
                 this.addChild(this._lblLevelComplete = new objects.Label("MISSION " + level + " COMPLETE!", "40px customfont", "#fff", config.Screen.CENTER_X, config.Screen.CENTER_Y))
@@ -157,7 +161,7 @@ module scenes {
                     this._collision.check(this._player, bullet)
                 });
             });
-            this._missionObjectiveLbl.text = "- Destroy enemy ships to get ship parts: " + missionProgress + "/" + missionGoal;
+            this._missionObjectiveLbl.text = "- Defeat Saja's Grand Generals: " + missionProgress + "/" + missionGoal;
         }
 
         private _bossStage(): void {
@@ -175,6 +179,9 @@ module scenes {
             } else if (createjs.Ticker.getTime() - this._bossSpawnTime > 2500) {
                 this._bossSignal.alpha = 0;
                 this._boss.update();
+                this._updateSajaHPBar()
+                console.log('ticker paused: ' + createjs.Ticker.paused);
+
                 if (this._collision.check(this._player, this._boss)) {
                     this._boss.destroy();
                 }
@@ -182,7 +189,27 @@ module scenes {
                     this._collision.check(this._player, bullet);
                 })
             }
-            this._missionObjectiveLbl.text = "- Defeat Saja's Grand Generals: " + missionProgress + "/" + missionGoal;
+        }
+
+        private _createSajaHPBar(): void {
+            this._sajaHPBar = new createjs.Shape();
+            this._sajaHPBar.x = config.Screen.CENTER_X - 175
+            this._sajaHPBar.y = config.Screen.HEIGHT - 65
+            this._sajaHPBar.graphics.setStrokeStyle(2);
+            this._sajaHPBar.graphics.beginStroke('#000');
+            this._sajaHPBar.graphics.drawRect(0, 0, 300, 20);
+            this.addChild(this._sajaHPBar);
+        }
+
+        private _updateSajaHPBar(): void {
+            this._sajaHPBar.graphics.clear();
+            this._sajaHPBar.graphics.beginFill('#f00');
+            this._sajaHPBar.graphics.drawRect(0, 0, 300 * this._boss._life / 20, 20);
+            this._sajaHPBar.graphics.endFill();
+            this._sajaHPBar.graphics.setStrokeStyle(2);
+            this._sajaHPBar.graphics.beginStroke('#000');
+            this._sajaHPBar.graphics.drawRect(0, 0, 300, 20);
+            this._sajaHPBar.graphics.endStroke();
         }
 
         // clear enemy3s and their bullets

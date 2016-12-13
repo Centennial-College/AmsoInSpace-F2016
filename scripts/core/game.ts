@@ -141,27 +141,27 @@ function init() {
             "beam_m": { "frames": [9] },
             "shield_m": { "frames": [10] },
             "explosion1": { "frames": [12, 15, 16, 21, 22, 25, 26, 29, 31, 33, 34, 39] },
-             "instructionsBtn": { "frames": [13] },
-             "Saja_w": { "frames": [14] },
-             "playerFT_move": { "frames": [17] },
-             "enemy2": { "frames": [18] },
-             "letsbeginbtn": { "frames": [19] },
-             "menubtn": { "frames": [20] },
-             "playagainbtn": { "frames": [23] },
-             "playgameBtn": { "frames": [24] },
+            "instructionsBtn": { "frames": [13] },
+            "Saja_w": { "frames": [14] },
+            "playerFT_move": { "frames": [17] },
+            "enemy2": { "frames": [18] },
+            "letsbeginbtn": { "frames": [19] },
+            "menubtn": { "frames": [20] },
+            "playagainbtn": { "frames": [23] },
+            "playgameBtn": { "frames": [24] },
             "upgradesbtn": { "frames": [27] },
-             "playerSD_move": { "frames": [28] },
-             "enemy3_bullet": { "frames": [30] },
-             "missile_round_blue_enemy_m": { "frames": [32] },
-             "playerFT": { "frames": [35] },
-             "playerSD": { "frames": [36] },
-             "enemy1": { "frames": [37] },
-             "saja_bullet": { "frames": [38] },
-             "explosion_s": { "frames": [40] },
-             "diamond": { "frames": [41] },
-             "missile_round_blue": { "frames": [42] },
-             "player_bullet": { "frames": [43] },
-             "enemy2_bullet": { "frames": [44] }
+            "playerSD_move": { "frames": [28] },
+            "enemy3_bullet": { "frames": [30] },
+            "missile_round_blue_enemy_m": { "frames": [32] },
+            "playerFT": { "frames": [35] },
+            "playerSD": { "frames": [36] },
+            "enemy1": { "frames": [37] },
+            "saja_bullet": { "frames": [38] },
+            "explosion_s": { "frames": [40] },
+            "diamond": { "frames": [41] },
+            "missile_round_blue": { "frames": [42] },
+            "player_bullet": { "frames": [43] },
+            "enemy2_bullet": { "frames": [44] }
         },
     };
 
@@ -176,10 +176,10 @@ function init() {
 }
 
 function gameLoop(event: createjs.Event): void {
-    if (createjs.Ticker.paused) {
-        pause.update()
-        createjs.Sound.stop()
-    }
+    // if (createjs.Ticker.paused) {
+    //     pause.update()
+    //     createjs.Sound.stop()
+    // }
 
     if (!createjs.Ticker.paused) {
         console.log("gameloop updated");
@@ -225,11 +225,11 @@ function changeScene(): void {
             currentScene = new scenes.Over();
             console.log("Over Scene changed");
             break;
-        case config.Scene.PAUSE:
-            stage.removeAllChildren();
-            currentScene = new scenes.Pause()
-            console.log("Pause Scene changed");
-            break;
+        // case config.Scene.PAUSE:
+        //     stage.removeAllChildren();
+        //     currentScene = new scenes.Pause()
+        //     console.log("Pause Scene changed");
+        //     break;
         case config.Scene.CONTROLSELECT:
             stage.removeAllChildren();
             currentScene = new scenes.ControlSelection()

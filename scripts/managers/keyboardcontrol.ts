@@ -61,14 +61,17 @@ module managers {
 
             // P key - for pause
             if (event.keyCode === 80) {
-                if (createjs.Ticker.paused) {
-                    createjs.Ticker.paused = false;
-                    // currentScene.removeChild(pause)
-                } else {
-                    currentScene.addChild(pause = new scenes.Pause())
-                    // currentScene.update()
-                    createjs.Ticker.paused = true;
-                }
+
+                createjs.Ticker.paused = !createjs.Ticker.paused
+
+                // if (createjs.Ticker.paused) {
+                //     createjs.Ticker.paused = false;
+                //     // currentScene.removeChild(pause)
+                // } else {
+                //     // currentScene.addChild(pause = new scenes.Pause())
+                //     // currentScene.update()
+                //     createjs.Ticker.paused = true;
+                // }
                 // createjs.Ticker.paused = createjs.Ticker.paused ? false : true;
                 // currentScene.addChild(new objects.Label("-PAUSED-", "60px customfont", "#fff", config.Screen.CENTER_X, config.Screen.CENTER_Y))
                 // this.paused = (this.paused) ? false : true;

@@ -155,10 +155,10 @@ function init() {
     changeScene();
 }
 function gameLoop(event) {
-    if (createjs.Ticker.paused) {
-        pause.update();
-        createjs.Sound.stop();
-    }
+    // if (createjs.Ticker.paused) {
+    //     pause.update()
+    //     createjs.Sound.stop()
+    // }
     if (!createjs.Ticker.paused) {
         console.log("gameloop updated");
         currentScene.update();
@@ -201,11 +201,11 @@ function changeScene() {
             currentScene = new scenes.Over();
             console.log("Over Scene changed");
             break;
-        case config.Scene.PAUSE:
-            stage.removeAllChildren();
-            currentScene = new scenes.Pause();
-            console.log("Pause Scene changed");
-            break;
+        // case config.Scene.PAUSE:
+        //     stage.removeAllChildren();
+        //     currentScene = new scenes.Pause()
+        //     console.log("Pause Scene changed");
+        //     break;
         case config.Scene.CONTROLSELECT:
             stage.removeAllChildren();
             currentScene = new scenes.ControlSelection();

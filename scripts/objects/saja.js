@@ -25,11 +25,11 @@ var objects;
             this._sajaPoweredUp = _sajaPoweredUp;
             this._dyF = true; // distinguish +-
             this._dxF = true; // distinguish +-
-            this._life = 10;
             //private _explosion:objects.GameObject;
             // PUBLIC VARIABLES +++++++++++++++++++++++++++++++++++++++++++
             this.DefaultFireRate = 10;
             this.Reload = 0;
+            this._life = 10;
             this.start();
         }
         // PUBLIC METHODS +++++++++++++++++++++++++++++++++++++++++++++
