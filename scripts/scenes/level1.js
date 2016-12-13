@@ -60,7 +60,7 @@ var scenes;
             // if (score >= 1000 && !this._canAdvanceToNextLevel) {
             if (missionProgress >= missionGoal && !this._levelComplete) {
                 // this._canAdvanceToNextLevel = true
-                scene = config.Scene.LEVEL2;
+                scene = config.Scene.BRIEFING;
                 this._advanceToNextLevel();
                 this._bgSound.stop();
             }

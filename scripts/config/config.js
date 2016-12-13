@@ -2,8 +2,8 @@
  * @file config.ts
  * @author Chamsol Yoon cyoon2@my.centennialcollege.ca
  * @author Kevin Ma kma45@my.centennialcollege.ca
- * @date December 6 2016
- * @version 0.3.7 added controlSelection scene
+ * @date December 12 2016
+ * @version 0.4.7 added missionBriefing.ts
  * @description Defines the global static configuration values for the game
  **/
 var config;
@@ -20,6 +20,7 @@ var config;
         Scene.PAUSE = 6;
         Scene.CONTROLSELECT = 7;
         Scene.WIN = 8;
+        Scene.BRIEFING = 9;
         return Scene;
     }());
     config.Scene = Scene;

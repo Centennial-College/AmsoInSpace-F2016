@@ -21,6 +21,7 @@ var scenes;
         }
         // PUBLIC METHODS +++++++++++++++++++++++++++++++++++++++++++++
         Menu.prototype.start = function () {
+            level = 0; // for mission briefing to work properly
             createjs.Sound.stop();
             console.log("Menu Scene started");
             this._setupBackground();
