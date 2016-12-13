@@ -2,9 +2,8 @@
  * @file player.ts
  * @author Chamsol Yoon cyoon2@my.centennialcollege.ca
  * @author Kevin Ma kma45@my.centennialcollege.ca
- * @date December 11 2016
- * @version 0.4.0 added type property to Player, Speed Demon or FatTank
- *          depending on controls selection
+ * @date December 12 2016
+ * @version 0.4.5 added player throttle animation
  * @description Behavior and Properties of Player GameObject
  **/
 var __extends = (this && this.__extends) || function (d, b) {
@@ -42,7 +41,7 @@ var objects;
             this.y = 300;
             this._bulletSpawnTimer = 5;
             this._keyboardcontrol = new managers.KeyboardControls;
-            this.position = new objects.Vector2(this.x, this.y);
+            this._oldPosition = this.position = new objects.Vector2(this.x, this.y);
             this._isInvulnerable = false;
             // only shoots with mouse if mouse controls selected
             if (mouseControls) {
@@ -53,27 +52,49 @@ var objects;
                 this._bullets.push(new objects.Player_bullet());
             }
         };
+        Player.prototype._showPlayerMoveAnimation = function () {
+            var _this = this;
+            // need to adjust x by this many pixels because the sprite size is different
+            // this.x -= 34
+            this.gotoAndPlay(this._type + '_move');
+            // move back same # of spaces when animation stop playing
+            this.on('animationend', function (e) {
+                _this.gotoAndPlay(_this._type);
+                // this.x += 34
+            });
+        };
         Player.prototype.update = function () {
             if (this._reload < this._fireRate)
                 this._reload++;
+            // old position
+            this._oldPosition = new objects.Vector2(this.x, this.y);
             // only follows mouse if mouse controls selected
             if (mouseControls) {
                 this.x = stage.mouseX;
                 this.y = stage.mouseY;
+                // diff pos, means player moved, should play throttle animation
+                if (this._oldPosition.x != this.x ||
+                    this._oldPosition.y != this.y) {
+                    this._showPlayerMoveAnimation();
+                }
             }
             else {
                 // kb controls selected
                 if (this._keyboardcontrol.moveUp) {
                     this.y -= this._moveSpeed;
+                    this._showPlayerMoveAnimation();
                 }
                 if (this._keyboardcontrol.moveRight) {
                     this.x += this._moveSpeed;
+                    this._showPlayerMoveAnimation();
                 }
                 if (this._keyboardcontrol.moveDown) {
                     this.y += this._moveSpeed;
+                    this._showPlayerMoveAnimation();
                 }
                 if (this._keyboardcontrol.moveLeft) {
                     this.x -= this._moveSpeed;
+                    this._showPlayerMoveAnimation();
                 }
                 if (this._keyboardcontrol.fire) {
                     if (this._reload === this._fireRate) {
