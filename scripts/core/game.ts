@@ -140,29 +140,28 @@ function init() {
             "beam-l": { "frames": [8] },
             "beam_m": { "frames": [9] },
             "shield_m": { "frames": [10] },
-            "explosion_m": { "frames": [11] },
             "explosion1": { "frames": [12, 15, 16, 21, 22, 25, 26, 29, 31, 33, 34, 39] },
-            "instructionsBtn": { "frames": [13] },
-            "Saja_w": { "frames": [14] },
-            "playerFT_move": { "frames": [17] },
-            "enemy2": { "frames": [18] },
-            "letsbeginbtn": { "frames": [19] },
-            "menubtn": { "frames": [20] },
-            "playagainbtn": { "frames": [23] },
-            "playgameBtn": { "frames": [24] },
+             "instructionsBtn": { "frames": [13] },
+             "Saja_w": { "frames": [14] },
+             "playerFT_move": { "frames": [17] },
+             "enemy2": { "frames": [18] },
+             "letsbeginbtn": { "frames": [19] },
+             "menubtn": { "frames": [20] },
+             "playagainbtn": { "frames": [23] },
+             "playgameBtn": { "frames": [24] },
             "upgradesbtn": { "frames": [27] },
-            "playerSD_move": { "frames": [28] },
-            "enemy3_bullet": { "frames": [30] },
-            "missile_round_blue_enemy_m": { "frames": [32] },
-            "playerFT": { "frames": [35] },
-            "playerSD": { "frames": [36] },
-            "enemy1": { "frames": [37] },
-            "missile_large_red": { "frames": [38] },
-            "explosion_s": { "frames": [40] },
-            "diamond": { "frames": [41] },
-            "missile_round_blue": { "frames": [42] },
-            "player_bullet": { "frames": [43] },
-            "enemy2_bullet": { "frames": [44] }
+             "playerSD_move": { "frames": [28] },
+             "enemy3_bullet": { "frames": [30] },
+             "missile_round_blue_enemy_m": { "frames": [32] },
+             "playerFT": { "frames": [35] },
+             "playerSD": { "frames": [36] },
+             "enemy1": { "frames": [37] },
+             "saja_bullet": { "frames": [38] },
+             "explosion_s": { "frames": [40] },
+             "diamond": { "frames": [41] },
+             "missile_round_blue": { "frames": [42] },
+             "player_bullet": { "frames": [43] },
+             "enemy2_bullet": { "frames": [44] }
         },
     };
 
@@ -172,6 +171,7 @@ function init() {
     // level = 2
     // scene = config.Scene.BRIEFING;
     scene = config.Scene.MENU;
+
     changeScene();
 }
 
