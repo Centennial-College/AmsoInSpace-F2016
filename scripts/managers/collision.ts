@@ -62,7 +62,15 @@ module managers {
                             lives -= 1;
                             prime.isColliding = true
                         }
-
+                        
+                        // player colliding with boss
+                        if (other.objName === "Saja_b") {
+                            console.log("hit boss");
+                            createjs.Sound.play("enemy1_sound");
+                            lives -= 1;
+                            prime.isColliding = true
+                        }
+                        
                         // player colliding with enemy2's bullets
                         if (other.objName === "enemy2_bullet") {
                             createjs.Sound.play("enemy1_sound");
@@ -74,6 +82,14 @@ module managers {
 
                         // player colliding with enemy3's bullets
                         if (other.objName === "enemy3_bullet") {
+                            createjs.Sound.play("enemy1_sound");
+                            lives -= 1;
+                            prime.isColliding = true
+                            other.destroy() // bullets explode upon collision
+                        }
+
+                        // player colliding with boss bullets
+                        if (other.objName === "saja_bullet") {
                             createjs.Sound.play("enemy1_sound");
                             lives -= 1;
                             prime.isColliding = true

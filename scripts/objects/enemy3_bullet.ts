@@ -22,7 +22,7 @@ module objects {
         // PUBLIC METHODS +++++++++++++++++++++++++++++++++++++++++++++
         // typescript doesnt let abstract methods be private
         public _checkBounds(): void {
-            if (this.position.x <= this.width * 0.5) {
+            if (this.position.x <= 0 - this.width * 0.5) {
                 super._reset();
             }
         }

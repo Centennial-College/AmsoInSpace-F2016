@@ -148,7 +148,7 @@ function init() {
             "playerSD": { "frames": [33] },
             "playerFT": { "frames": [34] },
             "missile_round_blue_enemy_m": { "frames": [35] },
-            "missile_large_red": { "frames": [36] },
+            "saja_bullet": { "frames": [36] },
             "diamond": { "frames": [37] },
             "missile_round_blue": { "frames": [38] },
             "player_bullet": { "frames": [39] },
