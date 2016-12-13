@@ -92,14 +92,13 @@ var scenes;
             }
             // this._missionObjectiveLbl.text = "- Earn enough money to fix the ship: " + this._missionObjProgress +
             // "/" + this._missionObjectiveGoal
-            // if (missionProgress >= missionGoal && !this._levelComplete) {
-            //     // this._canAdvanceToNextLevel = true
-            //     createjs.Sound.stop()
-            //     scene = config.Scene.WIN
-            //     this._advanceToNextLevel()
-            //     this._bgSound.stop()
-            //     // createjs.Sound.stop()
-            // }
+            if (missionProgress >= missionGoal && !this._levelComplete) {
+                // this._canAdvanceToNextLevel = true
+                createjs.Sound.stop();
+                scene = config.Scene.WIN;
+                this._advanceToNextLevel();
+                this._bgSound.stop();
+            }
         };
         return Level3;
     }(scenes.ScrollingLevel));
