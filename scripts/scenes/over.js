@@ -23,6 +23,7 @@ var scenes;
         }
         // PUBLIC METHODS +++++++++++++++++++++++++++++++++++++++++++++
         Over.prototype.start = function () {
+            createjs.Sound.stop();
             console.log("Gameover Scene started");
             createjs.Sound.play('gameover');
             // Setting up BACKGROUND

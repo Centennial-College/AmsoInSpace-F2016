@@ -33,6 +33,7 @@ module scenes {
         // CONSTRUCTOR ++++++++++++++++++++++++++++++++++++++++++++++++
         constructor(private _bgmString: string, private _bgImgString: string) {
             super();
+            createjs.Sound.stop()
 
             currBgImgString = this._bgImgString
 

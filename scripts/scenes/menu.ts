@@ -28,6 +28,7 @@ module scenes {
 
         // PUBLIC METHODS +++++++++++++++++++++++++++++++++++++++++++++
         public start(): void {
+            createjs.Sound.stop()
             console.log("Menu Scene started");
             this._setupBackground()
             this._setupAmsoMenuImage()

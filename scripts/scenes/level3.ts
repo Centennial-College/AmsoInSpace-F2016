@@ -96,6 +96,7 @@ module scenes {
             this._player._bullets.forEach(bullet => {
                 bullet.update();
                 if(!this._bossFlag){
+
                     this._enemyShips.forEach(enemy => {
                         this._collision.check(enemy, bullet);
                     })
@@ -126,14 +127,13 @@ module scenes {
             // this._missionObjectiveLbl.text = "- Earn enough money to fix the ship: " + this._missionObjProgress +
             // "/" + this._missionObjectiveGoal
 
-            // if (missionProgress >= missionGoal && !this._levelComplete) {
-            //     // this._canAdvanceToNextLevel = true
-            //     createjs.Sound.stop()
-            //     scene = config.Scene.WIN
-            //     this._advanceToNextLevel()
-            //     this._bgSound.stop()
-            //     // createjs.Sound.stop()
-            // }
+            if (missionProgress >= missionGoal && !this._levelComplete) {
+                // this._canAdvanceToNextLevel = true
+                scene = config.Scene.WIN
+                this._advanceToNextLevel()
+                this._bgSound.stop()
+                // createjs.Sound.stop()
+            }
         }
 
         // PRIVATE METHODS ++++++++++++++++++++++++++++++++++++++++++++

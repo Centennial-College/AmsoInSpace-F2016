@@ -19,6 +19,7 @@ var scenes;
             _super.call(this);
             this._bgmString = _bgmString;
             this._bgImgString = _bgImgString;
+            createjs.Sound.stop();
             currBgImgString = this._bgImgString;
             stage.cursor = 'none';
             this._levelComplete = false;

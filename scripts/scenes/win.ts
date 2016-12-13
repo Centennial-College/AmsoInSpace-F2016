@@ -2,7 +2,7 @@
  * @file wins.ts
  * @author Kevin Ma kma45@my.centennialcollege.ca
  * @date December 12 2016
- * @version 0.4.3 added gameover and gamewin sounds
+ * @version 0.4.4 finished basic win scene
  * @description This is the gamewin scene that is displayed
  *              when the player wins the game. 
  **/
@@ -44,16 +44,16 @@ module scenes {
             this._bgBuffer.cache(bgBufBound.x, bgBufBound.y, bgBufBound.width, bgBufBound.height);
             this.addChild(this._bg, this._bgBuffer);
 
-            this._lblGamewin = new objects.Label("Congratulations, you win!", "80px customfont", "#FDFDFD", config.Screen.CENTER_X, config.Screen.CENTER_Y - 150);
+            this._lblGamewin = new objects.Label("You win!", "80px customfont", "#FDFDFD", config.Screen.CENTER_X, config.Screen.CENTER_Y - 150);
             this._lblScore = new objects.Label("SCORE: " + score, "60px customfont", "#1AFBF4", config.Screen.CENTER_X, config.Screen.CENTER_Y);
             this.addChild(this._lblGamewin, this._lblScore);
 
-            // this._playagainBtn = new objects.Button("playagainbtn", config.Screen.CENTER_X + 125, config.Screen.CENTER_Y + 150);
-            // this._playagainBtn.on("click", this._playagainBtnClick, this);
-            // this.addChild(this._playagainBtn);
+            this._playagainBtn = new objects.Button("playagainbtn", config.Screen.CENTER_X + 125, config.Screen.CENTER_Y + 150);
+            this._playagainBtn.on("click", this._playagainBtnClick, this);
+            this.addChild(this._playagainBtn);
 
-            // this.addChild(this._menuBtn = new objects.Button("menubtn", config.Screen.CENTER_X - 125, config.Screen.CENTER_Y + 150))
-            // this._menuBtn.on('click', this._menuBtnClick, this)
+            this.addChild(this._menuBtn = new objects.Button("menubtn", config.Screen.CENTER_X - 125, config.Screen.CENTER_Y + 150))
+            this._menuBtn.on('click', this._menuBtnClick, this)
 
             stage.addChild(this);
         }
