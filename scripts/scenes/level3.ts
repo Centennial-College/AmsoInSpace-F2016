@@ -34,6 +34,7 @@ module scenes {
             beamEnergyPercent = 100
             missionGoal = 3
             missionProgress = 0
+            lives = 5 // "restored" because of the game's story, we "fixed" our ship
 
             console.log("Level3 Scene started");
 
