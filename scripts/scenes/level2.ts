@@ -27,8 +27,7 @@ module scenes {
             // intiial setup
             level = 2
             beamEnergyPercent = 100
-            missionGoal = 1
-            // missionGoal = 5
+            missionGoal = 10
             missionProgress = 0
 
             console.log("Level2 Scene started");

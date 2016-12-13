@@ -169,7 +169,7 @@ function init() {
 
     // mouseControls = true
     // level = 2
-    // scene = config.Scene.BRIEFING;
+    // scene = config.Scene.LEVEL3;
     scene = config.Scene.MENU;
 
     changeScene();

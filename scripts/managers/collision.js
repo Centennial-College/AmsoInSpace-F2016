@@ -74,7 +74,7 @@ var managers;
                         // player colliding with enemy3's bullets
                         if (other.objName === "enemy3_bullet") {
                             createjs.Sound.play("enemy1_sound");
-                            lives -= 1;
+                            lives -= 3;
                             prime.isColliding = true;
                             other.destroy(); // bullets explode upon collision
                         }

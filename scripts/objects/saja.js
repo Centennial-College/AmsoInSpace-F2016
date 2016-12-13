@@ -17,8 +17,12 @@ var objects;
     var Saja = (function (_super) {
         __extends(Saja, _super);
         // CONSTRUCTORS +++++++++++++++++++++++++++++++++++++++++++++++
-        function Saja() {
+        function Saja(
+            // private _sajaStrength: number = 1
+            _sajaPoweredUp) {
+            if (_sajaPoweredUp === void 0) { _sajaPoweredUp = false; }
             _super.call(this, "Saja_b");
+            this._sajaPoweredUp = _sajaPoweredUp;
             this._dyF = true; // distinguish +-
             this._dxF = true; // distinguish +-
             this._life = 10;
@@ -33,12 +37,16 @@ var objects;
             this._reset();
             // creating bullets for each enemy ship
             this._bullets = new Array();
-            for (var bullet = 0; bullet < 4; bullet++) {
+            for (var bullet = 0; bullet < 8; bullet++) {
                 this._bullets.push(new objects.Saja_bullet());
             }
         };
         Saja.prototype.update = function () {
             this.position = new objects.Vector2(this.x, this.y);
+            console.log(this._sajaPoweredUp);
+            if (this._life < 10 && !this._sajaPoweredUp) {
+                this._powerUp();
+            }
             if (this._dxF) {
                 this.x += this._dx;
             }
@@ -74,7 +82,8 @@ var objects;
             }
             if (this.Reload === this.DefaultFireRate) {
                 this.Reload = 0;
-                for (var bullet in this._bullets) {
+                // for (var bullet in this._bullets) {
+                for (var bullet = 0; bullet < (this._sajaPoweredUp ? 8 : 4); bullet++) {
                     if (!this._bullets[bullet].InFlight) {
                         // fixed position where bullets are fired out from, from the 
                         // "mouth" of the enemy ship
@@ -100,11 +109,18 @@ var objects;
         Saja.prototype.appear = function () {
         };
         // PRIVATE METHODS ++++++++++++++++++++++++++++++++++++++++++++
+        Saja.prototype._powerUp = function () {
+            this.gotoAndPlay("Saja_b_move");
+            this._sajaPoweredUp = true;
+            this._bullets.forEach(function (bullet) {
+                bullet.Speed *= 2;
+            });
+        };
         Saja.prototype._reset = function () {
             // set it to invisible while moving, to prevent
             // blinking/flickering effect where it jumps to the side
             this.alpha = 0;
-            this.gotoAndStop("Saja_b");
+            this.gotoAndStop("Saja_w_move");
             this.isColliding = false;
             this._life = 20;
             this._dx = Math.floor((Math.random() * 5) + 6); // vertical drispeedft

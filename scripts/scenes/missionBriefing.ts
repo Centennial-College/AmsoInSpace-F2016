@@ -346,7 +346,7 @@ namespace scenes {
             this._missionBgPanels[2].alpha = .1
 
             this._missionLbls[2] = new objects.Label(
-                "Location\t: Saja's Dimension\n\nDescription\t:\n			  You have finally gained enough strength\n			  to fight against the evil emperor Saja.\n			  The only thing that remains an obstacle\n			  for you are the 5 grand generals loyal\n			  to Saja.\n\nObjective\t:\n			  Defeat Saja's Grand Generals to prepare\n			  for your final battle.",
+                "Location\t: Saja's Dimension\n\nDescription\t:\n			  You have finally gained enough strength\n			  to fight against the evil emperor Saja.\n			  The only thing that remains an obstacle\n			  for you are the 3 grand generals loyal\n			  to Saja.\n\nObjective\t:\n			  Defeat Saja's Grand Generals to prepare\n			  for your final battle.",
                 "30px customfont", "#00FF48",
                 50, 180, false);
 

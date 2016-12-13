@@ -13,13 +13,13 @@ module scenes {
         // PRIVATE VARIABLES ++++++++++++++++++++++++++++++++++++++++++
         private _diamonds: objects.Diamond[];
         private _enemyShips: objects.Enemy3[];
-        
+
         private _bossFlag: boolean;
         private _bossSpawnTime: number;
         private _bossSignal: objects.Label;
 
-        private _boss:objects.Saja;
-        
+        private _boss: objects.Saja;
+
         // CONSTRUCTOR ++++++++++++++++++++++++++++++++++++++++++++++++
         constructor() {
             super("level3_bgsound", "bg3");
@@ -32,7 +32,7 @@ module scenes {
             // intiial setup
             level = 3
             beamEnergyPercent = 100
-            missionGoal = 1
+            missionGoal = 3
             missionProgress = 0
 
             console.log("Level3 Scene started");
@@ -68,7 +68,8 @@ module scenes {
             });
 
             // prepare for boss stage
-            this._bossSignal = new objects.Label("Saja is Incoming!!", "40px customfont", "#fff", config.Screen.CENTER_X, config.Screen.CENTER_Y-200);
+            this._bossSignal = new objects.Label("Saja is Incoming!!", "40px customfont", "#fff", config.Screen.CENTER_X, config.Screen.CENTER_Y - 200);
+            this._bossSignal.shadow = new createjs.Shadow("#f00", 0, 0, 50)
             this._bossSignal.alpha = 0;
             this.addChild(this._bossSignal);
 
@@ -95,7 +96,7 @@ module scenes {
             // updates bullets position and checks for collision b/t enemy and bullets
             this._player._bullets.forEach(bullet => {
                 bullet.update();
-                if(!this._bossFlag){
+                if (!this._bossFlag) {
 
                     this._enemyShips.forEach(enemy => {
                         this._collision.check(enemy, bullet);
@@ -105,14 +106,14 @@ module scenes {
                 }
             });
 
-            if(this._bossFlag) {
+            if (this._bossFlag) {
                 this._bossStage();
             } else {
                 this._enemy3Stage();
             }
-            
+
             // run only once when when boss is coming out
-            if(missionProgress >= missionGoal && !this._bossFlag){
+            if (missionProgress >= missionGoal && !this._bossFlag) {
                 this._bossFlag = true;
 
                 // code from super._advanceToNextLevel()
@@ -122,7 +123,7 @@ module scenes {
                 createjs.Tween.get(this._lblLevelComplete)
                     .to({ alpha: 0, y: this._lblLevelComplete.y - 100 }, 1000);
                 this._bossSpawnTime = createjs.Ticker.getTime();
-                this._clearStage();                
+                this._clearStage();
             }
             // this._missionObjectiveLbl.text = "- Earn enough money to fix the ship: " + this._missionObjProgress +
             // "/" + this._missionObjectiveGoal
@@ -137,8 +138,8 @@ module scenes {
         }
 
         // PRIVATE METHODS ++++++++++++++++++++++++++++++++++++++++++++
-        
-        private _enemy3Stage():void {
+
+        private _enemy3Stage(): void {
             // updates diamonds position and checks for collision b/t player and diamonds
             this._diamonds.forEach(diamond => {
                 diamond.update();
@@ -158,22 +159,22 @@ module scenes {
             this._missionObjectiveLbl.text = "- Destroy enemy ships to get ship parts: " + missionProgress + "/" + missionGoal;
         }
 
-        private _bossStage():void {
+        private _bossStage(): void {
 
 
             var signalBoss: objects.Label;
 
             // blick signal
-            if(createjs.Ticker.getTime() - this._bossSpawnTime > 1000 && createjs.Ticker.getTime() - this._bossSpawnTime < 2500){
+            if (createjs.Ticker.getTime() - this._bossSpawnTime > 1000 && createjs.Ticker.getTime() - this._bossSpawnTime < 2500) {
                 if (createjs.Ticker.getTime() % 200 >= 100) {
                     this._bossSignal.alpha = 0.5
                 } else {
                     this._bossSignal.alpha = 1
                 }
-            } else if(createjs.Ticker.getTime() - this._bossSpawnTime > 2500) {
+            } else if (createjs.Ticker.getTime() - this._bossSpawnTime > 2500) {
                 this._bossSignal.alpha = 0;
                 this._boss.update();
-                if(this._collision.check(this._player, this._boss)){
+                if (this._collision.check(this._player, this._boss)) {
                     this._boss.destroy();
                 }
                 this._boss._bullets.forEach(bullet => {
@@ -184,7 +185,7 @@ module scenes {
         }
 
         // clear enemy3s and their bullets
-        private _clearStage():void {
+        private _clearStage(): void {
             this._diamonds.forEach(diamond => {
                 diamond.reset();
                 this.removeChild(diamond);

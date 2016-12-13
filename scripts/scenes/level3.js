@@ -26,7 +26,7 @@ var scenes;
             // intiial setup
             level = 3;
             beamEnergyPercent = 100;
-            missionGoal = 1;
+            missionGoal = 3;
             missionProgress = 0;
             console.log("Level3 Scene started");
             this.addChild(this._player = new objects.Player());
@@ -55,6 +55,7 @@ var scenes;
             });
             // prepare for boss stage
             this._bossSignal = new objects.Label("Saja is Incoming!!", "40px customfont", "#fff", config.Screen.CENTER_X, config.Screen.CENTER_Y - 200);
+            this._bossSignal.shadow = new createjs.Shadow("#f00", 0, 0, 50);
             this._bossSignal.alpha = 0;
             this.addChild(this._bossSignal);
             // adding boss to scene
