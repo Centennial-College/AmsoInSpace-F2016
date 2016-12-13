@@ -197,7 +197,7 @@ namespace scenes {
         }
 
         private _setupNewFeaturesContainers(): void {
-            // container1
+            // FOR LEVEL 1
             this._newGameFeaturesContainers[0] = new createjs.Container()
             this._newGameFeaturesBgPanels[0] = new createjs.Shape()
             this._newGameFeaturesBgPanels[0].graphics.beginFill('#fff')
@@ -206,17 +206,26 @@ namespace scenes {
             this._newGameFeaturesBgPanels[0].alpha = .1
 
             this._newGameObjectsLabels[0] = new objects.Label(
-                "Location\t: Asteroid Belt XXX\n\nDescription\t:\n			  Although we summoned you, the chosen one\n			  destined for greatness, we are actually\n			  dirt poor. As such you need to make do with\n			  this broken ship we have prepared for you.\n\nObjective\t:\n			  Earn enough money ($1000) to fix the ship\n			  before setting off on your journey to\n			  vanquish the evil tyrant Saja",
+                "There will be asteroids moving\nacross the screen. If you get hit,\nyou will lose a life. Try your best\nto avoid collding with them.",
                 "30px customfont", "#00FF48",
-                50, 180, false);
+                200, config.Screen.CENTER_Y - 100, false);
+
+            this._newGameObjectsLabels[1] = new objects.Label(
+                "Diamonds will also move across the\nscreen.Pick them up to sell them\nfor money.Each diamond is worth\n$100.",
+                "30px customfont", "#00FF48",
+                200, config.Screen.CENTER_Y + 100, false);
 
             // asteroids and diamonds are new in level 1
             this._newGameObjects[0] = new objects.Asteroid()
             this._newGameObjects[1] = new objects.Diamond()
 
+            this._newGameObjects[1].x = this._newGameObjects[0].x = 100
+            this._newGameObjects[0].y = config.Screen.CENTER_Y - 50
+            this._newGameObjects[1].y = config.Screen.CENTER_Y + 150
+
             this._newGameObjectsLabels[0].alpha = .9
 
-            this._newGameFeaturesContainers[0].addChild(this._newGameFeaturesBgPanels[0], this._newGameObjectsLabels[0], this._newGameObjects[0], this._newGameObjects[1])
+            this._newGameFeaturesContainers[0].addChild(this._newGameFeaturesBgPanels[0], this._newGameObjectsLabels[0], this._newGameObjectsLabels[1], this._newGameObjects[0], this._newGameObjects[1])
 
             // start off, off screen so can zoom in later
             this._newGameFeaturesContainers[0].y = 5000
@@ -225,7 +234,7 @@ namespace scenes {
         }
 
         private _setupMissionLabels(): void {
-            // container1
+            // FOR LEVEL 1
             this._missionContainers[0] = new createjs.Container()
             this._missionBgPanels[0] = new createjs.Shape()
             this._missionBgPanels[0].graphics.beginFill('#fff')
@@ -253,7 +262,7 @@ namespace scenes {
             this._headerLbls[0].alpha = 0
 
             // new obj label
-            this._newGameObjectiveHeaderLabel = new objects.Label("New Objectives!", "50px customfont", "#00FF48", config.Screen.CENTER_X - 30, config.Screen.CENTER_Y - 200);
+            this._newGameObjectiveHeaderLabel = new objects.Label("New Features!", "50px customfont", "#00FF48", config.Screen.CENTER_X - 30, config.Screen.CENTER_Y - 200);
             this._newGameObjectiveHeaderLabel.shadow = new createjs.Shadow("#000", 5, 5, 5)
             this._newGameObjectiveHeaderLabel.alpha = 0
 
