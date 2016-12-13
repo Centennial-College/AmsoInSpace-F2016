@@ -156,7 +156,7 @@ var scenes;
             }, 1000);
         };
         MissionBriefing.prototype._setupFlashingLabel = function () {
-            this._flashingClickToContinue = new objects.Label("- Click anywhere to continue -", "30px customfont", "#00FF48", config.Screen.CENTER_X - 50, config.Screen.CENTER_Y + 275, true);
+            this._flashingClickToContinue = new objects.Label("- Click anywhere to continue -", "30px customfont", "#00FF48", config.Screen.CENTER_X, config.Screen.CENTER_Y + 275, true);
             this._flashingClickToContinue.shadow = new createjs.Shadow('#000', 5, 5, 15);
             this.addChild(this._flashingClickToContinue);
         };
@@ -190,7 +190,7 @@ var scenes;
             this._missionBgPanels[0].graphics.drawRoundRect(15, 165, config.Screen.WIDTH - 30, 395, 25);
             this._missionBgPanels[0].shadow = new createjs.Shadow("#000", 2, 2, 20);
             this._missionBgPanels[0].alpha = .1;
-            this._missionLbls[0] = new objects.Label("Location\t: Asteroid Belt XXX\n\nDescription\t:\n			  Although we summoned you, the chosen one\n			  destined for greatness, we are actually\n			  dirt poor. As such you need to make do with\n			  this broken ship we have prepared for you.\n\nObjective\t:\n			  Earn enough money ($1000) to fix the ship\n			  before setting off on your journey to\n			  vanquish the evil tyrant Saja", "30px customfont", "#00FF48", 50, 180, false);
+            this._missionLbls[0] = new objects.Label("Location\t: Asteroid Belt XXX\n\nDescription\t:\n			  Although we summoned you, the chosen one\n			  destined for greatness, we are actually\n			  dirt poor. As such you need to make do with\n			  this broken ship we have prepared for you.\n\nObjective\t:\n			  Earn enough money ($1000) to fix the ship\n			  before setting off on your journey to\n			  vanquish the evil tyrant Saja.", "30px customfont", "#00FF48", 50, 180, false);
             this._missionLbls[0].alpha = .9;
             this._missionContainers[0].addChild(this._missionBgPanels[0], this._missionLbls[0]);
             // start off, off screen so can zoom in later
@@ -199,11 +199,11 @@ var scenes;
         };
         MissionBriefing.prototype._setupHeaderLabels = function () {
             // for mission 1
-            this._headerLbls[0] = new objects.Label("Mission 01", "50px customfont", "#00FF48", config.Screen.CENTER_X - 30, config.Screen.CENTER_Y - 200);
+            this._headerLbls[0] = new objects.Label("Mission 01", "50px customfont", "#00FF48", config.Screen.CENTER_X, config.Screen.CENTER_Y - 200);
             this._headerLbls[0].shadow = new createjs.Shadow("#000", 5, 5, 5);
             this._headerLbls[0].alpha = 0;
             // new obj label
-            this._newGameObjectiveHeaderLabel = new objects.Label("New Features!", "50px customfont", "#00FF48", config.Screen.CENTER_X - 30, config.Screen.CENTER_Y - 200);
+            this._newGameObjectiveHeaderLabel = new objects.Label("New Features!", "50px customfont", "#00FF48", config.Screen.CENTER_X, config.Screen.CENTER_Y - 200);
             this._newGameObjectiveHeaderLabel.shadow = new createjs.Shadow("#000", 5, 5, 5);
             this._newGameObjectiveHeaderLabel.alpha = 0;
             this.addChild(this._headerLbls[0], this._newGameObjectiveHeaderLabel);

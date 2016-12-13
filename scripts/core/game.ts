@@ -169,8 +169,8 @@ function init() {
     textureAtlas = new createjs.SpriteSheet(atlasData);
 
     // mouseControls = true
-    scene = config.Scene.BRIEFING1;
-    // scene = config.Scene.LEVEL3;
+    // scene = config.Scene.BRIEFING;
+    scene = config.Scene.MENU;
     changeScene();
 }
 
@@ -239,17 +239,9 @@ function changeScene(): void {
             currentScene = new scenes.Win()
             console.log('Win Scene changed');
             break;
-        case config.Scene.BRIEFING1:
+        case config.Scene.BRIEFING:
             stage.removeAllChildren();
             currentScene = new scenes.MissionBriefing()
             break;
-        // case config.Scene.BRIEFING2:
-        //     stage.removeAllChildren();
-        //     // currentScene = new scenes.Win()
-        //     break;
-        // case config.Scene.BRIEFING3:
-        //     stage.removeAllChildren();
-        //     // currentScene = new scenes.Win()
-        //     break;
     }
 }

@@ -69,13 +69,13 @@ module scenes {
          */
         private _kbBtnClick(): void {
             mouseControls = false
-            scene = config.Scene.LEVEL1
+            scene = config.Scene.BRIEFING
             changeScene()
         }
 
         private _mouseBtnClick(): void {
             mouseControls = true
-            scene = config.Scene.LEVEL1
+            scene = config.Scene.BRIEFING
             changeScene()
         }
 

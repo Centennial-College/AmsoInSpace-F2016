@@ -67,7 +67,9 @@ module scenes {
 
         // PRIVATE METHODS +++++++++++++++++++++++++++++++++++++++++++
         private _playagainBtnClick(): void {
-            scene = config.Scene.LEVEL1;
+            level = 0 // for briefing to work properly
+            currBgImgString = "bg1" // for briefing to work properly
+            scene = config.Scene.BRIEFING;
             changeScene();
         }
 

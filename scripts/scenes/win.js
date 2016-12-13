@@ -52,7 +52,9 @@ var scenes;
         };
         // PRIVATE METHODS +++++++++++++++++++++++++++++++++++++++++++
         Win.prototype._playagainBtnClick = function () {
-            scene = config.Scene.LEVEL1;
+            level = 0; // for briefing to work properly
+            currBgImgString = "bg1"; // for briefing to work properly
+            scene = config.Scene.BRIEFING;
             changeScene();
         };
         Win.prototype._menuBtnClick = function () {

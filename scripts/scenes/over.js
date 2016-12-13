@@ -54,7 +54,9 @@ var scenes;
         };
         // PRIVATE METHODS +++++++++++++++++++++++++++++++++++++++++++
         Over.prototype._playagainBtnClick = function () {
-            scene = config.Scene.LEVEL1;
+            level = 0; // for briefing to work properly
+            currBgImgString = "bg1"; // for briefing to work properly
+            scene = config.Scene.BRIEFING;
             changeScene();
         };
         Over.prototype._menuBtnClick = function () {

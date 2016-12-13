@@ -18,9 +18,7 @@ module config {
         public static PAUSE: number = 6;
         public static CONTROLSELECT: number = 7
         public static WIN: number = 8
-        public static BRIEFING1: number = 9
-        public static BRIEFING2: number = 10
-        public static BRIEFING3: number = 11
+        public static BRIEFING: number = 9
     }
     export class Screen {
         public static WIDTH: number = 890;
