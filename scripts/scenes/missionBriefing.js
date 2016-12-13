@@ -3,7 +3,7 @@
  * @author Chamsol Yoon cyoon2@my.centennialcollege.ca
  * @author Kevin Ma kma45@my.centennialcollege.ca
  * @date December 12 2016
- * @version 0.4.7 added missionBriefing.ts
+ * @version 0.4.8 implemented story and mission objective for level1
  * @description This class is used to brief the player about the details
  *              of the upcoming mission
  **/
@@ -17,16 +17,193 @@ var scenes;
     var MissionBriefing = (function (_super) {
         __extends(MissionBriefing, _super);
         // constructor
-        function MissionBriefing(_bgImgString) {
+        function MissionBriefing(_currentlyShowingSlide) {
+            if (_currentlyShowingSlide === void 0) { _currentlyShowingSlide = 0; }
             _super.call(this);
-            this._bgImgString = _bgImgString;
+            this._currentlyShowingSlide = _currentlyShowingSlide;
         }
         // public methods
         MissionBriefing.prototype.start = function () {
+            console.log('started missionBriefing');
+            // initialize empty arrays
+            this._headerLbls = [];
+            this._missionLbls = [];
+            this._missionBgPanels = [];
+            this._missionContainers = [];
+            this._newGameFeaturesBgPanels = [];
+            this._newGameFeaturesContainers = [];
+            this._newGameObjects = [];
+            this._newGameObjectsLabels = [];
+            this._setupBackground();
+            this._setupHeaderLabels();
+            this._setupMissionLabels();
+            this._setupNewFeaturesContainers();
+            this._setupFlashingLabel();
+            this._displaySlide(this._headerLbls[level], this._missionContainers[level]);
+            stage.addChild(this);
         };
         MissionBriefing.prototype.update = function () {
+            // scrolls the background
+            this._bg.update();
+            this._bgBuffer.update();
+            // flashing of click to continue
+            if (createjs.Ticker.getTime() % 1000 < 500) {
+                this._flashingClickToContinue.alpha = 0;
+            }
+            else {
+                this._flashingClickToContinue.alpha = 1;
+            }
         };
         // private methods
+        MissionBriefing.prototype._proceedToMission = function () {
+            this.removeChild(this._flashingClickToContinue);
+            this.addChild(this._player = new createjs.Sprite(textureAtlas, (mouseControls ? "playerFT_move" : "playerSD_move")));
+            this._player.y = config.Screen.CENTER_Y;
+            this._player.x = 0;
+            this.addChild(this._hereWeGoLabel = new objects.Label("Here we Go!", "40px customfont", "#fff", this._player.x, this._player.y));
+            // this.addChild(this._letsGoLabel = new objects.Label("Let's Go!", "40px customfont", "#fff", config.Screen.CENTER_X, config.Screen.CENTER_Y))
+            this._hereWeGoLabel.shadow = new createjs.Shadow("#fff", 0, 0, 2);
+            createjs.Sound.play('missionstart');
+            // player move accross the screen, message shoots out while crossing mid screen
+            createjs.Tween.get(this._player)
+                .to({ x: config.Screen.WIDTH }, 2000);
+            createjs.Tween.get(this._hereWeGoLabel)
+                .to({
+                alpha: 0,
+                y: this._hereWeGoLabel.y - 250,
+                x: config.Screen.WIDTH
+            }, 2000)
+                .call(function () {
+                stage.removeChild(this._letsGoLabel);
+                // wait until this animation finishes before changing scenes
+                scene = config.Scene.LEVEL1;
+                changeScene();
+            });
+        };
+        MissionBriefing.prototype._setupStageMouseEventHandlers = function () {
+            var _this = this;
+            stage.on("stagemousedown", function (e) {
+                // done introducing new game obj -> proceed to level stage
+                if (_this._currentlyShowingSlide++ == 1) {
+                    _this._hideSlide(null, _this._newGameFeaturesContainers[level]);
+                }
+                else {
+                    _this._displaySlide(null, _this._newGameFeaturesContainers[level]);
+                    // hides current panel
+                    _this._hideSlide(_this._headerLbls[level], _this._missionContainers[level]);
+                }
+            });
+        };
+        /**
+         * Dispalys the nth mission briefing - header and body container
+         *
+         * @private
+         * @param {objects.Label} h header label for the current panel of mission briefing
+         * @param {createjs.Container} b the body container for the current panel of mission briefing
+         *
+         * @memberOf Instructions
+         */
+        MissionBriefing.prototype._displaySlide = function (h, b) {
+            var _this = this;
+            if (h != null) {
+                // header fades into view
+                createjs.Tween.get(h).wait(1000).to({
+                    alpha: 1
+                }, 1000);
+            }
+            else {
+                createjs.Tween.get(this._newGameObjectiveHeaderLabel).wait(1000).to({
+                    alpha: 1
+                }, 1000);
+            }
+            // body zooms up
+            createjs.Tween.get(b).wait(1500).to({
+                y: 0
+            }, 1000).call(function (e) {
+                // only setup handlers now so the player can only click after animation finishes
+                _this._setupStageMouseEventHandlers();
+            });
+        };
+        /**
+         * Hides the nth mission briefing - header and body container
+         *
+         * @private
+         * @param {objects.Label} h header label for the current panel of mission briefing
+         * @param {createjs.Container} b the body container for the current panel of mission briefing
+         *
+         * @memberOf Instructions
+         */
+        MissionBriefing.prototype._hideSlide = function (h, b) {
+            var _this = this;
+            // prevents skipping all instructions scene by spam clicking
+            stage.removeAllEventListeners();
+            if (h != null) {
+                // header fades out of  view
+                createjs.Tween.get(h).wait(200).to({
+                    y: -2000
+                }, 1000);
+            }
+            else {
+                createjs.Tween.get(this._newGameObjectiveHeaderLabel).wait(200).to({
+                    y: -2000
+                }, 1000).call(function (e) {
+                    _this._proceedToMission();
+                });
+            }
+            // body zooms up
+            createjs.Tween.get(b).wait(200).to({
+                y: -2000
+            }, 1000);
+        };
+        MissionBriefing.prototype._setupFlashingLabel = function () {
+            this._flashingClickToContinue = new objects.Label("- Click anywhere to continue -", "30px customfont", "#00FF48", config.Screen.CENTER_X - 50, config.Screen.CENTER_Y + 275, true);
+            this._flashingClickToContinue.shadow = new createjs.Shadow('#000', 5, 5, 15);
+            this.addChild(this._flashingClickToContinue);
+        };
+        MissionBriefing.prototype._setupNewFeaturesContainers = function () {
+            // container1
+            this._newGameFeaturesContainers[0] = new createjs.Container();
+            this._newGameFeaturesBgPanels[0] = new createjs.Shape();
+            this._newGameFeaturesBgPanels[0].graphics.beginFill('#fff');
+            this._newGameFeaturesBgPanels[0].graphics.drawRoundRect(15, 165, config.Screen.WIDTH - 30, 395, 25);
+            this._newGameFeaturesBgPanels[0].shadow = new createjs.Shadow("#000", 2, 2, 20);
+            this._newGameFeaturesBgPanels[0].alpha = .1;
+            this._newGameObjectsLabels[0] = new objects.Label("Location\t: Asteroid Belt XXX\n\nDescription\t:\n			  Although we summoned you, the chosen one\n			  destined for greatness, we are actually\n			  dirt poor. As such you need to make do with\n			  this broken ship we have prepared for you.\n\nObjective\t:\n			  Earn enough money ($1000) to fix the ship\n			  before setting off on your journey to\n			  vanquish the evil tyrant Saja", "30px customfont", "#00FF48", 50, 180, false);
+            // asteroids and diamonds are new in level 1
+            this._newGameObjects[0] = new objects.Asteroid();
+            this._newGameObjects[1] = new objects.Diamond();
+            this._newGameObjectsLabels[0].alpha = .9;
+            this._newGameFeaturesContainers[0].addChild(this._newGameFeaturesBgPanels[0], this._newGameObjectsLabels[0], this._newGameObjects[0], this._newGameObjects[1]);
+            // start off, off screen so can zoom in later
+            this._newGameFeaturesContainers[0].y = 5000;
+            this.addChild(this._newGameFeaturesContainers[0]);
+        };
+        MissionBriefing.prototype._setupMissionLabels = function () {
+            // container1
+            this._missionContainers[0] = new createjs.Container();
+            this._missionBgPanels[0] = new createjs.Shape();
+            this._missionBgPanels[0].graphics.beginFill('#fff');
+            this._missionBgPanels[0].graphics.drawRoundRect(15, 165, config.Screen.WIDTH - 30, 395, 25);
+            this._missionBgPanels[0].shadow = new createjs.Shadow("#000", 2, 2, 20);
+            this._missionBgPanels[0].alpha = .1;
+            this._missionLbls[0] = new objects.Label("Location\t: Asteroid Belt XXX\n\nDescription\t:\n			  Although we summoned you, the chosen one\n			  destined for greatness, we are actually\n			  dirt poor. As such you need to make do with\n			  this broken ship we have prepared for you.\n\nObjective\t:\n			  Earn enough money ($1000) to fix the ship\n			  before setting off on your journey to\n			  vanquish the evil tyrant Saja", "30px customfont", "#00FF48", 50, 180, false);
+            this._missionLbls[0].alpha = .9;
+            this._missionContainers[0].addChild(this._missionBgPanels[0], this._missionLbls[0]);
+            // start off, off screen so can zoom in later
+            this._missionContainers[0].y = 5000;
+            this.addChild(this._missionContainers[0]);
+        };
+        MissionBriefing.prototype._setupHeaderLabels = function () {
+            // for mission 1
+            this._headerLbls[0] = new objects.Label("Mission 01", "50px customfont", "#00FF48", config.Screen.CENTER_X - 30, config.Screen.CENTER_Y - 200);
+            this._headerLbls[0].shadow = new createjs.Shadow("#000", 5, 5, 5);
+            this._headerLbls[0].alpha = 0;
+            // new obj label
+            this._newGameObjectiveHeaderLabel = new objects.Label("New Objectives!", "50px customfont", "#00FF48", config.Screen.CENTER_X - 30, config.Screen.CENTER_Y - 200);
+            this._newGameObjectiveHeaderLabel.shadow = new createjs.Shadow("#000", 5, 5, 5);
+            this._newGameObjectiveHeaderLabel.alpha = 0;
+            this.addChild(this._headerLbls[0], this._newGameObjectiveHeaderLabel);
+        };
         /**
         * Sets up the background image, and its box blur filter
         *
@@ -36,8 +213,8 @@ var scenes;
         */
         MissionBriefing.prototype._setupBackground = function () {
             // Setting up BACKGROUND
-            this._bg = new objects.Background(this._bgImgString, 0, 1);
-            this._bgBuffer = new objects.Background(this._bgImgString, 1024, 1);
+            this._bg = new objects.Background(currBgImgString, 0, 1);
+            this._bgBuffer = new objects.Background(currBgImgString, 1022, 1);
             // 5x5 Box Blur filter on bg image
             var blurFilter = new createjs.BlurFilter(5, 5);
             this._bg.filters = [blurFilter];

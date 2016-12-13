@@ -24,12 +24,12 @@ var endingModifier: number;
 var score: number = 0;
 var highScore: number = 0;
 var lives: number = 5;
-let level: number = 1;
+let level: number = 0;
 let beamEnergyPercent: number
 let mouseControls: boolean
 let missionGoal: number
 let missionProgress: number
-let currBgImgString: string
+let currBgImgString: string = "bg1"
 
 // Game Scenes;
 let currentScene: objects.Scene;
@@ -50,6 +50,7 @@ var assetData: objects.Asset[] = [
     { id: "level3_bgsound", src: "../../assets/audio/level3_bgsound.wav" },
     { id: "gameover", src: "../../assets/audio/gameover.mp3" },
     { id: "gamewin", src: "../../assets/audio/yay.mp3" },
+    { id: "missionstart", src: "../../assets/audio/mario-herewego.wav" },
 
     // missing images
 ];
@@ -168,7 +169,7 @@ function init() {
     textureAtlas = new createjs.SpriteSheet(atlasData);
 
     // mouseControls = true
-    scene = config.Scene.MENU;
+    scene = config.Scene.BRIEFING1;
     // scene = config.Scene.LEVEL3;
     changeScene();
 }
@@ -240,15 +241,15 @@ function changeScene(): void {
             break;
         case config.Scene.BRIEFING1:
             stage.removeAllChildren();
-            // currentScene = new scenes.Win()
+            currentScene = new scenes.MissionBriefing()
             break;
-        case config.Scene.BRIEFING2:
-            stage.removeAllChildren();
-            // currentScene = new scenes.Win()
-            break;
-        case config.Scene.BRIEFING3:
-            stage.removeAllChildren();
-            // currentScene = new scenes.Win()
-            break;
+        // case config.Scene.BRIEFING2:
+        //     stage.removeAllChildren();
+        //     // currentScene = new scenes.Win()
+        //     break;
+        // case config.Scene.BRIEFING3:
+        //     stage.removeAllChildren();
+        //     // currentScene = new scenes.Win()
+        //     break;
     }
 }
