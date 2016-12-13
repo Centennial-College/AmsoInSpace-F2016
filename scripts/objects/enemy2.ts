@@ -117,7 +117,7 @@ module objects {
             this.gotoAndStop("enemy2");
             this.on("animationend",this._reset)
             this.isColliding = false;
-            this._life = 2;
+            this._life = 1;
             this._dx = Math.floor((Math.random() * 8) + 5); // horizontal drispeedft
             this._dy = Math.floor((Math.random() * 4) + 2); // vertical drift
 
