@@ -9,8 +9,6 @@
 var managers;
 (function (managers) {
     var KeyboardControls = (function () {
-        // public enabled: boolean;
-        // public paused: boolean;
         // CONSTRUCTOR ++++++++++++++++++++++++++++++++++++++++++++++++
         function KeyboardControls() {
             // this.enabled = false;
@@ -48,7 +46,15 @@ var managers;
             }
             // P key - for pause
             if (event.keyCode === 80) {
-                createjs.Ticker.paused = !createjs.Ticker.paused;
+                if (this.paused) {
+                    createjs.Ticker.paused = true;
+                    this.paused = false;
+                }
+                else {
+                    createjs.Ticker.paused = false;
+                    this.paused = true;
+                }
+                console.log("p pressed" + createjs.Ticker.paused);
             }
         };
         KeyboardControls.prototype.onKeyUp = function (event) {

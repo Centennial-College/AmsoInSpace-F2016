@@ -19,7 +19,7 @@ module managers {
         public moveDown: boolean;
         public fire: boolean;
         // public enabled: boolean;
-        // public paused: boolean;
+        public paused: boolean;
 
         // CONSTRUCTOR ++++++++++++++++++++++++++++++++++++++++++++++++
         constructor() {
@@ -61,8 +61,16 @@ module managers {
 
             // P key - for pause
             if (event.keyCode === 80) {
-
-                createjs.Ticker.paused = !createjs.Ticker.paused
+                
+                if(this.paused){
+                    createjs.Ticker.paused = true;
+                    this.paused = false
+                }
+                else{
+                    createjs.Ticker.paused = false;
+                    this.paused = true;
+                }
+                console.log("p pressed" + createjs.Ticker.paused)
 
                 // if (createjs.Ticker.paused) {
                 //     createjs.Ticker.paused = false;
