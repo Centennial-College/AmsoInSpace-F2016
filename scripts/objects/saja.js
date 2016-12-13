@@ -21,7 +21,7 @@ var objects;
             _super.call(this, "Saja_b");
             this._dyF = true; // distinguish +-
             this._dxF = true; // distinguish +-
-            this._life = 100;
+            this._life = 10;
             //private _explosion:objects.GameObject;
             // PUBLIC VARIABLES +++++++++++++++++++++++++++++++++++++++++++
             this.DefaultFireRate = 10;
@@ -86,12 +86,12 @@ var objects;
         };
         Saja.prototype.destroy = function () {
             this._life--;
+            missionProgress++;
             this._hitTime = createjs.Ticker.getTime();
             if (this._life === 0) {
                 this._hitTime = 0;
                 this._dx = 0;
                 this._dy = 0;
-                missionProgress++;
                 this.gotoAndPlay("explosion1");
                 this.on("animationend", this._complete);
                 score += 1000;

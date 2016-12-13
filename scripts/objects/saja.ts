@@ -16,7 +16,7 @@ module objects {
         private _dyF: boolean = true; // distinguish +-
         private _dx: number;
         private _dxF: boolean = true; // distinguish +-
-        private _life: number = 100;
+        private _life: number = 10;
         private _hitTime: number;
         //private _explosion:objects.GameObject;
 
@@ -99,12 +99,13 @@ module objects {
 
         public destroy(): void {
             this._life--;
+            missionProgress++
             this._hitTime = createjs.Ticker.getTime();
             if (this._life === 0) {
                 this._hitTime = 0;
                 this._dx = 0;
                 this._dy = 0;
-                missionProgress++
+
                 this.gotoAndPlay("explosion1");
                 this.on("animationend", this._complete)
                 score += 1000;
