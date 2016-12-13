@@ -1,15 +1,15 @@
 /**
- * @file enemy2_bullet.ts
+ * @file saja_bullet.ts
  * @author Chamsol Yoon cyoon2@my.centennialcollege.ca
  * @author Kevin Ma kma45@my.centennialcollege.ca
  * @date December 6 2016
- * @version 0.3.1 refactored bullets into abstract class and children of
- *          abstract class
- * @description Behavior and Properties of Enemy2 ship's bullets
+ * @version 0.1 initial
+ * @extends Bullet
+ * @description Behavior and Properties of Player's bullets
  **/
 
 module objects {
-    export class Enemy2_bullet extends objects.Bullet {
+    export class Saja_bullet extends objects.Bullet {
 
         // PRIVATE VARIABLES ++++++++++++++++++++++++++++++++++++++++++
 
@@ -17,7 +17,7 @@ module objects {
 
         // CONSTRUCTORS +++++++++++++++++++++++++++++++++++++++++++++++
         constructor() {
-            super("enemy2_bullet", -8);
+            super("saja_bullet", -6);
         }
 
         // PUBLIC METHODS +++++++++++++++++++++++++++++++++++++++++++++
@@ -29,7 +29,6 @@ module objects {
         }
 
         // PRIVATE METHODS ++++++++++++++++++++++++++++++++++++++++++++
-        
 
-    }
-}
+    } // end class
+} // end module

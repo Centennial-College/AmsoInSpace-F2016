@@ -24,9 +24,12 @@ var objects;
         // PUBLIC METHODS +++++++++++++++++++++++++++++++++++++++++++++
         // typescript doesnt let abstract methods be private
         Enemy3_bullet.prototype._checkBounds = function () {
-            if (this.position.x <= this.width * 0.5) {
+            if (this.position.x <= 0 - this.width * 0.5) {
                 _super.prototype._reset.call(this);
             }
+        };
+        Enemy3_bullet.prototype.reset = function () {
+            this._reset();
         };
         return Enemy3_bullet;
     }(objects.Bullet));
