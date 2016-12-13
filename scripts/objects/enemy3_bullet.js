@@ -28,6 +28,9 @@ var objects;
                 _super.prototype._reset.call(this);
             }
         };
+        Enemy3_bullet.prototype.reset = function () {
+            this._reset();
+        };
         return Enemy3_bullet;
     }(objects.Bullet));
     objects.Enemy3_bullet = Enemy3_bullet;

@@ -101,7 +101,7 @@ var objects;
             this._life = 4;
             this._dx = Math.floor((Math.random() * 5) + 6); // vertical drispeedft
             this._dy = Math.floor((Math.random() * 4) + 1); // horizontal drift
-            this.x = config.Screen.WIDTH;
+            this.x = config.Screen.WIDTH + this.width;
             // get a random x location
             this.y = Math.floor((Math.random() * (config.Screen.HEIGHT - (this.height * 0.5))) + (this.height * 0.5));
             this._startY = this.y;

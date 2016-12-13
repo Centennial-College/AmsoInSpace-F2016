@@ -61,34 +61,32 @@ var scenes;
             var _this = this;
             _super.prototype.update.call(this);
             this._updateBeamEnergyBar();
-            // updates diamonds position and checks for collision b/t player and diamonds
-            this._diamonds.forEach(function (diamond) {
-                diamond.update();
-                _this._collision.check(_this._player, diamond);
-            });
-            if (!this._bossFlag) {
-                // updates enemy position and checks for collision b/t player and enemy
-                this._enemyShips.forEach(function (enemy) {
-                    enemy.update();
-                    if (_this._collision.check(_this._player, enemy)) {
-                        enemy.destroy();
-                    }
-                    if (enemy.currentFrame === 23) {
-                        enemy.reset();
-                    }
-                    enemy._bullets.forEach(function (bullet) {
-                        _this._collision.check(_this._player, bullet);
-                    });
-                });
-                // updates bullets position and checks for collision b/t enemy and bullets
-                this._player._bullets.forEach(function (bullet) {
-                    bullet.update();
+            // updates bullets position and checks for collision b/t enemy and bullets
+            this._player._bullets.forEach(function (bullet) {
+                bullet.update();
+                if (!_this._bossFlag) {
                     _this._enemyShips.forEach(function (enemy) {
                         _this._collision.check(enemy, bullet);
                     });
+                }
+            });
+            if (this._bossFlag) {
+                this._bossStage();
+            }
+            else {
+                this._enemy3Stage();
+            }
+            if (missionProgress >= missionGoal && !this._bossFlag) {
+                this._bossFlag = true;
+                // code from super._advanceToNextLevel()
+                this.addChild(this._lblLevelComplete = new objects.Label("MISSION " + level + " COMPLETE!", "40px customfont", "#fff", config.Screen.CENTER_X, config.Screen.CENTER_Y));
+                this._lblLevelComplete.shadow = new createjs.Shadow("#fff", 0, 0, 2);
+                this._levelComplete = true;
+                createjs.Tween.get(this._lblLevelComplete)
+                    .to({ alpha: 0, y: this._lblLevelComplete.y - 100 }, 1000).call(function () {
+                    this._bossSpawnTime = createjs.Ticker.getTime();
                 });
-                this._missionObjectiveLbl.text = "- Defeat Saja's Grand Generals: " + missionProgress +
-                    "/" + missionGoal;
+                this._clearStage();
             }
             // this._missionObjectiveLbl.text = "- Earn enough money to fix the ship: " + this._missionObjProgress +
             // "/" + this._missionObjectiveGoal
@@ -100,6 +98,46 @@ var scenes;
             //     this._bgSound.stop()
             //     // createjs.Sound.stop()
             // }
+        };
+        // PRIVATE METHODS ++++++++++++++++++++++++++++++++++++++++++++
+        Level3.prototype._enemy3Stage = function () {
+            var _this = this;
+            // updates diamonds position and checks for collision b/t player and diamonds
+            this._diamonds.forEach(function (diamond) {
+                diamond.update();
+                _this._collision.check(_this._player, diamond);
+            });
+            // updates enemy position and checks for collision b/t player and enemy
+            this._enemyShips.forEach(function (enemy) {
+                enemy.update();
+                if (_this._collision.check(_this._player, enemy)) {
+                    enemy.destroy();
+                }
+                enemy._bullets.forEach(function (bullet) {
+                    _this._collision.check(_this._player, bullet);
+                });
+            });
+            this._missionObjectiveLbl.text = "- Destroy enemy ships to get ship parts: " + missionProgress + "/" + missionGoal;
+        };
+        Level3.prototype._bossStage = function () {
+            missionProgress = 0;
+            missionGoal = 20;
+            this._missionObjectiveLbl.text = "- Defeat Saja's Grand Generals: " + missionProgress + "/" + missionGoal;
+        };
+        Level3.prototype._clearStage = function () {
+            var _this = this;
+            this._diamonds.forEach(function (diamond) {
+                diamond.reset();
+                _this.removeChild(diamond);
+            });
+            this._enemyShips.forEach(function (enemy) {
+                enemy.reset();
+                enemy._bullets.forEach(function (bullet) {
+                    bullet.reset();
+                    _this.removeChild(bullet);
+                });
+                _this.removeChild(enemy);
+            });
         };
         return Level3;
     }(scenes.ScrollingLevel));

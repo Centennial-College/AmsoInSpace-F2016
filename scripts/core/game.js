@@ -126,7 +126,7 @@ function init() {
             "playagainbtn": { "frames": [18] },
             "playgameBtn": { "frames": [19] },
             "upgradesbtn": { "frames": [20] },
-            "missile_round_yellow_enemy_l": { "frames": [23] },
+            "enemy3_bullet": { "frames": [23] },
             "enemy1": { "frames": [26] },
             "explosion_s": { "frames": [32] },
             "playerSD": { "frames": [33] },

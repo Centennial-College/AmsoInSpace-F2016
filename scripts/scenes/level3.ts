@@ -73,39 +73,34 @@ module scenes {
 
             this._updateBeamEnergyBar()
 
-            // updates diamonds position and checks for collision b/t player and diamonds
-            this._diamonds.forEach(diamond => {
-                diamond.update();
-                this._collision.check(this._player, diamond);
-            });
-
-            if (!this._bossFlag) {
-                // updates enemy position and checks for collision b/t player and enemy
-                this._enemyShips.forEach(enemy => {
-                    enemy.update();
-
-                    if (this._collision.check(this._player, enemy)) {
-                        enemy.destroy()
-                    }
-                    if (enemy.currentFrame === 23) {
-                        enemy.reset();
-                    }
-                    enemy._bullets.forEach(bullet => {
-                        this._collision.check(this._player, bullet)
-                    });
-                });
-
-                // updates bullets position and checks for collision b/t enemy and bullets
-                this._player._bullets.forEach(bullet => {
-                    bullet.update();
+            // updates bullets position and checks for collision b/t enemy and bullets
+            this._player._bullets.forEach(bullet => {
+                bullet.update();
+                if(!this._bossFlag){
                     this._enemyShips.forEach(enemy => {
                         this._collision.check(enemy, bullet);
                     })
-                });
+                }
+            });
 
-                this._missionObjectiveLbl.text = "- Defeat Saja's Grand Generals: " + missionProgress +
-                    "/" + missionGoal
+            if(this._bossFlag) {
+                this._bossStage();
+            } else {
+                this._enemy3Stage();
+            }
+            
+            if(missionProgress >= missionGoal && !this._bossFlag){
+                this._bossFlag = true;
 
+                // code from super._advanceToNextLevel()
+                this.addChild(this._lblLevelComplete = new objects.Label("MISSION " + level + " COMPLETE!", "40px customfont", "#fff", config.Screen.CENTER_X, config.Screen.CENTER_Y))
+                this._lblLevelComplete.shadow = new createjs.Shadow("#fff", 0, 0, 2)
+                this._levelComplete = true
+                createjs.Tween.get(this._lblLevelComplete)
+                    .to({ alpha: 0, y: this._lblLevelComplete.y - 100 }, 1000).call(function(){
+                        this._bossSpawnTime = createjs.Ticker.getTime();
+                    });
+                this._clearStage();                
             }
             // this._missionObjectiveLbl.text = "- Earn enough money to fix the ship: " + this._missionObjProgress +
             // "/" + this._missionObjectiveGoal
@@ -121,6 +116,46 @@ module scenes {
         }
 
         // PRIVATE METHODS ++++++++++++++++++++++++++++++++++++++++++++
+        
+        private _enemy3Stage():void {
+            // updates diamonds position and checks for collision b/t player and diamonds
+            this._diamonds.forEach(diamond => {
+                diamond.update();
+                this._collision.check(this._player, diamond);
+            });
+            // updates enemy position and checks for collision b/t player and enemy
+            this._enemyShips.forEach(enemy => {
+                enemy.update();
 
+                if (this._collision.check(this._player, enemy)) {
+                    enemy.destroy()
+                }
+                enemy._bullets.forEach(bullet => {
+                    this._collision.check(this._player, bullet)
+                });
+            });
+            this._missionObjectiveLbl.text = "- Destroy enemy ships to get ship parts: " + missionProgress + "/" + missionGoal;
+        }
+
+        private _bossStage():void {
+            missionProgress = 0;
+            missionGoal = 20;
+            this._missionObjectiveLbl.text = "- Defeat Saja's Grand Generals: " + missionProgress + "/" + missionGoal
+        }
+
+        private _clearStage():void {
+            this._diamonds.forEach(diamond => {
+                diamond.reset();
+                this.removeChild(diamond);
+            });
+            this._enemyShips.forEach(enemy => {
+                enemy.reset();
+                enemy._bullets.forEach(bullet => {
+                    bullet.reset();
+                    this.removeChild(bullet);
+                });
+                this.removeChild(enemy);
+            });
+        }
     }
 }

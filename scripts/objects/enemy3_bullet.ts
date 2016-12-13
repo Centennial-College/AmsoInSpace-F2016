@@ -27,6 +27,9 @@ module objects {
             }
         }
 
+        public reset(): void {
+            this._reset();
+        }
         // PRIVATE METHODS ++++++++++++++++++++++++++++++++++++++++++++
     }
 }
