@@ -3,7 +3,7 @@
  * @author Chamsol Yoon cyoon2@my.centennialcollege.ca
  * @author Kevin Ma kma45@my.centennialcollege.ca
  * @date December 12 2016
- * @version 0.4.8 implemented story and mission objective for level1
+ * @version 0.4.9 implemented story and mission objective for level2
  * @description This class is used to brief the player about the details
  *              of the upcoming mission
  **/
@@ -24,6 +24,7 @@ var scenes;
         }
         // public methods
         MissionBriefing.prototype.start = function () {
+            createjs.Sound.stop();
             console.log('started missionBriefing');
             // initialize empty arrays
             this._headerLbls = [];
@@ -76,7 +77,17 @@ var scenes;
                 .call(function () {
                 stage.removeChild(this._letsGoLabel);
                 // wait until this animation finishes before changing scenes
-                scene = config.Scene.LEVEL1;
+                switch (level) {
+                    case 0:
+                        scene = config.Scene.LEVEL1;
+                        break;
+                    case 1:
+                        scene = config.Scene.LEVEL2;
+                        break;
+                    case 2:
+                        scene = config.Scene.LEVEL3;
+                        break;
+                }
                 changeScene();
             });
         };
@@ -177,10 +188,27 @@ var scenes;
             this._newGameObjects[0].y = config.Screen.CENTER_Y - 50;
             this._newGameObjects[1].y = config.Screen.CENTER_Y + 150;
             this._newGameObjectsLabels[0].alpha = .9;
+            this._newGameObjectsLabels[1].alpha = .9;
             this._newGameFeaturesContainers[0].addChild(this._newGameFeaturesBgPanels[0], this._newGameObjectsLabels[0], this._newGameObjectsLabels[1], this._newGameObjects[0], this._newGameObjects[1]);
             // start off, off screen so can zoom in later
             this._newGameFeaturesContainers[0].y = 5000;
-            this.addChild(this._newGameFeaturesContainers[0]);
+            // FOR LEVEL 2 
+            this._newGameFeaturesContainers[1] = new createjs.Container();
+            this._newGameFeaturesBgPanels[1] = new createjs.Shape();
+            this._newGameFeaturesBgPanels[1].graphics.beginFill('#fff');
+            this._newGameFeaturesBgPanels[1].graphics.drawRoundRect(15, 165, config.Screen.WIDTH - 30, 395, 25);
+            this._newGameFeaturesBgPanels[1].shadow = new createjs.Shadow("#000", 2, 2, 20);
+            this._newGameFeaturesBgPanels[1].alpha = .1;
+            this._newGameObjectsLabels[2] = new objects.Label("The enemy ships patrol their secret\nbase. They will never leave the\nperimeter of their base. However,\nthey will randomly fire their\nweapons outside their base.", "30px customfont", "#00FF48", 210, config.Screen.CENTER_Y - 40, false);
+            // asteroids and diamonds are new in level 1
+            this._newGameObjects[2] = new objects.Enemy2();
+            this._newGameObjects[2].x = 110;
+            this._newGameObjects[2].y = config.Screen.CENTER_Y + 50;
+            this._newGameObjectsLabels[2].alpha = .9;
+            this._newGameFeaturesContainers[1].addChild(this._newGameFeaturesBgPanels[1], this._newGameObjectsLabels[2], this._newGameObjects[2], this._newGameObjects[2]);
+            // start off, off screen so can zoom in later
+            this._newGameFeaturesContainers[1].y = 5000;
+            this.addChild(this._newGameFeaturesContainers[0], this._newGameFeaturesContainers[1]);
         };
         MissionBriefing.prototype._setupMissionLabels = function () {
             // FOR LEVEL 1
@@ -195,18 +223,35 @@ var scenes;
             this._missionContainers[0].addChild(this._missionBgPanels[0], this._missionLbls[0]);
             // start off, off screen so can zoom in later
             this._missionContainers[0].y = 5000;
-            this.addChild(this._missionContainers[0]);
+            // LEVEL 2
+            this._missionContainers[1] = new createjs.Container();
+            this._missionBgPanels[1] = new createjs.Shape();
+            this._missionBgPanels[1].graphics.beginFill('#fff');
+            this._missionBgPanels[1].graphics.drawRoundRect(15, 165, config.Screen.WIDTH - 30, 395, 25);
+            this._missionBgPanels[1].shadow = new createjs.Shadow("#000", 2, 2, 20);
+            this._missionBgPanels[1].alpha = .1;
+            this._missionLbls[1] = new objects.Label("Location\t: Enemy's Secret Base\n\nDescription\t:\n			  Although you managed to get enough money\n			  to fix your ship, there are no available\n			  parts for Amso. If there was only some way\n			  you could get things for free...oh look\n			  there's the enemy's secret base!\n\nObjective\t:\n			  Destroy enemy ships (10) to stea...er,\n			  borrow ship parts to fix your ship.", "30px customfont", "#00FF48", 50, 180, false);
+            this._missionContainers[1].addChild(this._missionBgPanels[1], this._missionLbls[1]);
+            // start off, off screen so can zoom in later
+            this._missionContainers[1].y = 5000;
+            this.addChild(this._missionContainers[0], this._missionContainers[1]);
         };
         MissionBriefing.prototype._setupHeaderLabels = function () {
             // for mission 1
             this._headerLbls[0] = new objects.Label("Mission 01", "50px customfont", "#00FF48", config.Screen.CENTER_X, config.Screen.CENTER_Y - 200);
             this._headerLbls[0].shadow = new createjs.Shadow("#000", 5, 5, 5);
             this._headerLbls[0].alpha = 0;
+            this._headerLbls[1] = new objects.Label("Mission 02", "50px customfont", "#00FF48", config.Screen.CENTER_X, config.Screen.CENTER_Y - 200);
+            this._headerLbls[1].shadow = new createjs.Shadow("#000", 5, 5, 5);
+            this._headerLbls[1].alpha = 0;
+            this._headerLbls[2] = new objects.Label("Mission 03", "50px customfont", "#00FF48", config.Screen.CENTER_X, config.Screen.CENTER_Y - 200);
+            this._headerLbls[2].shadow = new createjs.Shadow("#000", 5, 5, 5);
+            this._headerLbls[2].alpha = 0;
             // new obj label
             this._newGameObjectiveHeaderLabel = new objects.Label("New Features!", "50px customfont", "#00FF48", config.Screen.CENTER_X, config.Screen.CENTER_Y - 200);
             this._newGameObjectiveHeaderLabel.shadow = new createjs.Shadow("#000", 5, 5, 5);
             this._newGameObjectiveHeaderLabel.alpha = 0;
-            this.addChild(this._headerLbls[0], this._newGameObjectiveHeaderLabel);
+            this.addChild(this._headerLbls[0], this._headerLbls[1], this._headerLbls[2], this._newGameObjectiveHeaderLabel);
         };
         /**
         * Sets up the background image, and its box blur filter
