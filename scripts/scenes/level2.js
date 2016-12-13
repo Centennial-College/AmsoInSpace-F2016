@@ -86,7 +86,7 @@ var scenes;
             // level 2 requires score of 2000 points to advance to the next level
             if (missionProgress >= missionGoal && !this._levelComplete) {
                 // this._canAdvanceToNextLevel = true
-                scene = config.Scene.LEVEL3;
+                scene = config.Scene.BRIEFING;
                 this._advanceToNextLevel();
                 this._bgSound.stop();
             }

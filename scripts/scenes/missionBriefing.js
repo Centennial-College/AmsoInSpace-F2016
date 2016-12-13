@@ -2,8 +2,8 @@
  * @file missionBriefing.ts
  * @author Chamsol Yoon cyoon2@my.centennialcollege.ca
  * @author Kevin Ma kma45@my.centennialcollege.ca
- * @date December 12 2016
- * @version 0.4.9 implemented story and mission objective for level2
+ * @date December 13 2016
+ * @version 0.5.0 finished implementing all mission briefing scenes
  * @description This class is used to brief the player about the details
  *              of the upcoming mission
  **/
@@ -205,10 +205,26 @@ var scenes;
             this._newGameObjects[2].x = 110;
             this._newGameObjects[2].y = config.Screen.CENTER_Y + 50;
             this._newGameObjectsLabels[2].alpha = .9;
-            this._newGameFeaturesContainers[1].addChild(this._newGameFeaturesBgPanels[1], this._newGameObjectsLabels[2], this._newGameObjects[2], this._newGameObjects[2]);
+            this._newGameFeaturesContainers[1].addChild(this._newGameFeaturesBgPanels[1], this._newGameObjectsLabels[2], this._newGameObjects[2]);
             // start off, off screen so can zoom in later
             this._newGameFeaturesContainers[1].y = 5000;
-            this.addChild(this._newGameFeaturesContainers[0], this._newGameFeaturesContainers[1]);
+            // FOR LEVEL 3
+            this._newGameFeaturesContainers[2] = new createjs.Container();
+            this._newGameFeaturesBgPanels[2] = new createjs.Shape();
+            this._newGameFeaturesBgPanels[2].graphics.beginFill('#fff');
+            this._newGameFeaturesBgPanels[2].graphics.drawRoundRect(15, 165, config.Screen.WIDTH - 30, 395, 25);
+            this._newGameFeaturesBgPanels[2].shadow = new createjs.Shadow("#000", 2, 2, 20);
+            this._newGameFeaturesBgPanels[2].alpha = .1;
+            this._newGameObjectsLabels[3] = new objects.Label("Saja's grand generals are much\nmore resilient than the previous\nenemy ships you've faced so far.\nIt is wise to avoid getting hit\nby one of the generals attacks.", "30px customfont", "#00FF48", 275, config.Screen.CENTER_Y - 40, false);
+            // asteroids and diamonds are new in level 1
+            this._newGameObjects[3] = new objects.Enemy3();
+            this._newGameObjects[3].x = 150;
+            this._newGameObjects[3].y = config.Screen.CENTER_Y + 50;
+            this._newGameObjectsLabels[3].alpha = .9;
+            this._newGameFeaturesContainers[2].addChild(this._newGameFeaturesBgPanels[2], this._newGameObjectsLabels[3], this._newGameObjects[3]);
+            // start off, off screen so can zoom in later
+            this._newGameFeaturesContainers[2].y = 5000;
+            this.addChild(this._newGameFeaturesContainers[0], this._newGameFeaturesContainers[1], this._newGameFeaturesContainers[2]);
         };
         MissionBriefing.prototype._setupMissionLabels = function () {
             // FOR LEVEL 1
@@ -234,7 +250,18 @@ var scenes;
             this._missionContainers[1].addChild(this._missionBgPanels[1], this._missionLbls[1]);
             // start off, off screen so can zoom in later
             this._missionContainers[1].y = 5000;
-            this.addChild(this._missionContainers[0], this._missionContainers[1]);
+            // LEVEL 3
+            this._missionContainers[2] = new createjs.Container();
+            this._missionBgPanels[2] = new createjs.Shape();
+            this._missionBgPanels[2].graphics.beginFill('#fff');
+            this._missionBgPanels[2].graphics.drawRoundRect(15, 165, config.Screen.WIDTH - 30, 395, 25);
+            this._missionBgPanels[2].shadow = new createjs.Shadow("#000", 2, 2, 20);
+            this._missionBgPanels[2].alpha = .1;
+            this._missionLbls[2] = new objects.Label("Location\t: Saja's Dimension\n\nDescription\t:\n			  You have finally gained enough strength\n			  to fight against the evil emperor Saja.\n			  The only thing that remains an obstacle\n			  for you are the 5 grand generals loyal\n			  to Saja.\n\nObjective\t:\n			  Defeat Saja's Grand Generals to prepare\n			  for your final battle.", "30px customfont", "#00FF48", 50, 180, false);
+            this._missionContainers[2].addChild(this._missionBgPanels[2], this._missionLbls[2]);
+            // start off, off screen so can zoom in later
+            this._missionContainers[2].y = 5000;
+            this.addChild(this._missionContainers[0], this._missionContainers[1], this._missionContainers[2]);
         };
         MissionBriefing.prototype._setupHeaderLabels = function () {
             // for mission 1
