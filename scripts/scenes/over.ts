@@ -27,6 +27,7 @@ module scenes {
 
         // PUBLIC METHODS +++++++++++++++++++++++++++++++++++++++++++++
         public start(): void {
+            createjs.Sound.stop()
             console.log("Gameover Scene started");
 
             createjs.Sound.play('gameover')

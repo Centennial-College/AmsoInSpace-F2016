@@ -110,7 +110,6 @@ module scenes {
 
             if (missionProgress >= missionGoal && !this._levelComplete) {
                 // this._canAdvanceToNextLevel = true
-                createjs.Sound.stop()
                 scene = config.Scene.WIN
                 this._advanceToNextLevel()
                 this._bgSound.stop()
