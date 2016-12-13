@@ -25,6 +25,7 @@
 
 /// <reference path="../scenes/menu.ts" />
 /// <reference path="../scenes/controlSelection.ts" />
+/// <reference path="../scenes/missionBriefing.ts" />
 /// <reference path="../scenes/instructions.ts" />
 /// <reference path="../scenes/scrollingLevel.ts" />
 /// <reference path="../scenes/level1.ts" />
