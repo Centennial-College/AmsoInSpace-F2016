@@ -51,7 +51,7 @@ var objects;
         };
         // PRIVATE METHODS ++++++++++++++++++++++++++++++++++++++++++++
         Asteroid.prototype._checkBounds = function () {
-            if ((this.y >= (config.Screen.HEIGHT - config.Game.SCORE_BOARD_HEIGHT + (this.height * 0.5)))
+            if ((this.y >= (config.Screen.HEIGHT - config.Game.SCORE_BOARD_HEIGHT - (this.height * 0.5)))
                 || (this.x <= (0 - (this.width * 0.5)))) {
                 this._reset();
             }

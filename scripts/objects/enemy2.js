@@ -114,7 +114,7 @@ var objects;
         };
         Enemy2.prototype._checkBounds = function () {
             // if ((this.y >= (config.Screen.HEIGHT - config.Game.SCORE_BOARD_HEIGHT - (this.height * 0.5)))
-            if (this.y >= (config.Screen.HEIGHT - config.Game.SCORE_BOARD_HEIGHT + (this.height * 0.5)) || this.y <= (0 - (this.height * 0.5))) {
+            if (this.y >= (config.Screen.HEIGHT - config.Game.SCORE_BOARD_HEIGHT - (this.height * 0.5)) || this.y <= (0 - (this.height * 0.5))) {
                 this._reset();
             }
         };
